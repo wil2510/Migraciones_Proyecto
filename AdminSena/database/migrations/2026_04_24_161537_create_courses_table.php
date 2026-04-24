@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('course_number');
             $table->date('day');
 
-        // llave foranea  area
+        // llave foranea area
 
              $table->unsignedBigInteger('area_id')->nullable()->unique();
 

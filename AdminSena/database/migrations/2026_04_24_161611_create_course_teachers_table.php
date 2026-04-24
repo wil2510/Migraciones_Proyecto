@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('course_teachers', function (Blueprint $table) {
             $table->id();
 
-        // llave foranea  course
+        // llave foranea course
 
              $table->unsignedBigInteger('course_id')->nullable()->unique();
 

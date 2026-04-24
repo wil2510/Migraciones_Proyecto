@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->integer('cell number');
 
-        // llave foranea  course
+        // llave foranea course
 
              $table->unsignedBigInteger('course_id')->nullable()->unique();
 
@@ -27,7 +27,7 @@ return new class extends Migration
                 ->onDelete('set null')
                 ->onUpdate('set null');
 
-            // llave foranea computer
+            //llave foranea computer
 
              $table->unsignedBigInteger('computer_id')->nullable()->unique();
 
