@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Computer extends Model
 {
     use HasFactory;
+
+    //Relacion Uno a Uno
+    public function Apprentice(){
+        return $this->>hasOne('App\Models\Apprentice');
+    }
 }
