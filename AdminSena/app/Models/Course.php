@@ -9,22 +9,30 @@ class Course extends Model
 {
     use HasFactory;
 
-    //Relacion Uno a Uno
+    // Relacion uno a Uno
     public function area(){
-        return $this->>BelongsTo('App\Models\Area');
+        return $this->belongsTo('App\Models\Area');
     }
 
-     //Relacion Uno a Uno
+    // Relacion uno a Uno
     public function training_center(){
-        return $this->BelongsTo('App\Models\Training_center');
+        return $this->belongsTo('App\Models\Training_center');
     }
 
-    //Relacion Uno a muchos
-    public function Apprentice(){
-        return $this->>hasMany('App\Models\Apprentice');
+    // Relacion uno a Muchos
+    public function apprentices(){
+        return $this->hasMany('App\Models\Apprentice');
     }
-    //Relacion Muchos a Muchos
-    public function Teachers(){
-        return $this->>belongsToMany('App\Models\teacher');
+    
+    // Relacion Muchos a muchos
+    public function teachers(){
+        return $this->belongsToMany('App\Models\Teacher');
     }
-}    
+
+    protected $fillable = [
+        'course_number',
+        'day',
+        'area_id',
+        'training_center_id',
+    ];
+}

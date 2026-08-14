@@ -9,8 +9,15 @@ class Computer extends Model
 {
     use HasFactory;
 
-    //Relacion Uno a Uno
-    public function Apprentice(){
-        return $this->>hasOne('App\Models\Apprentice');
+    //  Relacion Uno A Uno creo una funcion de apunte a Apprentice
+    public function apprentice(){
+        return $this->hasOne('App\Models\Apprentice');
     }
+
+    use HasFactory;
+
+    protected $fillable = [
+        'number',
+        'brand'
+    ];
 }

@@ -9,14 +9,23 @@ class Apprentice extends Model
 {
     use HasFactory;
 
-    //Relacion Uno a Uno
-    public function Computer(){
-        return $this->>BelongsTo('App\Models\computer');
+    // Relacion de uno a uno
+    public function computer()
+    {
+        return $this->belongsTo('App\Models\Computer');
     }
-
-    //Relacion Uno a Uno
+    
+    // Relacion uno a Uno
     public function course(){
-        return $this->BelongsTo('App\Models\Course');
+        return $this->belongsTo('App\Models\Course');
     }
 
+    protected $fillable = [
+        'name',
+        'email',
+        'cell_number',
+        'course_id',
+        'computer_id',
+    ];
 }
+

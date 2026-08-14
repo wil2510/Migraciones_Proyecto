@@ -1,28 +1,23 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<h1>Hola sobrinos</h1>
+@extends('layouts.app')
 
-<form action="{{route('trainingcenter.store')}}" method="POST" enctype="multipart/form-data">
+@section('content')
 
-@csrf
+    <form action="{{ route('trainingcenter.admin') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <label>
+            Nombre:
+            <br>
+            <input type="text" name="name">
+        </label>
+        <br><br>
 
-<label>
-    Nombre:
-    <br>
-    <input type="text" name="name">
-</label>
-<br>
+        <label>
+            Ubicacion:
+            <br>
+            <input type="text" name="location">
+        </label>
+        <br><br>
+        <button type="submit">Enviar Formulario</button>
+    </form>
 
-
-
-<button type="submit">Enviar Formulario:</button>
-</form>
-
-</body>
-</html>
+@endsection

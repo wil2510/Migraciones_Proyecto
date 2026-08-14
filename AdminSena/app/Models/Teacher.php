@@ -9,16 +9,25 @@ class Teacher extends Model
 {
     use HasFactory;
 
-     //Relacion Uno a Uno
-    public function Area(){
-        return $this->BelongsTo('App\Models\Area');
+    // relacion de uno a uno
+    public function area(){
+        return $this->belongsTo('App\Models\Area');
     }
-    //Relacion Uno a Uno
+
+    // Relacion uno a Uno
     public function training_center(){
-        return $this->BelongsTo('App\Models\training_center');
+        return $this->belongsTo('App\Models\Training_center');
     }
-     //Relacion Muchos a Muchos
+
+    // Relacion Muchos a muchos
     public function courses(){
-        return $this->>belongsToMany('App\Models\Course');
+        return $this->belongsToMany('App\Models\Course');
     }
+
+    protected $fillable = [
+        'name',
+        'email',
+        'area_id',
+        'training_center_id'
+    ];
 }

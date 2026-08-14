@@ -18,7 +18,7 @@ return new class extends Migration
 
             // llave foranea areas
 
-             $table->unsignedBigInteger('area_id')->nullable()->unique();
+            $table->unsignedBigInteger('area_id')->nullable()->unique();
 
             $table->foreign('area_id')
                 ->references('id')
@@ -28,7 +28,7 @@ return new class extends Migration
 
             // llave foranea training_center
 
-             $table->unsignedBigInteger('training_center_id')->nullable()->unique();
+            $table->unsignedBigInteger('training_center_id')->nullable()->unique();
 
             $table->foreign('training_center_id')
                 ->references('id')
