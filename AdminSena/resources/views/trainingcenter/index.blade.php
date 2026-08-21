@@ -1,24 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-4">
+<div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h1 class="h2 fw-bold text-success mb-1">Panel de Administración: ¿Quiénes Somos?</h1>
-            <p class="text-muted mb-0">Gestión de la información institucional del SENA</p>
+            <h1 class="h2 fw-bold text-success mb-0">Panel de Administración: ¿Quiénes Somos?</h1>
+            <p class="text-muted mb-0">Gestión interna de secciones institucionales</p>
         </div>
         <a href="{{ route('quienes-somos.create') }}" class="btn btn-success fw-semibold">
-            <i class="bi bi-plus-lg me-1"></i> Crear Registro
+            <i class="bi bi-plus-lg me-1"></i> Crear Nuevo Registro
         </a>
     </div>
 
+    <!-- Tabla de Registros -->
     <div class="card border-0 shadow-sm rounded-3">
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover align-middle mb-0">
                     <thead class="bg-success text-white">
                         <tr>
-                            <th scope="col" class="ps-4 py-3">#</th>
+                            <th scope="col" class="ps-4 py-3">ID</th>
                             <th scope="col" class="py-3">Título</th>
                             <th scope="col" class="py-3">Descripción Resumida</th>
                             <th scope="col" class="py-3">Estado</th>

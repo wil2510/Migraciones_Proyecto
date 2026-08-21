@@ -35,16 +35,16 @@
                                 <td class="text-end pe-4">
                                     <div class="btn-group" role="group">
                                         <a href="{{ route('quienes-somos.show', $item->id) }}" class="btn btn-outline-primary btn-sm">
-                                            <i class="bi bi-eye me-1"></i> Ver
+                                            <i class="bi bi-eye"></i> Ver
                                         </a>
                                         <a href="{{ route('quienes-somos.edit', $item->id) }}" class="btn btn-outline-warning btn-sm">
-                                            <i class="bi bi-pencil me-1"></i> Editar
+                                            <i class="bi bi-pencil"></i> Editar
                                         </a>
                                         <form action="{{ route('quienes-somos.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Desea eliminar este registro?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-outline-danger btn-sm rounded-start-0">
-                                                <i class="bi bi-trash me-1"></i> Eliminar
+                                                <i class="bi bi-trash"></i> Eliminar
                                             </button>
                                         </form>
                                     </div>

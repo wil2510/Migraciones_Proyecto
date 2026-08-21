@@ -1,80 +1,68 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="py-5 rounded-4" style="background-color: #f4f6f9;">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                
-                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
-                    
-                    <div class="card-header text-white text-center py-4" style="background-color: #39A900; border-bottom: none;">
-                        <h4 class="mb-0 fw-bold">Actualizar Curso / Ficha</h4>
-                        <p class="mb-0 mt-1 small opacity-75">Modifique los datos de calendarización y sedes</p>
-                    </div>
-                    
-                    <div class="card-body p-4 p-md-5 bg-white">
-                        <form action="{{ route('course.update', $course) }}" method="POST">
-                            @csrf
-                            @method('put')
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-white">
+                    <h5 class="mb-0">Editar Curso</h5>
+                </div>
+                <div class="card-body">
 
-                            <div class="mb-4">
-                                <label for="course_number" class="form-label text-muted small fw-bold text-uppercase tracking-wider">Número del Curso (Ficha)</label>
-                                <input type="number" 
-                                        id="course_number"
-                                        name="course_number" 
-                                        class="form-control form-control-lg bg-light border-0 rounded-3 text-dark fw-bold" 
-                                        value="{{ old('course_number', $course->course_number) }}" 
-                                        required>
-                            </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-                            <div class="mb-4">
-                                <label for="day" class="form-label text-muted small fw-bold text-uppercase tracking-wider">Día / Fecha Asignada</label>
-                                <input type="date" 
-                                        id="day"
-                                        name="day" 
-                                        class="form-control form-control-lg bg-light border-0 rounded-3 text-dark fw-medium" 
-                                        value="{{ old('day', $course->day) }}" 
-                                        required>
-                            </div>
+                    <form action="{{ route('course.update', $course) }}" method="POST">
+                        @csrf
+                        @method('PUT')
 
-                            <div class="mb-4">
-                                <label for="area_id" class="form-label text-muted small fw-bold text-uppercase tracking-wider">Área Vinculada</label>
-                                <select name="area_id" id="area_id" class="form-select form-select-lg bg-light border-0 rounded-3 text-dark fw-medium" required>
-                                    @foreach($areas as $area)
-                                        <option value="{{ $area->id }}" {{ old('area_id', $course->area_id) == $area->id ? 'selected' : '' }}>
-                                            {{ $area->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nombre del Curso</label>
+                            <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $course->name) }}" required>
+                        </div>
 
-                            <div class="mb-4">
-                                <label for="training_center_id" class="form-label text-muted small fw-bold text-uppercase tracking-wider">Centro de Formación Sede</label>
-                                <select name="training_center_id" id="trainingcenter_id" class="form-select form-select-lg bg-light border-0 rounded-3 text-dark fw-medium" required>
-                                    @foreach($trainingcenters as $trainingcenter)
-                                        <option value="{{ $trainingcenter->id }}" {{ old('training_center_id', $course->training_center_id) == $trainingcenter->id ? 'selected' : '' }}>
-                                            {{ $trainingcenter->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
+                        <div class="mb-3">
+                            <label for="code" class="form-label">Código del Curso</label>
+                            <input type="text" name="code" id="code" class="form-control" value="{{ old('code', $course->code) }}" required>
+                        </div>
 
-                            <hr class="my-4 opacity-25">
+                        <div class="mb-3">
+                            <label for="area_id" class="form-label">Área</label>
+                            <select name="area_id" id="area_id" class="form-select" required>
+                                @foreach ($areas as $area)
+                                    <option value="{{ $area->id }}" {{ old('area_id', $course->area_id) == $area->id ? 'selected' : '' }}>
+                                        {{ $area->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                            <div class="d-flex justify-content-center align-items-center gap-2 mt-4">
-                                <a href="{{ url()->previous() }}" class="btn btn-light border fw-bold px-4 py-2 rounded-3">
-                                    Cancelar
-                                </a>
-                                <button type="submit" class="btn text-white fw-bold px-4 py-2 rounded-3 shadow-sm" style="background-color: #39A900;">
-                                    Actualizar Curso
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="mb-3">
+                            <label for="training_center_id" class="form-label">Centro de Formación</label>
+                            <select name="training_center_id" id="training_center_id" class="form-select" required>
+                                @foreach ($trainingCenters as $center)
+                                    <option value="{{ $center->id }}" {{ old('training_center_id', $course->training_center_id) == $center->id ? 'selected' : '' }}>
+                                        {{ $center->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{{ route('course.index') }}" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-primary">Actualizar Curso</button>
+                        </div>
+                    </form>
 
                 </div>
-                
             </div>
         </div>
     </div>

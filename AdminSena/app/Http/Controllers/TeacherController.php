@@ -9,56 +9,70 @@ use App\Models\Training_center;
 
 class TeacherController extends Controller
 {
-    public function create(){
-
-    $areas=Area::all();
-    $training_centers=Training_center::all();
-        return view('teacher.admin',compact('areas','training_centers'));
-
-    }
-
-    public function index(){
-
+    // Muestra la lista de instructores
+    public function index()
+    {
         $teachers = Teacher::all();
 
         return view('teacher.index', compact('teachers'));
-
     }
 
-    
-    public function admin(Request $request){
-
-        return Teacher::create($request->all());
-
-    }
-
-    public function show ($id){
-
-        $teacher=Teacher::find($id);
-
-        return view('teacher.show',compact('teacher'));
-        
-    }
-
-    public function edit(Teacher $teacher){
-
+    // Muestra el formulario para crear un instructor
+    public function create()
+    {
+        $teachers = Teacher::all();
         $areas = Area::all();
-        $trainingcenters = Training_center::all();
+        $training_centers = Training_center::all();
 
-        return view('teacher.edit', compact('teacher', 'areas', 'trainingcenters'));
+        return view('teacher.index', compact(
+            'teachers',
+            'areas',
+            'training_centers'
+        ));
     }
 
-    public function update(Request $request, Teacher $teacher){
+    // Guarda el instructor
+    public function admin(Request $request)
+    {
+        Teacher::create($request->all());
 
+        return redirect()->route('teacher.index');
+    }
+
+    // Muestra un instructor
+    public function show($id)
+    {
+        $teacher = Teacher::find($id);
+
+        return view('teacher.show', compact('teacher'));
+    }
+
+    // Muestra el formulario para editar
+    public function edit(Teacher $teacher)
+    {
+        $areas = Area::all();
+        $training_centers = Training_center::all();
+
+        return view('teacher.edit', compact(
+            'teacher',
+            'areas',
+            'training_centers'
+        ));
+    }
+
+    // Actualiza el instructor
+    public function update(Request $request, Teacher $teacher)
+    {
         $teacher->update($request->all());
 
         return redirect()->route('teacher.index');
-
     }
 
+    // Elimina el instructor
     public function destroy(Teacher $teacher)
     {
         $teacher->delete();
+
         return redirect()->route('teacher.index');
     }
 }
