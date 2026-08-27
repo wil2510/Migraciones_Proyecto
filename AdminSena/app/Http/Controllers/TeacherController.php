@@ -9,48 +9,79 @@ use App\Models\Training_center;
 
 class TeacherController extends Controller
 {
-    // Muestra la lista de instructores
+    // ==========================================
+    // LISTADO DE INSTRUCTORES
+    // ==========================================
     public function index()
     {
-        $teachers = Teacher::all();
+        $teachers = Teacher::with(['area', 'training_center'])->get();
 
         return view('teacher.index', compact('teachers'));
     }
 
-    // Muestra el formulario para crear un instructor
+
+    // ==========================================
+    // FORMULARIO PARA CREAR INSTRUCTOR
+    // ==========================================
     public function create()
     {
-        $teachers = Teacher::all();
         $areas = Area::all();
+
         $training_centers = Training_center::all();
 
-        return view('teacher.index', compact(
-            'teachers',
+        return view('teacher.create', compact(
             'areas',
             'training_centers'
         ));
     }
 
-    // Guarda el instructor
+
+    // ==========================================
+    // GUARDAR INSTRUCTOR
+    // ==========================================
     public function admin(Request $request)
     {
-        Teacher::create($request->all());
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'area_id' => 'required|exists:areas,id',
+            'training_center_id' => 'required|exists:training_centers,id',
+        ]);
 
-        return redirect()->route('teacher.index');
+        Teacher::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'area_id' => $request->area_id,
+            'training_center_id' => $request->training_center_id,
+        ]);
+
+        return redirect()
+            ->route('teacher.index')
+            ->with('success', 'Instructor registrado correctamente.');
     }
 
-    // Muestra un instructor
+
+    // ==========================================
+    // VER INSTRUCTOR
+    // ==========================================
     public function show($id)
     {
-        $teacher = Teacher::find($id);
+        $teacher = Teacher::with([
+            'area',
+            'training_center'
+        ])->findOrFail($id);
 
         return view('teacher.show', compact('teacher'));
     }
 
-    // Muestra el formulario para editar
+
+    // ==========================================
+    // FORMULARIO EDITAR
+    // ==========================================
     public function edit(Teacher $teacher)
     {
         $areas = Area::all();
+
         $training_centers = Training_center::all();
 
         return view('teacher.edit', compact(
@@ -60,19 +91,41 @@ class TeacherController extends Controller
         ));
     }
 
-    // Actualiza el instructor
+
+    // ==========================================
+    // ACTUALIZAR INSTRUCTOR
+    // ==========================================
     public function update(Request $request, Teacher $teacher)
     {
-        $teacher->update($request->all());
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'area_id' => 'required|exists:areas,id',
+            'training_center_id' => 'required|exists:training_centers,id',
+        ]);
 
-        return redirect()->route('teacher.index');
+        $teacher->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'area_id' => $request->area_id,
+            'training_center_id' => $request->training_center_id,
+        ]);
+
+        return redirect()
+            ->route('teacher.index')
+            ->with('success', 'Instructor actualizado correctamente.');
     }
 
-    // Elimina el instructor
+
+    // ==========================================
+    // ELIMINAR INSTRUCTOR
+    // ==========================================
     public function destroy(Teacher $teacher)
     {
         $teacher->delete();
 
-        return redirect()->route('teacher.index');
+        return redirect()
+            ->route('teacher.index')
+            ->with('success', 'Instructor eliminado correctamente.');
     }
 }

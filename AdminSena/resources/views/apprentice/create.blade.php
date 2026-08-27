@@ -1,95 +1,241 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="py-4">
-    <div class="container">
-        
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
-            <div>
-                <h2 class="fw-bold text-dark mb-1">Listado de Aprendices</h2>
-                <p class="text-muted small mb-0">Registro y control de estudiantes matriculados y sus equipos coasociados.</p>
-            </div>
-            <a href="{{ route('apprentice.create') }}" class="btn text-white fw-bold px-4 py-2 shadow-sm d-inline-flex align-items-center gap-2" style="background-color: #39A900;">
-                Nuevo Aprendiz
-            </a>
-        </div>
 
-        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    
-                    <table id="idApprentice" class="table table-hover align-middle mb-0" style="width:100%">
-                        <thead class="table-dark" style="background-color: #212529;">
-                            <tr>
-                                <th class="ps-4 py-3">ID</th>
-                                <th class="py-3">Nombre</th>
-                                <th class="py-3">Email / Celular</th>
-                                <th class="py-3">Ficha Curso</th>
-                                <th class="py-3">Computador</th>
-                                <th class="text-center py-3" style="width: 25%">Acciones de Gestión</th>
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-                            @foreach ($apprentices as $apprentice)
-                                <tr>
-                                    <td class="ps-4 fw-bold text-secondary">#{{ $apprentice->id }}</td>
-                                    <td class="fw-bold text-dark">{{ $apprentice->name }}</td>
-                                    <td>
-                                        <div class="small text-dark">{{ $apprentice->email }}</div>
-                                        <div class="small text-muted font-monospace">{{ $apprentice->cell_number }}</div>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-light text-dark border px-3 py-2 rounded">
-                                            Ficha: {{ $apprentice->course_id }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-dark-subtle text-dark border px-3 py-2 rounded">
-                                            Equipo N° {{ $apprentice->computer_id }}
-                                        </span>
-                                    </td>
-                                    
-                                    <td class="text-center">
-                                        <div class="d-flex justify-content-center align-items-center gap-2">
-                                            
-                                            <a href="{{ route('apprentice.show', $apprentice->id) }}" 
-                                                class="btn btn-sm btn-light border fw-medium d-inline-flex justify-content-center align-items-center" 
-                                                style="width: 90px; height: 32px;">
-                                                Ver
-                                            </a>
-                                            
-                                            <a href="{{ route('apprentice.edit', $apprentice->id) }}" 
-                                                class="btn btn-sm btn-outline-dark fw-medium d-inline-flex justify-content-center align-items-center" 
-                                                style="width: 90px; height: 32px;">
-                                                Editar
-                                            </a>
-                                            
-                                            <form action="{{ route('apprentice.destroy', $apprentice->id) }}" 
-                                                    method="POST" 
-                                                    class="d-inline-flex m-0" 
-                                                    style="width: 90px;"
-                                                    onsubmit="return confirm('¿Está seguro de eliminar este aprendiz?')">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" 
-                                                        class="btn btn-sm btn-danger fw-medium w-100 d-inline-flex justify-content-center align-items-center"
-                                                        style="height: 32px;">
-                                                    Eliminar
-                                                </button>
-                                            </form>
-                                            
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    
+<div class="py-5" style="background-color:#f4f6f9;">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-8 col-lg-6">
+
+                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+
+                    {{-- CABECERA --}}
+                    <div
+                        class="card-header text-white text-center py-4"
+                        style="background-color:#39A900;"
+                    >
+
+                        <h4 class="mb-0 fw-bold">
+                            Registrar Aprendiz
+                        </h4>
+
+                        <p class="mb-0 mt-1 small opacity-75">
+                            Ingrese los datos del aprendiz
+                        </p>
+
+                    </div>
+
+
+                    {{-- CUERPO --}}
+                    <div class="card-body p-4 p-md-5 bg-white">
+
+                        {{-- ERRORES --}}
+                        @if ($errors->any())
+
+                            <div class="alert alert-danger">
+
+                                <strong>
+                                    Hay errores en el formulario:
+                                </strong>
+
+                                <ul class="mb-0 mt-2">
+
+                                    @foreach ($errors->all() as $error)
+
+                                        <li>
+                                            {{ $error }}
+                                        </li>
+
+                                    @endforeach
+
+                                </ul>
+
+                            </div>
+
+                        @endif
+
+
+                        {{-- FORMULARIO --}}
+                        <form
+                            action="{{ route('apprentice.admin') }}"
+                            method="POST"
+                        >
+
+                            @csrf
+
+
+                            {{-- NOMBRE --}}
+                            <div class="form-floating mb-4">
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="name"
+                                    name="name"
+                                    value="{{ old('name') }}"
+                                    placeholder="Nombre completo"
+                                    required
+                                >
+
+                                <label for="name">
+                                    Nombre Completo
+                                </label>
+
+                            </div>
+
+
+                            {{-- EMAIL --}}
+                            <div class="form-floating mb-4">
+
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="email"
+                                    name="email"
+                                    value="{{ old('email') }}"
+                                    placeholder="Correo electrónico"
+                                    required
+                                >
+
+                                <label for="email">
+                                    Correo Electrónico
+                                </label>
+
+                            </div>
+
+
+                            {{-- CELULAR --}}
+                            <div class="form-floating mb-4">
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="cell_number"
+                                    name="cell_number"
+                                    value="{{ old('cell_number') }}"
+                                    placeholder="Número de celular"
+                                    required
+                                >
+
+                                <label for="cell_number">
+                                    Número de Celular
+                                </label>
+
+                            </div>
+
+
+                            {{-- CURSO --}}
+                            <div class="form-floating mb-4">
+
+                                <select
+                                    name="course_id"
+                                    id="course_id"
+                                    class="form-select"
+                                    required
+                                >
+
+                                    <option
+                                        value=""
+                                        disabled
+                                        {{ old('course_id') ? '' : 'selected' }}
+                                    >
+                                        Seleccione un curso...
+                                    </option>
+
+                                    @foreach ($courses as $course)
+
+                                        <option
+                                            value="{{ $course->id }}"
+                                            {{ old('course_id') == $course->id ? 'selected' : '' }}
+                                        >
+                                            {{ $course->code }} -
+                                            {{ $course->name }}
+                                        </option>
+
+                                    @endforeach
+
+                                </select>
+
+                                <label for="course_id">
+                                    Curso
+                                </label>
+
+                            </div>
+
+
+                            {{-- COMPUTADOR --}}
+                            <div class="form-floating mb-4">
+
+                                <select
+                                    name="computer_id"
+                                    id="computer_id"
+                                    class="form-select"
+                                    required
+                                >
+
+                                    <option
+                                        value=""
+                                        disabled
+                                        {{ old('computer_id') ? '' : 'selected' }}
+                                    >
+                                        Seleccione un computador...
+                                    </option>
+
+                                    @foreach ($computers as $computer)
+
+                                        <option
+                                            value="{{ $computer->id }}"
+                                            {{ old('computer_id') == $computer->id ? 'selected' : '' }}
+                                        >
+                                            Equipo N° {{ $computer->number }}
+                                        </option>
+
+                                    @endforeach
+
+                                </select>
+
+                                <label for="computer_id">
+                                    Computador Asociado
+                                </label>
+
+                            </div>
+
+
+                            {{-- BOTONES --}}
+                            <div class="d-flex justify-content-between mt-5">
+
+                                <a
+                                    href="{{ route('apprentice.index') }}"
+                                    class="btn btn-outline-secondary px-4 py-2"
+                                >
+                                    Cancelar
+                                </a>
+
+                                <button
+                                    type="submit"
+                                    class="btn text-white px-5 py-2 fw-bold"
+                                    style="background-color:#39A900;"
+                                >
+                                    Guardar Aprendiz
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
 
     </div>
+
 </div>
+
 @endsection

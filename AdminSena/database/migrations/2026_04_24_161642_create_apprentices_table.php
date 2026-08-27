@@ -12,35 +12,36 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('apprentices', function (Blueprint $table) {
+
             $table->id();
+
+            // Datos personales
             $table->string('name');
             $table->string('email');
-            $table->integer('cell number');
+            $table->string('cell_number', 20);
 
-        // llave foranea course
-
-             $table->unsignedBigInteger('course_id')->nullable()->unique();
+            // Relación con curso
+            $table->unsignedBigInteger('course_id');
 
             $table->foreign('course_id')
                 ->references('id')
                 ->on('courses')
-                ->onDelete('set null')
-                ->onUpdate('set null');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
-            //llave foranea computer
-
-             $table->unsignedBigInteger('computer_id')->nullable()->unique();
+            // Relación con computador
+            $table->unsignedBigInteger('computer_id');
 
             $table->foreign('computer_id')
                 ->references('id')
                 ->on('computers')
-                ->onDelete('set null')
-                ->onUpdate('set null');
-    
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

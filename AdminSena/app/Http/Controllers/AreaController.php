@@ -7,52 +7,48 @@ use App\Models\Area;
 
 class AreaController extends Controller
 {
-    public function create(){
-
+    public function create()
+    {
         return view('area.create');
-
     }
 
-    public function index(){
-
+    public function index()
+    {
         $areas = Area::all();
 
-        return view('area.index',compact('areas'));
-
+        return view('area.index', compact('areas'));
     }
 
-    public function admin(Request $request){
+    public function admin(Request $request)
+    {
+        Area::create($request->all());
 
-        return Area::create($request->all());
-
+        return redirect()->route('area.index');
     }
 
-    public function show ($id){
+    public function show($id)
+    {
+        $area = Area::findOrFail($id);
 
-        $area=Area::find($id);
-
-        return view('area.show',compact('area'));
-        
+        return view('area.show', compact('area'));
     }
 
-    public function edit(Area $area){
-
+    public function edit(Area $area)
+    {
         return view('area.edit', compact('area'));
     }
 
-    public function update(Request $request, Area $area){
-
-        $area->update($request -> all());
+    public function update(Request $request, Area $area)
+    {
+        $area->update($request->all());
 
         return redirect()->route('area.index');
-
     }
 
     public function destroy(Area $area)
     {
         $area->delete();
+
         return redirect()->route('area.index');
     }
-
 }
-

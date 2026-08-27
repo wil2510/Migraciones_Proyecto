@@ -1,105 +1,183 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="py-5" style="background-color: #f4f6f9; min-height: 80vh;">
+
+<div
+    class="py-5"
+    style="background-color:#f4f6f9; min-height:80vh;"
+>
+
     <div class="container">
+
         <div class="row justify-content-center">
-            <div class="col-md-7 col-lg-6">
+
+            <div class="col-md-6 col-lg-5">
 
                 <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
-                    <!-- Encabezado Institucional -->
-                    <div class="card-header text-white text-center py-4" style="background-color: #39A900; border-bottom: none;">
-                        <h4 class="mb-1 fw-bold">Crear Cuenta</h4>
-                        <p class="mb-0 small opacity-75">Regístrate para acceder al panel administrativo</p>
+
+                    {{-- CABECERA --}}
+                    <div
+                        class="card-header text-white text-center py-4"
+                        style="background-color:#39A900;"
+                    >
+
+                        <h4 class="mb-0 fw-bold">
+                            Crear Cuenta
+                        </h4>
+
+                        <p class="mb-0 mt-1 small opacity-75">
+                            Regístrate en Admin Sena
+                        </p>
+
                     </div>
 
-                    <div class="card-body p-4 p-md-5 bg-white">
-                        <form method="POST" action="{{ route('register') }}">
+
+                    {{-- CUERPO --}}
+                    <div class="card-body p-4 p-md-5">
+
+                        {{-- ERRORES --}}
+                        @if($errors->any())
+
+                            <div class="alert alert-danger">
+
+                                <ul class="mb-0">
+
+                                    @foreach($errors->all() as $error)
+
+                                        <li>
+                                            {{ $error }}
+                                        </li>
+
+                                    @endforeach
+
+                                </ul>
+
+                            </div>
+
+                        @endif
+
+
+                        <form
+                            action="{{ route('register.post') }}"
+                            method="POST"
+                        >
+
                             @csrf
 
-                            <!-- Nombre Completo -->
-                            <div class="form-floating mb-3">
-                                <input type="text" 
-                                    class="form-control @error('name') is-invalid @enderror" 
-                                    id="name" 
-                                    name="name" 
-                                    placeholder="Tu Nombre" 
-                                    value="{{ old('name') }}" 
-                                    required 
-                                    autofocus>
-                                <label for="name" class="text-secondary">
-                                    <i class="bi bi-person-fill me-1"></i> Nombre Completo
-                                </label>
-                                @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
 
-                            <!-- Correo Electrónico -->
-                            <div class="form-floating mb-3">
-                                <input type="email" 
-                                    class="form-control @error('email') is-invalid @enderror" 
-                                    id="email" 
-                                    name="email" 
-                                    placeholder="correo@sena.edu.co" 
-                                    value="{{ old('email') }}" 
-                                    required>
-                                <label for="email" class="text-secondary">
-                                    <i class="bi bi-envelope-fill me-1"></i> Correo Electrónico
-                                </label>
-                                @error('email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <!-- Contraseña -->
-                            <div class="form-floating mb-3">
-                                <input type="password" 
-                                    class="form-control @error('password') is-invalid @enderror" 
-                                    id="password" 
-                                    name="password" 
-                                    placeholder="Contraseña" 
-                                    required>
-                                <label for="password" class="text-secondary">
-                                    <i class="bi bi-lock-fill me-1"></i> Contraseña
-                                </label>
-                                @error('password')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <!-- Confirmar Contraseña -->
+                            {{-- NOMBRE --}}
                             <div class="form-floating mb-4">
-                                <input type="password" 
-                                    class="form-control" 
-                                    id="password-confirm" 
-                                    name="password_confirmation" 
-                                    placeholder="Confirmar Contraseña" 
-                                    required>
-                                <label for="password-confirm" class="text-secondary">
-                                    <i class="bi bi-shield-lock-fill me-1"></i> Confirmar Contraseña
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="name"
+                                    name="name"
+                                    value="{{ old('name') }}"
+                                    placeholder="Nombre completo"
+                                    required
+                                >
+
+                                <label for="name">
+                                    Nombre Completo
                                 </label>
+
                             </div>
 
-                            <!-- Botón de Envío -->
-                            <button type="submit" class="btn btn-dark w-100 py-3 fw-bold rounded-3 shadow-sm mb-3" style="font-size: 1rem;">
-                                Registrar Cuenta
-                            </button>
 
-                            <!-- Enlace a Login -->
-                            <div class="text-center mt-4 pt-3 border-top">
-                                <span class="small text-muted">¿Ya tienes una cuenta creada?</span>
-                                <a href="{{ route('login') }}" class="small text-success fw-bold text-decoration-none ms-1">
-                                    Inicia sesión aquí
+                            {{-- EMAIL --}}
+                            <div class="form-floating mb-4">
+
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="email"
+                                    name="email"
+                                    value="{{ old('email') }}"
+                                    placeholder="Correo electrónico"
+                                    required
+                                >
+
+                                <label for="email">
+                                    Correo Electrónico
+                                </label>
+
+                            </div>
+
+
+                            {{-- CONTRASEÑA --}}
+                            <div class="form-floating mb-4">
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="password"
+                                    name="password"
+                                    placeholder="Contraseña"
+                                    required
+                                >
+
+                                <label for="password">
+                                    Contraseña
+                                </label>
+
+                            </div>
+
+
+                            {{-- CONFIRMAR CONTRASEÑA --}}
+                            <div class="form-floating mb-4">
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="password_confirmation"
+                                    name="password_confirmation"
+                                    placeholder="Confirmar contraseña"
+                                    required
+                                >
+
+                                <label for="password_confirmation">
+                                    Confirmar Contraseña
+                                </label>
+
+                            </div>
+
+
+                            {{-- BOTONES --}}
+                            <div
+                                class="d-flex justify-content-between align-items-center"
+                            >
+
+                                <a
+                                    href="{{ route('login') }}"
+                                    class="btn btn-outline-secondary px-4 py-2 rounded-3"
+                                >
+                                    Volver
                                 </a>
+
+
+                                <button
+                                    type="submit"
+                                    class="btn text-white px-4 py-2 fw-bold rounded-3"
+                                    style="background-color:#39A900;"
+                                >
+                                    Registrarse
+                                </button>
+
                             </div>
 
                         </form>
+
                     </div>
+
                 </div>
 
             </div>
+
         </div>
+
     </div>
+
 </div>
+
 @endsection

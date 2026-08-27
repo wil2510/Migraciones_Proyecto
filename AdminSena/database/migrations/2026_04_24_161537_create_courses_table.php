@@ -12,29 +12,30 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('courses', function (Blueprint $table) {
+
             $table->id();
-            $table->integer('course_number');
-            $table->date('day');
 
-        // llave foranea area
+            // Información del curso
+            $table->string('name');
+            $table->string('code', 50)->unique();
 
-             $table->unsignedBigInteger('area_id')->nullable()->unique();
+            // Relación con área
+            $table->unsignedBigInteger('area_id')->nullable();
 
             $table->foreign('area_id')
                 ->references('id')
                 ->on('areas')
                 ->onDelete('set null')
-                ->onUpdate('set null');
-                
-            // llave foranea training_center
+                ->onUpdate('cascade');
 
-            $table->unsignedBigInteger('training_center_id')->nullable()->unique();
+            // Relación con centro de formación
+            $table->unsignedBigInteger('training_center_id')->nullable();
 
             $table->foreign('training_center_id')
                 ->references('id')
                 ->on('training_centers')
                 ->onDelete('set null')
-                ->onUpdate('set null');
+                ->onUpdate('cascade');
 
             $table->timestamps();
         });

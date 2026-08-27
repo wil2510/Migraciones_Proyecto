@@ -1,135 +1,49 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Models;
 
-use Illuminate\Http\Request;
-use App\Models\Area;
-use App\Models\Course;
-use App\Models\Training_center;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class CourseController extends Controller
+class Course extends Model
 {
-    /**
-     * Mostrar todos los cursos.
-     */
-    public function index()
-    {
-        $courses = Course::with([
-            'area',
-            'trainingCenter'
-        ])->get();
+    use HasFactory;
 
-        return view('course.index', compact('courses'));
+    protected $table = 'courses';
+
+    protected $fillable = [
+        'name',
+        'code',
+        'area_id',
+        'training_center_id',
+    ];
+
+
+    // Un curso pertenece a un área
+    public function area()
+    {
+        return $this->belongsTo(
+            Area::class,
+            'area_id'
+        );
     }
 
-    /**
-     * Mostrar formulario para crear un curso.
-     */
-    public function create()
+
+    // Un curso pertenece a un centro de formación
+    public function trainingCenter()
     {
-        // Obtener todas las áreas
-        $areas = Area::all();
-
-        // Obtener todos los centros de formación
-        $trainingCenters = Training_center::all();
-
-        // Enviar los datos a la vista
-        return view('course.create', compact(
-            'areas',
-            'trainingCenters'
-        ));
+        return $this->belongsTo(
+            Training_center::class,
+            'training_center_id'
+        );
     }
 
-    /**
-     * Guardar un nuevo curso.
-     */
-    public function store(Request $request)
+
+    // Un curso puede tener muchos instructores
+    public function teachers()
     {
-        // Validar los datos recibidos
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'code' => 'required|string|max:50|unique:courses,code',
-            'area_id' => 'required|exists:areas,id',
-            'training_center_id' => 'required|exists:training_centers,id',
-        ]);
-
-        // Crear el curso
-        Course::create([
-            'name' => $request->name,
-            'code' => $request->code,
-            'area_id' => $request->area_id,
-            'training_center_id' => $request->training_center_id,
-        ]);
-
-        // Regresar a la lista de cursos
-        return redirect()
-            ->route('course.index')
-            ->with('success', 'Curso creado correctamente.');
-    }
-
-    /**
-     * Mostrar un curso específico.
-     */
-    public function show(Course $course)
-    {
-        return view('course.show', compact('course'));
-    }
-
-    /**
-     * Mostrar formulario para editar un curso.
-     */
-    public function edit(Course $course)
-    {
-        // Obtener áreas
-        $areas = Area::all();
-
-        // Obtener centros de formación
-        $trainingCenters = Training_center::all();
-
-        // Enviar datos a la vista de edición
-        return view('course.edit', compact(
-            'course',
-            'areas',
-            'trainingCenters'
-        ));
-    }
-
-    /**
-     * Actualizar un curso existente.
-     */
-    public function update(Request $request, Course $course)
-    {
-        // Validar los datos
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'code' => 'required|string|max:50|unique:courses,code,' . $course->id,
-            'area_id' => 'required|exists:areas,id',
-            'training_center_id' => 'required|exists:training_centers,id',
-        ]);
-
-        // Actualizar el curso
-        $course->update([
-            'name' => $request->name,
-            'code' => $request->code,
-            'area_id' => $request->area_id,
-            'training_center_id' => $request->training_center_id,
-        ]);
-
-        // Regresar a la lista
-        return redirect()
-            ->route('course.index')
-            ->with('success', 'Curso actualizado correctamente.');
-    }
-
-    /**
-     * Eliminar un curso.
-     */
-    public function destroy(Course $course)
-    {
-        $course->delete();
-
-        return redirect()
-            ->route('course.index')
-            ->with('success', 'Curso eliminado correctamente.');
+        return $this->belongsToMany(
+            Teacher::class
+        );
     }
 }

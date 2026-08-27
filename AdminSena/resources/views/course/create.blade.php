@@ -2,168 +2,234 @@
 
 @section('content')
 
-<div class="container mt-4">
+<div class="py-5" style="background-color:#f4f6f9;">
 
-```
-<div class="row justify-content-center">
+    <div class="container">
 
-    <div class="col-md-8">
+        <div class="row justify-content-center">
 
-        <div class="card shadow-sm">
+            <div class="col-md-8 col-lg-6">
 
-            <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">Crear Nuevo Curso</h5>
-            </div>
+                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
 
-            <div class="card-body">
 
-                {{-- Alertas de validación --}}
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul class="mb-0">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                    {{-- CABECERA --}}
 
-                {{-- Formulario --}}
-                <form action="{{ route('course.store') }}" method="POST">
+                    <div
+                        class="card-header text-white text-center py-4"
+                        style="background-color:#39A900;"
+                    >
 
-                    @csrf
+                        <h4 class="mb-0 fw-bold">
+                            Crear Nuevo Curso
+                        </h4>
 
-                    {{-- Nombre del Curso --}}
-                    <div class="mb-3">
-
-                        <label for="name" class="form-label">
-                            Nombre del Curso
-                        </label>
-
-                        <input
-                            type="text"
-                            name="name"
-                            id="name"
-                            class="form-control"
-                            value="{{ old('name') }}"
-                            required
-                        >
+                        <p class="mb-0 mt-1 small opacity-75">
+                            Complete los datos del curso
+                        </p>
 
                     </div>
 
-                    {{-- Código del Curso --}}
-                    <div class="mb-3">
 
-                        <label for="code" class="form-label">
-                            Código del Curso
-                        </label>
+                    {{-- CUERPO --}}
 
-                        <input
-                            type="text"
-                            name="code"
-                            id="code"
-                            class="form-control"
-                            value="{{ old('code') }}"
-                            required
+                    <div class="card-body p-4 p-md-5">
+
+
+                        {{-- ERRORES --}}
+
+                        @if ($errors->any())
+
+                            <div class="alert alert-danger">
+
+                                <strong>
+                                    Hay errores en el formulario:
+                                </strong>
+
+                                <ul class="mb-0 mt-2">
+
+                                    @foreach ($errors->all() as $error)
+
+                                        <li>
+                                            {{ $error }}
+                                        </li>
+
+                                    @endforeach
+
+                                </ul>
+
+                            </div>
+
+                        @endif
+
+
+                        <form
+                            action="{{ route('course.store') }}"
+                            method="POST"
                         >
 
-                    </div>
+                            @csrf
 
-                    {{-- Selección de Área --}}
-                    <div class="mb-3">
 
-                        <label for="area_id" class="form-label">
-                            Área
-                        </label>
+                            {{-- NOMBRE --}}
 
-                        <select
-                            name="area_id"
-                            id="area_id"
-                            class="form-select"
-                            required
-                        >
+                            <div class="form-floating mb-4">
 
-                            <option value="" disabled {{ old('area_id') ? '' : 'selected' }}>
-                                Seleccione un área
-                            </option>
-
-                            @foreach ($areas as $area)
-
-                                <option
-                                    value="{{ $area->id }}"
-                                    {{ old('area_id') == $area->id ? 'selected' : '' }}
+                                <input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    class="form-control"
+                                    placeholder="Nombre del curso"
+                                    value="{{ old('name') }}"
+                                    required
                                 >
-                                    {{ $area->name }}
-                                </option>
 
-                            @endforeach
+                                <label for="name">
+                                    Nombre del Curso
+                                </label>
 
-                        </select>
+                            </div>
 
-                    </div>
 
-                    {{-- Selección de Centro de Formación --}}
-                    <div class="mb-3">
+                            {{-- CÓDIGO --}}
 
-                        <label for="training_center_id" class="form-label">
-                            Centro de Formación
-                        </label>
+                            <div class="form-floating mb-4">
 
-                        <select
-                            name="training_center_id"
-                            id="training_center_id"
-                            class="form-select"
-                            required
-                        >
-
-                            <option value="" disabled {{ old('training_center_id') ? '' : 'selected' }}>
-                                Seleccione un centro
-                            </option>
-
-                            @foreach ($training_centers as $center)
-
-                                <option
-                                    value="{{ $center->id }}"
-                                    {{ old('training_center_id') == $center->id ? 'selected' : '' }}
+                                <input
+                                    type="text"
+                                    name="code"
+                                    id="code"
+                                    class="form-control"
+                                    placeholder="Código del curso"
+                                    value="{{ old('code') }}"
+                                    required
                                 >
-                                    {{ $center->name }}
-                                </option>
 
-                            @endforeach
+                                <label for="code">
+                                    Código del Curso
+                                </label>
 
-                        </select>
+                            </div>
+
+
+                            {{-- ÁREA --}}
+
+                            <div class="form-floating mb-4">
+
+                                <select
+                                    name="area_id"
+                                    id="area_id"
+                                    class="form-select"
+                                    required
+                                >
+
+                                    <option
+                                        value=""
+                                        disabled
+                                        {{ old('area_id') ? '' : 'selected' }}
+                                    >
+                                        Seleccione un área
+                                    </option>
+
+
+                                    @foreach ($areas as $area)
+
+                                        <option
+                                            value="{{ $area->id }}"
+                                            {{ old('area_id') == $area->id ? 'selected' : '' }}
+                                        >
+
+                                            {{ $area->name }}
+
+                                        </option>
+
+                                    @endforeach
+
+                                </select>
+
+                                <label for="area_id">
+                                    Área
+                                </label>
+
+                            </div>
+
+
+                            {{-- CENTRO --}}
+
+                            <div class="form-floating mb-4">
+
+                                <select
+                                    name="training_center_id"
+                                    id="training_center_id"
+                                    class="form-select"
+                                    required
+                                >
+
+                                    <option
+                                        value=""
+                                        disabled
+                                        {{ old('training_center_id') ? '' : 'selected' }}
+                                    >
+                                        Seleccione un centro
+                                    </option>
+
+
+                                    @foreach ($training_centers as $center)
+
+                                        <option
+                                            value="{{ $center->id }}"
+                                            {{ old('training_center_id') == $center->id ? 'selected' : '' }}
+                                        >
+
+                                            {{ $center->name }}
+
+                                        </option>
+
+                                    @endforeach
+
+                                </select>
+
+                                <label for="training_center_id">
+                                    Centro de Formación
+                                </label>
+
+                            </div>
+
+
+                            {{-- BOTONES --}}
+
+                            <div class="d-flex justify-content-between mt-5">
+
+                                <a
+                                    href="{{ route('course.index') }}"
+                                    class="btn btn-outline-secondary px-4 py-2"
+                                >
+                                    Cancelar
+                                </a>
+
+
+                                <button
+                                    type="submit"
+                                    class="btn text-white px-5 py-2 fw-bold"
+                                    style="background-color:#39A900;"
+                                >
+                                    Guardar Curso
+                                </button>
+
+                            </div>
+
+                        </form>
 
                     </div>
 
-                    {{-- Botones --}}
-                    <div class="d-flex justify-content-between mt-4">
-
-                        <a
-                            href="{{ route('course.index') }}"
-                            class="btn btn-secondary"
-                        >
-                            Cancelar
-                        </a>
-
-                        <button
-                            type="submit"
-                            class="btn btn-success"
-                        >
-                            Guardar Curso
-                        </button>
-
-                    </div>
-
-                </form>
+                </div>
 
             </div>
 
         </div>
 
     </div>
-
-</div>
-```
 
 </div>
 

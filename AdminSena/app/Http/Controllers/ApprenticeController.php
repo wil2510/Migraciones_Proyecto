@@ -9,70 +9,197 @@ use App\Models\Computer;
 
 class ApprenticeController extends Controller
 {
-    // Muestra la lista de aprendices
+    // =====================================================
+    // LISTAR APRENDICES
+    // =====================================================
     public function index()
     {
-        $apprentices = Apprentice::all();
-
-        return view('apprentice.index', compact('apprentices'));
-    }
-
-    // Muestra el formulario para crear un aprendiz
-    public function create()
-    {
-        $apprentices = Apprentice::all();
-        $courses = Course::all();
-        $computers = Computer::all();
+        $apprentices = Apprentice::with([
+            'course',
+            'computer'
+        ])->get();
 
         return view('apprentice.index', compact(
-            'apprentices',
+            'apprentices'
+        ));
+    }
+
+
+    // =====================================================
+    // FORMULARIO PARA CREAR APRENDIZ
+    // =====================================================
+    public function create()
+    {
+        $courses = Course::all();
+
+        $computers = Computer::all();
+
+        return view('apprentice.create', compact(
             'courses',
             'computers'
         ));
     }
 
-    // Guarda el aprendiz
+
+    // =====================================================
+    // GUARDAR APRENDIZ
+    // =====================================================
     public function admin(Request $request)
     {
-        Apprentice::create($request->all());
+        $request->validate([
 
-        return redirect()->route('apprentice.index');
+            'name' =>
+                'required|string|max:255',
+
+            'email' =>
+                'required|email|max:255',
+
+            'cell_number' =>
+                'required|string|max:20',
+
+            'course_id' =>
+                'required|exists:courses,id',
+
+            'computer_id' =>
+                'required|exists:computers,id',
+
+        ]);
+
+
+        Apprentice::create([
+
+            'name' =>
+                $request->name,
+
+            'email' =>
+                $request->email,
+
+            'cell_number' =>
+                $request->cell_number,
+
+            'course_id' =>
+                $request->course_id,
+
+            'computer_id' =>
+                $request->computer_id,
+
+        ]);
+
+
+        return redirect()
+            ->route('apprentice.index')
+            ->with(
+                'success',
+                'Aprendiz registrado exitosamente.'
+            );
     }
 
-    // Muestra un aprendiz
-    public function show($id)
+
+    // =====================================================
+    // MOSTRAR APRENDIZ
+    // =====================================================
+    public function show(Apprentice $apprentice)
     {
-        $apprentice = Apprentice::find($id);
+        $apprentice->load([
+            'course',
+            'computer'
+        ]);
 
-        return view('apprentice.show', compact('apprentice'));
+        return view(
+            'apprentice.show',
+            compact('apprentice')
+        );
     }
 
-    // Formulario para editar
+
+    // =====================================================
+    // FORMULARIO EDITAR
+    // =====================================================
     public function edit(Apprentice $apprentice)
     {
         $courses = Course::all();
+
         $computers = Computer::all();
 
-        return view('apprentice.edit', compact(
-            'apprentice',
-            'courses',
-            'computers'
-        ));
+        return view(
+            'apprentice.edit',
+            compact(
+                'apprentice',
+                'courses',
+                'computers'
+            )
+        );
     }
 
-    // Actualiza el aprendiz
-    public function update(Request $request, Apprentice $apprentice)
-    {
-        $apprentice->update($request->all());
 
-        return redirect()->route('apprentice.index');
+    // =====================================================
+    // ACTUALIZAR APRENDIZ
+    // =====================================================
+    public function update(
+        Request $request,
+        Apprentice $apprentice
+    ) {
+        $request->validate([
+
+            'name' =>
+                'required|string|max:255',
+
+            'email' =>
+                'required|email|max:255',
+
+            'cell_number' =>
+                'required|string|max:20',
+
+            'course_id' =>
+                'required|exists:courses,id',
+
+            'computer_id' =>
+                'required|exists:computers,id',
+
+        ]);
+
+
+        $apprentice->update([
+
+            'name' =>
+                $request->name,
+
+            'email' =>
+                $request->email,
+
+            'cell_number' =>
+                $request->cell_number,
+
+            'course_id' =>
+                $request->course_id,
+
+            'computer_id' =>
+                $request->computer_id,
+
+        ]);
+
+
+        return redirect()
+            ->route('apprentice.index')
+            ->with(
+                'success',
+                'Aprendiz actualizado exitosamente.'
+            );
     }
 
-    // Elimina el aprendiz
+
+    // =====================================================
+    // ELIMINAR APRENDIZ
+    // =====================================================
     public function destroy(Apprentice $apprentice)
     {
         $apprentice->delete();
 
-        return redirect()->route('apprentice.index');
+        return redirect()
+            ->route('apprentice.index')
+            ->with(
+                'success',
+                'Aprendiz eliminado exitosamente.'
+            );
     }
 }

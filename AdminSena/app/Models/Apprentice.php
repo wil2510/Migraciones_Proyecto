@@ -4,21 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Course;
+use App\Models\Computer;
 
 class Apprentice extends Model
 {
     use HasFactory;
 
-    // Relacion de uno a uno
-    public function computer()
-    {
-        return $this->belongsTo('App\Models\Computer');
-    }
-    
-    // Relacion uno a Uno
-    public function course(){
-        return $this->belongsTo('App\Models\Course');
-    }
+    protected $table = 'apprentices';
 
     protected $fillable = [
         'name',
@@ -27,5 +20,28 @@ class Apprentice extends Model
         'course_id',
         'computer_id',
     ];
-}
 
+
+    // =====================================================
+    // RELACIÓN CON CURSO
+    // =====================================================
+    public function course()
+    {
+        return $this->belongsTo(
+            Course::class,
+            'course_id'
+        );
+    }
+
+
+    // =====================================================
+    // RELACIÓN CON COMPUTADOR
+    // =====================================================
+    public function computer()
+    {
+        return $this->belongsTo(
+            Computer::class,
+            'computer_id'
+        );
+    }
+}
