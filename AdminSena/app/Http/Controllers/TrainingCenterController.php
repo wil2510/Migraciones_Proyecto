@@ -27,6 +27,11 @@ class TrainingCenterController extends Controller
 
     }
 
+    public function ambientes()
+    {
+    return $this->hasMany(Ambiente::class);
+    }
+
     public function show ($id){
 
         $trainingcenter=Training_center::find($id);

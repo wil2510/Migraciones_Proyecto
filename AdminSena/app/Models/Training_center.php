@@ -18,6 +18,11 @@ class Training_center extends Model
     public function courses(){
         return $this->hasMany('App\Models\Course');
     }
+    
+    public function noticias()
+    {
+        return $this->hasMany(Noticia::class);
+    }
 
     protected $fillable = [
         'name',

@@ -1,84 +1,196 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="py-4">
+
     <div class="container">
-        
+
+        {{-- ENCABEZADO --}}
+
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+
             <div>
-                <h2 class="fw-bold text-dark mb-1">Listado de Computadores</h2>
-                <p class="text-muted small mb-0">Administre el inventario de equipos tecnológicos y sus marcas.</p>
+
+                <h2 class="fw-bold text-dark mb-1">
+                    Listado de Computadores
+                </h2>
+
+                <p class="text-muted small mb-0">
+                    Gestión de computadores registrados en el sistema.
+                </p>
+
             </div>
-            <a href="{{ route('computer.create') }}" class="btn text-white fw-bold px-4 py-2 shadow-sm d-inline-flex align-items-center gap-2" style="background-color: #39A900;">
+
+
+            <a href="{{ route('computer.create') }}"
+               class="btn text-white fw-bold px-4 py-2 shadow-sm"
+               style="background-color: #39A900;">
+
                 Nuevo Computador
+
             </a>
+
         </div>
 
+
+        {{-- MENSAJE DE ÉXITO --}}
+
+        @if (session('success'))
+
+            <div class="alert alert-success alert-dismissible fade show"
+                 role="alert">
+
+                {{ session('success') }}
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert">
+                </button>
+
+            </div>
+
+        @endif
+
+
+        {{-- TABLA --}}
+
         <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+
             <div class="card-body p-0">
+
                 <div class="table-responsive">
-                    
-                    <table id="idComputer" class="table table-hover align-middle mb-0" style="width:100%">
-                        <thead class="table-dark" style="background-color: #212529;">
+
+                    <table class="table table-hover align-middle mb-0">
+
+                        <thead class="table-dark">
+
                             <tr>
-                                <th class="ps-4 py-3" style="width: 15%">ID</th>
-                                <th class="py-3" style="width: 25%">Número de Equipo</th>
-                                <th class="py-3" style="width: 25%">Marca</th>
-                                <th class="text-center py-3" style="width: 35%">Acciones de Gestión</th>
+
+                                <th class="ps-4">
+                                    ID
+                                </th>
+
+                                <th>
+                                    Número de Equipo
+                                </th>
+
+                                <th>
+                                    Marca
+                                </th>
+
+                                <th class="text-center">
+                                    Acciones
+                                </th>
+
                             </tr>
+
                         </thead>
-                        
+
+
                         <tbody>
-                            @foreach ($computers as $computer)
+
+                            @forelse ($computers as $computer)
+
                                 <tr>
-                                    <td class="ps-4 fw-bold text-secondary">#{{ $computer->id }}</td>
-                                    <td class="fw-medium text-dark">{{ $computer->number }}</td>
+
+                                    <td class="ps-4 fw-bold">
+                                        #{{ $computer->id }}
+                                    </td>
+
+
+                                    <td class="fw-bold">
+                                        {{ $computer->number }}
+                                    </td>
+
+
                                     <td>
-                                        <span class="badge bg-light text-dark border px-3 py-2 rounded-pill">
+
+                                        <span class="badge bg-success">
                                             {{ $computer->brand }}
                                         </span>
+
                                     </td>
-                                    
+
+
                                     <td class="text-center">
-                                        <div class="d-flex justify-content-center align-items-center gap-2">
-                                            
-                                            <a href="{{ route('computer.show', $computer->id) }}" 
-                                                class="btn btn-sm btn-light border fw-medium d-inline-flex justify-content-center align-items-center" 
-                                                style="width: 90px; height: 32px;">
+
+                                        <div class="d-flex justify-content-center gap-2">
+
+                                            {{-- VER --}}
+
+                                            <a href="{{ route('computer.show', $computer->id) }}"
+                                               class="btn btn-sm btn-info text-white">
+
                                                 Ver
+
                                             </a>
-                                            
-                                            <a href="{{ route('computer.edit', $computer->id) }}" 
-                                                class="btn btn-sm btn-outline-dark fw-medium d-inline-flex justify-content-center align-items-center" 
-                                                style="width: 90px; height: 32px;">
+
+
+                                            {{-- EDITAR --}}
+
+                                            <a href="{{ route('computer.edit', $computer->id) }}"
+                                               class="btn btn-sm btn-warning text-white">
+
                                                 Editar
+
                                             </a>
-                                            
-                                            <form action="{{ route('computer.destroy', $computer->id) }}" 
-                                                    method="POST" 
-                                                    class="d-inline-flex m-0" 
-                                                    style="width: 90px;"
-                                                    onsubmit="return confirm('¿Está seguro de eliminar este computador del inventario?')">
+
+
+                                            {{-- ELIMINAR --}}
+
+                                            <form action="{{ route('computer.destroy', $computer->id) }}"
+                                                  method="POST"
+                                                  class="d-inline"
+                                                  onsubmit="return confirm('¿Está seguro de eliminar este computador del inventario?')">
+
                                                 @csrf
+
                                                 @method('delete')
-                                                <button type="submit" 
-                                                        class="btn btn-sm btn-danger fw-medium w-100 d-inline-flex justify-content-center align-items-center"
-                                                        style="height: 32px;">
+
+                                                <button type="submit"
+                                                        class="btn btn-sm btn-danger">
+
                                                     Eliminar
+
                                                 </button>
+
                                             </form>
-                                            
+
                                         </div>
+
                                     </td>
+
                                 </tr>
-                            @endforeach
+
+
+                            @empty
+
+                                <tr>
+
+                                    <td colspan="4"
+                                        class="text-center py-5 text-muted">
+
+                                        No hay computadores registrados.
+
+                                    </td>
+
+                                </tr>
+
+                            @endforelse
+
                         </tbody>
+
                     </table>
-                    
+
                 </div>
+
             </div>
+
         </div>
 
     </div>
+
 </div>
+
 @endsection

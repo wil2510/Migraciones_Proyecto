@@ -3,23 +3,28 @@
 @section('content')
 
 <div class="py-4">
+
     <div class="container">
 
-        {{-- Encabezado --}}
+        {{-- ENCABEZADO --}}
+
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
 
             <div>
+
                 <h2 class="fw-bold text-dark mb-1">
                     Listado de Centros de Formación
                 </h2>
 
                 <p class="text-muted small mb-0">
-                    Visualice, edite o elimine los centros de formación registrados.
+                    Gestión de centros de formación registrados en el sistema.
                 </p>
+
             </div>
 
+
             <a href="{{ route('trainingcenter.create') }}"
-               class="btn text-white fw-bold px-4 py-2 shadow-sm d-inline-flex align-items-center gap-2"
+               class="btn text-white fw-bold px-4 py-2 shadow-sm"
                style="background-color: #39A900;">
 
                 Nuevo Centro
@@ -29,32 +34,52 @@
         </div>
 
 
-        {{-- Tabla --}}
+        {{-- MENSAJE DE ÉXITO --}}
+
+        @if (session('success'))
+
+            <div class="alert alert-success alert-dismissible fade show"
+                 role="alert">
+
+                {{ session('success') }}
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert">
+                </button>
+
+            </div>
+
+        @endif
+
+
+        {{-- TABLA --}}
+
         <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
 
             <div class="card-body p-0">
 
                 <div class="table-responsive">
 
-                    <table class="table table-hover align-middle mb-0" style="width:100%">
+                    <table class="table table-hover align-middle mb-0">
 
                         <thead class="table-dark">
 
                             <tr>
 
-                                <th class="ps-4 py-3" style="width: 15%">
-                                    Código ID
+                                <th class="ps-4">
+                                    ID
                                 </th>
 
-                                <th class="py-3" style="width: 35%">
+                                <th>
                                     Nombre del Centro
                                 </th>
 
-                                <th class="py-3" style="width: 25%">
+                                <th>
                                     Ubicación
                                 </th>
 
-                                <th class="text-center py-3" style="width: 25%">
+                                <th class="text-center">
                                     Acciones
                                 </th>
 
@@ -69,61 +94,58 @@
 
                                 <tr>
 
-                                    {{-- ID --}}
-                                    <td class="ps-4 fw-bold text-secondary">
+                                    <td class="ps-4 fw-bold">
                                         #{{ $trainingcenter->id }}
                                     </td>
 
 
-                                    {{-- Nombre --}}
-                                    <td class="fw-medium text-dark">
+                                    <td class="fw-bold">
                                         {{ $trainingcenter->name }}
                                     </td>
 
 
-                                    {{-- Ubicación --}}
-                                    <td class="text-muted">
+                                    <td>
                                         {{ $trainingcenter->location }}
                                     </td>
 
 
-                                    {{-- Acciones --}}
                                     <td class="text-center">
 
-                                        <div class="d-flex justify-content-center align-items-center gap-2">
+                                        <div class="d-flex justify-content-center gap-2">
 
-                                            {{-- Ver --}}
+                                            {{-- VER --}}
+
                                             <a href="{{ route('trainingcenter.show', $trainingcenter->id) }}"
-                                               class="btn btn-sm btn-light border fw-medium"
-                                               style="width: 80px;">
+                                               class="btn btn-sm btn-info text-white">
 
                                                 Ver
 
                                             </a>
 
 
-                                            {{-- Editar --}}
+                                            {{-- EDITAR --}}
+
                                             <a href="{{ route('trainingcenter.edit', $trainingcenter->id) }}"
-                                               class="btn btn-sm btn-outline-dark fw-medium"
-                                               style="width: 80px;">
+                                               class="btn btn-sm btn-warning text-white">
 
                                                 Editar
 
                                             </a>
 
 
-                                            {{-- Eliminar --}}
+                                            {{-- ELIMINAR --}}
+
                                             <form action="{{ route('trainingcenter.destroy', $trainingcenter->id) }}"
                                                   method="POST"
-                                                  class="m-0"
-                                                  style="width: 90px;"
+                                                  class="d-inline"
                                                   onsubmit="return confirm('¿Está completamente seguro de eliminar este centro?')">
 
                                                 @csrf
+
                                                 @method('DELETE')
 
                                                 <button type="submit"
-                                                        class="btn btn-sm btn-danger fw-medium w-100">
+                                                        class="btn btn-sm btn-danger">
 
                                                     Eliminar
 
@@ -137,12 +159,13 @@
 
                                 </tr>
 
+
                             @empty
 
                                 <tr>
 
                                     <td colspan="4"
-                                        class="text-center py-4 text-muted">
+                                        class="text-center py-5 text-muted">
 
                                         No hay centros de formación registrados.
 
@@ -163,6 +186,7 @@
         </div>
 
     </div>
+
 </div>
 
 @endsection

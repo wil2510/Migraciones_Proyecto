@@ -18,8 +18,17 @@ class Area extends Model
     public function courses(){
         return $this->hasMany('App\Models\Course');
     }
+    
+    public function programas()
+    {
+    return $this->hasMany(Programa::class);
+    }
 
     protected $fillable = [
         'name'
+    ];
+    
+    protected $guarded = [
+        'urlFoto'
     ];
 }

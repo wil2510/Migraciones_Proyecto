@@ -18,13 +18,6 @@
         {{-- Menú principal --}}
         <div class="navbar-nav ms-auto align-items-center gap-3">
 
-            {{-- Inicio --}}
-            <a class="nav-link text-white fw-semibold"
-                href="{{ route('home') }}">
-                Inicio
-            </a>
-
-
             {{-- ¿Quiénes Somos? --}}
             <a class="nav-link text-white fw-semibold"
                 href="{{ route('about') }}">
@@ -179,14 +172,65 @@
                 </div>
 
             </form>
-
-
-            {{-- INICIAR SESIÓN --}}
-            <a href="{{ route('login') }}"
-                class="btn btn-light text-success fw-bold px-3 rounded-3 shadow-sm">
-                Iniciar Sesión
-            </a>
-
+            <div id="authContainer" class="d-flex align-items-center">
+            <!-- Se llena mediante JavaScript -->
+            </div>
         </div>
     </div>
 </nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        checkAuthStatus();
+    });
+
+    function checkAuthStatus() {
+        const userSession = JSON.parse(localStorage.getItem('user_session'));
+        const authContainer = document.getElementById('authContainer');
+        const adminDropdown = document.getElementById('adminDropdownNav');
+
+        // SI HAY SESIÓN EN LOCALSTORAGE
+        if (userSession) {
+
+            // MOSTRAR FOTO DE PERFIL CON MENU DESPLEGABLE
+            authContainer.innerHTML = `
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="${userSession.avatar}" alt="${userSession.name}" width="38" height="38" class="rounded-circle border border-2 border-white shadow-sm me-2 object-fit-cover">
+                        <span class="fw-bold d-none d-md-inline small">${userSession.name}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-3 mt-2" aria-labelledby="profileDropdown">
+                        <li>
+                            <div class="px-3 py-2 border-bottom">
+                                <p class="fw-bold mb-0 text-dark small">${userSession.name}</p>
+                                <small class="text-muted">${userSession.email}</small>
+                            </div>
+                        </li>
+                        <li>
+                            <button onclick="logout()" class="dropdown-item text-danger fw-bold py-2">
+                                <i class="bi bi-box-arrow-right me-2"></i> Cerrar Sesión
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            `;
+        } 
+        // SI NO HAY SESIÓN
+        else {
+            // MOSTRAR BOTÓN DE INICIAR SESIÓN
+            authContainer.innerHTML = `
+                <a href="{{ route('login') }}" class="btn btn-light text-success fw-bold btn-sm px-3 rounded-3 shadow-sm d-flex align-items-center gap-1">
+                    <i class="bi bi-person-circle"></i> Iniciar Sesión
+                </a>
+            `;
+        }
+    }
+
+    // Función para cerrar sesión
+    function logout() {
+        localStorage.removeItem('user_session');
+        localStorage.removeItem('user_role');
+        checkAuthStatus();
+        window.location.href = "{{ url('/') }}";
+    }
+</script>

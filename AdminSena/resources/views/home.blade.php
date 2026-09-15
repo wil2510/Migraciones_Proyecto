@@ -71,7 +71,7 @@
                     </div>
                     <h4 class="fw-bold text-dark">Gestión de Áreas</h4>
                     <p class="text-muted small">Administra las diferentes áreas y dependencias institucionales disponibles en el centro.</p>
-                    <a href="/area" class="btn btn-outline-success btn-sm fw-semibold mt-2">Ver Áreas</a>
+                    <a href="/area/list" class="btn btn-outline-success btn-sm fw-semibold mt-2">Ver Áreas</a>
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@
                     </div>
                     <h4 class="fw-bold text-dark">Centros de Formación</h4>
                     <p class="text-muted small">Controla la información y la ubicación de los centros vinculados a la red.</p>
-                    <a href="/trainingcenter" class="btn btn-outline-success btn-sm fw-semibold mt-2">Ver Centros</a>
+                    <a href="/trainingcenter/list" class="btn btn-outline-success btn-sm fw-semibold mt-2">Ver Centros</a>
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@
                     </div>
                     <h4 class="fw-bold text-dark">Instructores y Equipos</h4>
                     <p class="text-muted small">Gestiona el personal docente a cargo de los procesos formativos y técnicos.</p>
-                    <a href="/teacher" class="btn btn-outline-success btn-sm fw-semibold mt-2">Ver Instructores</a>
+                    <a href="/teacher/list" class="btn btn-outline-success btn-sm fw-semibold mt-2">Ver Instructores</a>
                 </div>
             </div>
         </div>

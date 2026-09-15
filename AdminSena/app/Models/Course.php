@@ -38,6 +38,15 @@ class Course extends Model
         );
     }
 
+    public function ambientes()
+    {
+    return $this->belongsToMany(
+        Ambiente::class,
+        'ambiente_course',
+        'course_id',
+        'ambiente_id'
+    );
+    }
 
     // Un curso puede tener muchos instructores
     public function teachers()

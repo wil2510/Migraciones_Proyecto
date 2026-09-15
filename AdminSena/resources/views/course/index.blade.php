@@ -6,6 +6,8 @@
 
     <div class="container">
 
+        {{-- ENCABEZADO --}}
+
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
 
             <div>
@@ -15,15 +17,15 @@
                 </h2>
 
                 <p class="text-muted small mb-0">
-                    Gestione los cursos, áreas y centros de formación.
+                    Gestión de cursos, áreas y centros de formación.
                 </p>
 
             </div>
 
 
             <a href="{{ route('course.create') }}"
-               class="btn text-white fw-bold px-4 py-2"
-               style="background-color:#39A900;">
+               class="btn text-white fw-bold px-4 py-2 shadow-sm"
+               style="background-color: #39A900;">
 
                 Nuevo Curso
 
@@ -32,22 +34,26 @@
         </div>
 
 
+        {{-- MENSAJE DE ÉXITO --}}
+
         @if (session('success'))
 
-            <div class="alert alert-success alert-dismissible fade show">
+            <div class="alert alert-success alert-dismissible fade show"
+                 role="alert">
 
                 {{ session('success') }}
 
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="alert">
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert">
                 </button>
 
             </div>
 
         @endif
 
+
+        {{-- TABLA --}}
 
         <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
 
@@ -61,27 +67,27 @@
 
                             <tr>
 
-                                <th class="ps-4 py-3">
+                                <th class="ps-4">
                                     ID
                                 </th>
 
-                                <th class="py-3">
+                                <th>
                                     Código
                                 </th>
 
-                                <th class="py-3">
+                                <th>
                                     Nombre
                                 </th>
 
-                                <th class="py-3">
+                                <th>
                                     Área
                                 </th>
 
-                                <th class="py-3">
+                                <th>
                                     Centro de Formación
                                 </th>
 
-                                <th class="text-center py-3">
+                                <th class="text-center">
                                     Acciones
                                 </th>
 
@@ -103,30 +109,48 @@
 
                                     <td>
 
-                                        <span class="badge bg-secondary">
+                                        <span class="badge bg-success">
                                             {{ $course->code }}
                                         </span>
 
                                     </td>
 
 
-                                    <td class="fw-semibold">
-
+                                    <td class="fw-bold">
                                         {{ $course->name }}
+                                    </td>
+
+
+                                    <td>
+
+                                        @if ($course->area)
+
+                                            {{ $course->area->name }}
+
+                                        @else
+
+                                            <span class="text-muted">
+                                                Sin área
+                                            </span>
+
+                                        @endif
 
                                     </td>
 
 
                                     <td>
 
-                                        {{ $course->area->name ?? 'N/A' }}
+                                        @if ($course->trainingCenter)
 
-                                    </td>
+                                            {{ $course->trainingCenter->name }}
 
+                                        @else
 
-                                    <td>
+                                            <span class="text-muted">
+                                                Sin centro
+                                            </span>
 
-                                        {{ $course->trainingCenter->name ?? 'N/A' }}
+                                        @endif
 
                                     </td>
 
@@ -135,63 +159,80 @@
 
                                         <div class="d-flex justify-content-center gap-2">
 
-                                            <a
-                                                href="{{ route('course.show', $course->id) }}"
-                                                class="btn btn-sm btn-light border"
-                                                style="width:80px;"
-                                            >
+                                            {{-- VER --}}
+
+                                            <a href="{{ route('course.show', $course->id) }}"
+                                               class="btn btn-sm btn-info text-white">
+
                                                 Ver
+
                                             </a>
 
 
-                                            <a
-                                                href="{{ route('course.edit', $course->id) }}"
-                                                class="btn btn-sm btn-outline-dark"
-                                                style="width:80px;"
-                                            >
+                                            {{-- EDITAR --}}
+
+                                            <a href="{{ route('course.edit', $course->id) }}"
+                                               class="btn btn-sm btn-warning text-white">
+
                                                 Editar
+
                                             </a>
 
 
-                                            <form
-                                                action="{{ route('course.destroy', $course->id) }}"
-                                                method="POST"
-                                                class="m-0"
-                                                onsubmit="return confirm('¿Deseas eliminar este curso?')"
-                                            >
+                                            {{-- ELIMINAR --}}
+
+                                            <form action="{{ route('course.destroy', $course->id) }}"
+                                                  method="POST"
+                                                  class="d-inline"
+                                                  onsubmit="return confirm('¿Deseas eliminar este curso?')">
 
                                                 @csrf
 
                                                 @method('DELETE')
 
-                                                <button
-                                                    type="submit"
-                                                    class="btn btn-sm btn-danger"
-                                                    style="width:80px;"
-                                                >
+                                                <button type="submit"
+                                                        class="btn btn-sm btn-danger">
+
                                                     Eliminar
+
                                                 </button>
 
                                             </form>
 
                                         </div>
+
                                     </td>
+
                                 </tr>
+
+
                             @empty
+
                                 <tr>
-                                    <td
-                                        colspan="6"
-                                        class="text-center py-5 text-muted"
-                                    >
+
+                                    <td colspan="6"
+                                        class="text-center py-5 text-muted">
+
                                         No hay cursos registrados.
+
                                     </td>
+
                                 </tr>
+
                             @endforelse
+
                         </tbody>
+
                     </table>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
+
 @endsection
