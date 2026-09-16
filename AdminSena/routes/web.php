@@ -7,6 +7,11 @@ use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TrainingCenterController;
+use App\Http\Controllers\ProgramaController;
+use App\Http\Controllers\OfertaController;
+use App\Http\Controllers\FichaController;
+use App\Http\Controllers\AmbienteController;
+use App\Http\Controllers\NoticiaController;
 
 /*
 |--------------------------------------------------------------------------
