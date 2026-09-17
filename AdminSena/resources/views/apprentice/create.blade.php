@@ -2,231 +2,406 @@
 
 @section('content')
 
-<div class="py-5" style="background-color:#f4f6f9;">
-
+<div style="background: #f6f8f7; min-height: 92vh; padding: 45px 0;">
     <div class="container">
 
-        <div class="row justify-content-center">
+        <div class="d-flex justify-content-between align-items-center mb-4">
 
-            <div class="col-md-8 col-lg-6">
+            <div class="d-flex align-items-start gap-3">
 
-                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                <div style="width: 6px; height: 70px; background: #39A900; border-radius: 10px;"></div>
 
-                    {{-- CABECERA --}}
-                    <div
-                        class="card-header text-white text-center py-4"
-                        style="background-color:#39A900;"
-                    >
+                <div>
 
-                        <h4 class="mb-0 fw-bold">
-                            Registrar Aprendiz
-                        </h4>
+                    <div class="fw-bold text-uppercase"
+                        style="color: #39A900; font-size: 13px; letter-spacing: 1px;">
+                        Administración Académica
+                    </div>
 
-                        <p class="mb-0 mt-1 small opacity-75">
-                            Ingrese los datos del aprendiz
-                        </p>
+                    <h1 class="fw-bold mb-1">
+                        Nuevo Aprendiz
+                    </h1>
+
+                    <p class="text-muted mb-0">
+                        Registra un nuevo aprendiz en el sistema.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="bg-white shadow-sm rounded-3 px-4 py-3 text-center">
+
+                <i class="bi bi-person-badge-fill"
+                    style="font-size: 28px; color: #39A900;"></i>
+
+                <div class="small fw-bold text-muted mt-1">
+                    APRENDICES
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-lg-5">
+
+                <div class="h-100 p-4 p-lg-5 text-white"
+                    style="
+                        background: linear-gradient(145deg, #17202a 0%, #263746 100%);
+                        border-radius: 18px;
+                    ">
+
+                    <div class="d-flex align-items-center justify-content-center mb-4"
+                        style="
+                            width: 60px;
+                            height: 60px;
+                            background: #39A900;
+                            border-radius: 15px;
+                        ">
+
+                        <i class="bi bi-person-badge-fill" style="font-size: 28px;"></i>
+
+                    </div>
+
+                    <h2 class="fw-bold">
+                        Crear aprendiz
+                    </h2>
+
+                    <p class="text-white-50" style="line-height: 1.7;">
+                        Registra la información de los aprendices
+                        para facilitar la gestión académica.
+                    </p>
+
+
+                    <div class="mt-4">
+
+                        <div class="d-flex gap-3 mb-4">
+                            <div class="fw-bold" style="color: #39A900;">01</div>
+
+                            <div>
+                                <div class="fw-bold">Información personal</div>
+                                <small class="text-white-50">
+                                    Nombre, correo y celular.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3 mb-4">
+                            <div class="fw-bold" style="color: #39A900;">02</div>
+
+                            <div>
+                                <div class="fw-bold">Formación</div>
+                                <small class="text-white-50">
+                                    Asocia el aprendiz a un curso.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3">
+                            <div class="fw-bold" style="color: #39A900;">03</div>
+
+                            <div>
+                                <div class="fw-bold">Equipo</div>
+                                <small class="text-white-50">
+                                    Asigna un computador disponible.
+                                </small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="border-top border-secondary mt-5 pt-4">
+                        <small class="text-white-50">
+                            Admin SENA · Gestión académica
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-7">
+
+                <div class="bg-white shadow-sm h-100" style="border-radius: 18px;">
+
+                    <div class="p-4 border-bottom">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div>
+
+                                <h4 class="fw-bold mb-1">
+                                    Información del aprendiz
+                                </h4>
+
+                                <p class="text-muted mb-0 small">
+                                    Completa los datos solicitados.
+                                </p>
+
+                            </div>
+
+                            <i class="bi bi-three-dots"
+                                style="font-size: 24px; color: #6c757d;"></i>
+
+                        </div>
 
                     </div>
 
 
-                    {{-- CUERPO --}}
-                    <div class="card-body p-4 p-md-5 bg-white">
+                    <form action="{{ route('apprentice.admin') }}" method="POST">
 
-                        {{-- ERRORES --}}
-                        @if ($errors->any())
+                        @csrf
 
-                            <div class="alert alert-danger">
+                        <div class="p-4">
 
-                                <strong>
-                                    Hay errores en el formulario:
-                                </strong>
+                            @if ($errors->any())
 
-                                <ul class="mb-0 mt-2">
+                                <div class="alert alert-danger d-flex align-items-start gap-2">
 
-                                    @foreach ($errors->all() as $error)
+                                    <i class="bi bi-exclamation-triangle-fill"></i>
 
-                                        <li>
-                                            {{ $error }}
-                                        </li>
+                                    <div>
 
-                                    @endforeach
+                                        <strong>Revisa la información:</strong>
 
-                                </ul>
+                                        <ul class="mb-0 mt-1">
 
-                            </div>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
 
-                        @endif
+                                        </ul>
 
+                                    </div>
 
-                        {{-- FORMULARIO --}}
-                        <form
-                            action="{{ route('apprentice.admin') }}"
-                            method="POST"
-                        >
+                                </div>
 
-                            @csrf
+                            @endif
 
 
                             {{-- NOMBRE --}}
-                            <div class="form-floating mb-4">
+                            <div class="mb-4">
+
+                                <label for="name" class="form-label fw-semibold">
+
+                                    <i class="bi bi-person-fill me-2 text-success"></i>
+
+                                    Nombre completo
+
+                                </label>
 
                                 <input
                                     type="text"
-                                    class="form-control"
                                     id="name"
                                     name="name"
                                     value="{{ old('name') }}"
-                                    placeholder="Nombre completo"
-                                    required
+                                    class="form-control form-control-lg @error('name') is-invalid @enderror"
+                                    placeholder="Ej: Juan Pérez"
+                                    style="border-radius: 10px;"
                                 >
 
-                                <label for="name">
-                                    Nombre Completo
-                                </label>
+                                @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
 
                             </div>
 
 
-                            {{-- EMAIL --}}
-                            <div class="form-floating mb-4">
+                            <div class="row">
 
-                                <input
-                                    type="email"
-                                    class="form-control"
-                                    id="email"
-                                    name="email"
-                                    value="{{ old('email') }}"
-                                    placeholder="Correo electrónico"
-                                    required
-                                >
+                                {{-- EMAIL --}}
+                                <div class="col-md-6 mb-4">
 
-                                <label for="email">
-                                    Correo Electrónico
-                                </label>
+                                    <label for="email" class="form-label fw-semibold">
 
-                            </div>
+                                        <i class="bi bi-envelope-fill me-2 text-success"></i>
 
+                                        Correo electrónico
 
-                            {{-- CELULAR --}}
-                            <div class="form-floating mb-4">
+                                    </label>
 
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="cell_number"
-                                    name="cell_number"
-                                    value="{{ old('cell_number') }}"
-                                    placeholder="Número de celular"
-                                    required
-                                >
-
-                                <label for="cell_number">
-                                    Número de Celular
-                                </label>
-
-                            </div>
-
-
-                            {{-- CURSO --}}
-                            <div class="form-floating mb-4">
-
-                                <select
-                                    name="course_id"
-                                    id="course_id"
-                                    class="form-select"
-                                    required
-                                >
-
-                                    <option
-                                        value=""
-                                        disabled
-                                        {{ old('course_id') ? '' : 'selected' }}
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value="{{ old('email') }}"
+                                        class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                        placeholder="correo@ejemplo.com"
+                                        style="border-radius: 10px;"
                                     >
-                                        Seleccione un curso...
-                                    </option>
 
-                                    @foreach ($courses as $course)
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
 
-                                        <option
-                                            value="{{ $course->id }}"
-                                            {{ old('course_id') == $course->id ? 'selected' : '' }}
-                                        >
-                                            {{ $course->code }} -
-                                            {{ $course->name }}
+                                </div>
+
+
+                                {{-- CELULAR --}}
+                                <div class="col-md-6 mb-4">
+
+                                    <label for="cell_number" class="form-label fw-semibold">
+
+                                        <i class="bi bi-phone-fill me-2 text-success"></i>
+
+                                        Celular
+
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="cell_number"
+                                        name="cell_number"
+                                        value="{{ old('cell_number') }}"
+                                        class="form-control form-control-lg @error('cell_number') is-invalid @enderror"
+                                        placeholder="Ej: 3001234567"
+                                        style="border-radius: 10px;"
+                                    >
+
+                                    @error('cell_number')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                {{-- CURSO --}}
+                                <div class="col-md-6 mb-4">
+
+                                    <label for="course_id" class="form-label fw-semibold">
+
+                                        <i class="bi bi-journal-bookmark-fill me-2 text-success"></i>
+
+                                        Curso
+
+                                    </label>
+
+                                    <select
+                                        id="course_id"
+                                        name="course_id"
+                                        class="form-select form-select-lg @error('course_id') is-invalid @enderror"
+                                        style="border-radius: 10px;"
+                                    >
+
+                                        <option value="">
+                                            Selecciona
                                         </option>
 
-                                    @endforeach
+                                        @foreach ($courses as $course)
 
-                                </select>
+                                            <option
+                                                value="{{ $course->id }}"
+                                                {{ old('course_id') == $course->id ? 'selected' : '' }}
+                                            >
+                                                {{ $course->name }}
+                                            </option>
 
-                                <label for="course_id">
-                                    Curso
-                                </label>
+                                        @endforeach
 
-                            </div>
+                                    </select>
+
+                                    @error('course_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+
+                                </div>
 
 
-                            {{-- COMPUTADOR --}}
-                            <div class="form-floating mb-4">
+                                {{-- COMPUTADOR --}}
+                                <div class="col-md-6 mb-4">
 
-                                <select
-                                    name="computer_id"
-                                    id="computer_id"
-                                    class="form-select"
-                                    required
-                                >
+                                    <label for="computer_id" class="form-label fw-semibold">
 
-                                    <option
-                                        value=""
-                                        disabled
-                                        {{ old('computer_id') ? '' : 'selected' }}
+                                        <i class="bi bi-pc-display me-2 text-success"></i>
+
+                                        Computador
+
+                                    </label>
+
+                                    <select
+                                        id="computer_id"
+                                        name="computer_id"
+                                        class="form-select form-select-lg @error('computer_id') is-invalid @enderror"
+                                        style="border-radius: 10px;"
                                     >
-                                        Seleccione un computador...
-                                    </option>
 
-                                    @foreach ($computers as $computer)
-
-                                        <option
-                                            value="{{ $computer->id }}"
-                                            {{ old('computer_id') == $computer->id ? 'selected' : '' }}
-                                        >
-                                            Equipo N° {{ $computer->number }}
+                                        <option value="">
+                                            Selecciona
                                         </option>
 
-                                    @endforeach
+                                        @foreach ($computers as $computer)
 
-                                </select>
+                                            <option
+                                                value="{{ $computer->id }}"
+                                                {{ old('computer_id') == $computer->id ? 'selected' : '' }}
+                                            >
+                                                Computador {{ $computer->number }}
+                                            </option>
 
-                                <label for="computer_id">
-                                    Computador Asociado
-                                </label>
+                                        @endforeach
 
-                            </div>
+                                    </select>
 
+                                    @error('computer_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
 
-                            {{-- BOTONES --}}
-                            <div class="d-flex justify-content-between mt-5">
-
-                                <a
-                                    href="{{ route('apprentice.index') }}"
-                                    class="btn btn-outline-secondary px-4 py-2"
-                                >
-                                    Cancelar
-                                </a>
-
-                                <button
-                                    type="submit"
-                                    class="btn text-white px-5 py-2 fw-bold"
-                                    style="background-color:#39A900;"
-                                >
-                                    Guardar Aprendiz
-                                </button>
+                                </div>
 
                             </div>
 
-                        </form>
 
-                    </div>
+                            <div class="p-3 mt-2"
+                                style="background: #eef8e9; border-radius: 10px;">
+
+                                <div class="d-flex gap-2">
+
+                                    <i class="bi bi-info-circle-fill text-success"></i>
+
+                                    <small>
+                                        Verifica los datos personales, curso y
+                                        computador antes de registrar al aprendiz.
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="p-4 border-top d-flex justify-content-end gap-2">
+
+                            <a href="{{ route('apprentice.index') }}"
+                                class="btn btn-light px-4">
+
+                                <i class="bi bi-x-lg me-2"></i>
+                                Cancelar
+
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn btn-success px-4"
+                                style="background: #39A900; border-color: #39A900;"
+                            >
+
+                                <i class="bi bi-check-lg me-2"></i>
+                                Guardar aprendiz
+
+                            </button>
+
+                        </div>
+
+                    </form>
 
                 </div>
 
@@ -234,8 +409,14 @@
 
         </div>
 
-    </div>
 
+        <div class="text-center mt-4">
+            <small class="text-muted">
+                Sistema de Administración Académica · SENA
+            </small>
+        </div>
+
+    </div>
 </div>
 
 @endsection

@@ -15,7 +15,7 @@
             </div>
             <a href="{{ route('teacher.create') }}"
                 class="btn text-white fw-bold px-4 py-2 shadow-sm"
-                style="background-color: #39A900;">
+                style="background-color: #198754;">
                 Nuevo Instructor
             </a>
         </div>

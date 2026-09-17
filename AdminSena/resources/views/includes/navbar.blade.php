@@ -1,392 +1,881 @@
-<nav class="navbar navbar-expand navbar-dark bg-success px-4 py-2">
+<nav
+    class="navbar navbar-expand-lg navbar-dark shadow-sm"
+    style="
+        background-color: #198754;
+        padding: 10px 20px;
+    "
+>
     <div class="container-fluid">
 
-        {{-- Logo y nombre --}}
-        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold fs-5"
-            href="{{ route('home') }}">
+        {{-- ================================================= --}}
+        {{-- LOGO + NOMBRE --}}
+        {{-- ================================================= --}}
+        <a
+            href="{{ route('home') }}"
+            class="navbar-brand d-flex align-items-center gap-3 fw-bold"
+        >
 
-            <img src="https://diba.planeacionycalidad.org/diba/Views/representante/logo-blanco-sena-sin-fondo.png"
-                alt="Logo"
-                width="80"
-                height="45"
-                class="d-inline-block align-text-top rounded p-1">
+            {{-- Logo --}}
+            <div
+                class="d-flex align-items-center justify-content-center"
+                style="
+                    width: 48px;
+                    height: 48px;
+                    background: rgba(255,255,255,.15);
+                    border: 1px solid rgba(255,255,255,.3);
+                    border-radius: 12px;
+                "
+            >
 
-            Admin Sena
+                <img
+                    src="https://diba.planeacionycalidad.org/diba/Views/representante/logo-blanco-sena-sin-fondo.png"
+                    alt="Logo SENA"
+                    style="
+                        width: 38px;
+                        height: 32px;
+                        object-fit: contain;
+                    "
+                >
+
+            </div>
+
+
+            {{-- Marca --}}
+            <div class="d-flex flex-column">
+
+                <span
+                    class="text-white fw-bold"
+                    style="
+                        font-size: 19px;
+                        line-height: 1;
+                    "
+                >
+                    AdminSena
+                </span>
+
+                <small
+                    style="
+                        color: rgba(255,255,255,.75);
+                        font-size: 10px;
+                    "
+                >
+                    Gestión Académica
+                </small>
+
+            </div>
+
         </a>
 
 
-        {{-- Menú principal --}}
-        <div class="navbar-nav ms-auto align-items-center gap-3">
+        {{-- ================================================= --}}
+        {{-- BOTÓN MÓVIL --}}
+        {{-- ================================================= --}}
+        <button
+            class="navbar-toggler shadow-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#adminNavbar"
+            aria-controls="adminNavbar"
+            aria-expanded="false"
+            aria-label="Mostrar menú"
+        >
 
-            {{-- ¿Quiénes Somos? --}}
-            <a class="nav-link text-white fw-semibold"
-                href="{{ route('about') }}">
-                ¿Quiénes Somos?
-            </a>
+            <span class="navbar-toggler-icon"></span>
 
-
-            {{-- ========================================= --}}
-            {{-- ADMINISTRACIÓN --}}
-            {{-- ========================================= --}}
-            <div class="dropdown">
-
-                <a class="nav-link dropdown-toggle text-white fw-semibold"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Administración
-                </a>
-
-                <ul class="dropdown-menu dropdown-menu-end shadow">
-
-                    {{-- Área --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('area.create') }}">
-                            Área
-                        </a>
-                    </li>
-
-                    {{-- Centro --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('trainingcenter.create') }}">
-                            Centro
-                        </a>
-                    </li>
-
-                    {{-- Equipos --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('computer.create') }}">
-                            Equipos
-                        </a>
-                    </li>
-
-                    {{-- Cursos --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('course.create') }}">
-                            Cursos
-                        </a>
-                    </li>
-
-                    {{-- Instructores --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('teacher.create') }}">
-                            Instructores
-                        </a>
-                    </li>
-
-                    {{-- Aprendices --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('apprentice.create') }}">
-                            Aprendices
-                        </a>
-                    </li>
-
-                    <li><hr class="dropdown-divider"></li>
-
-                    {{-- NUEVAS TABLAS --}}
-
-                    {{-- Programas --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('programa.create') }}">
-                            Programas
-                        </a>
-                    </li>
-
-                    {{-- Ofertas --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('oferta.create') }}">
-                            Ofertas
-                        </a>
-                    </li>
-
-                    {{-- Fichas --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('ficha.create') }}">
-                            Fichas
-                        </a>
-                    </li>
-
-                    {{-- Ambientes --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('ambiente.create') }}">
-                            Ambientes
-                        </a>
-                    </li>
-
-                    {{-- Noticias --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('noticia.create') }}">
-                            Noticias
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
+        </button>
 
 
-            {{-- ========================================= --}}
-            {{-- VER LISTAS --}}
-            {{-- ========================================= --}}
-            <div class="dropdown">
+        {{-- ================================================= --}}
+        {{-- CONTENIDO DEL NAVBAR --}}
+        {{-- ================================================= --}}
+        <div
+            class="collapse navbar-collapse"
+            id="adminNavbar"
+        >
 
-                <a class="nav-link dropdown-toggle text-white fw-semibold"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Ver Listas
-                </a>
-
-                <ul class="dropdown-menu dropdown-menu-end shadow">
-
-                    {{-- Áreas --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('area.index') }}">
-                            Áreas
-                        </a>
-                    </li>
-
-                    {{-- Centros --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('trainingcenter.index') }}">
-                            Centros
-                        </a>
-                    </li>
-
-                    {{-- Equipos --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('computer.index') }}">
-                            Equipos
-                        </a>
-                    </li>
-
-                    {{-- Cursos --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('course.index') }}">
-                            Cursos
-                        </a>
-                    </li>
-
-                    {{-- Instructores --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('teacher.index') }}">
-                            Instructores
-                        </a>
-                    </li>
-
-                    {{-- Aprendices --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('apprentice.index') }}">
-                            Aprendices
-                        </a>
-                    </li>
-
-                    <li><hr class="dropdown-divider"></li>
-
-                    {{-- NUEVAS TABLAS --}}
-
-                    {{-- Programas --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('programa.index') }}">
-                            Programas
-                        </a>
-                    </li>
-
-                    {{-- Ofertas --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('oferta.index') }}">
-                            Ofertas
-                        </a>
-                    </li>
-
-                    {{-- Fichas --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('ficha.index') }}">
-                            Fichas
-                        </a>
-                    </li>
-
-                    {{-- Ambientes --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('ambiente.index') }}">
-                            Ambientes
-                        </a>
-                    </li>
-
-                    {{-- Noticias --}}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{{ route('noticia.index') }}">
-                            Noticias
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
+            <ul
+                class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mt-3 mt-lg-0"
+            >
 
 
-            {{-- ========================================= --}}
-            {{-- BUSCADOR --}}
-            {{-- ========================================= --}}
-            <form class="d-flex" role="search">
+                {{-- ================================================= --}}
+                {{-- QUIÉNES SOMOS --}}
+                {{-- ================================================= --}}
+                <li class="nav-item">
 
-                <div class="input-group">
+                    <a
+                        href="{{ route('about') }}"
+                        class="nav-link text-white fw-semibold px-3 py-2 rounded-pill"
+                    >
 
-                    <input class="form-control border-0 rounded-start"
-                        type="search"
-                        placeholder="Buscar registros"
-                        aria-label="Buscar">
+                        <i class="bi bi-info-circle-fill me-1"></i>
 
-                    <button class="btn btn-dark rounded-end px-3"
-                        type="submit">
-                    </button>
+                        ¿Quiénes Somos?
 
-                </div>
+                    </a>
 
-            </form>
+                </li>
 
 
-            {{-- ========================================= --}}
-            {{-- AUTENTICACIÓN --}}
-            {{-- ========================================= --}}
-            <div id="authContainer" class="d-flex align-items-center">
-                <!-- Se llena mediante JavaScript -->
-            </div>
+                {{-- ================================================= --}}
+                {{-- ADMINISTRACIÓN --}}
+                {{-- ================================================= --}}
+                <li class="nav-item dropdown">
 
-        </div>
-    </div>
-</nav>
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        checkAuthStatus();
-    });
-
-    function checkAuthStatus() {
-
-        const userSession = JSON.parse(localStorage.getItem('user_session'));
-
-        const authContainer = document.getElementById('authContainer');
-
-        const adminDropdown = document.getElementById('adminDropdownNav');
-
-
-        // SI HAY SESIÓN
-        if (userSession) {
-
-            authContainer.innerHTML = `
-
-                <div class="dropdown">
-
-                    <a href="#"
-                        class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                        id="profileDropdown"
+                    <a
+                        href="#"
+                        class="nav-link dropdown-toggle text-white fw-semibold px-3 py-2 rounded-pill"
+                        role="button"
                         data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                        aria-expanded="false"
+                    >
 
-                        <img src="${userSession.avatar}"
-                            alt="${userSession.name}"
-                            width="38"
-                            height="38"
-                            class="rounded-circle border border-2 border-white shadow-sm me-2 object-fit-cover">
+                        <i class="bi bi-grid-1x2-fill me-1"></i>
 
-                        <span class="fw-bold d-none d-md-inline small">
-                            ${userSession.name}
-                        </span>
+                        Administración
 
                     </a>
 
 
-                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-3 mt-2"
-                        aria-labelledby="profileDropdown">
+                    <ul
+                        class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 p-2"
+                    >
 
                         <li>
 
-                            <div class="px-3 py-2 border-bottom">
+                            <h6
+                                class="dropdown-header fw-bold"
+                                style="color: #198754;"
+                            >
+                                Gestión principal
+                            </h6>
 
-                                <p class="fw-bold mb-0 text-dark small">
-                                    ${userSession.name}
-                                </p>
+                        </li>
 
-                                <small class="text-muted">
-                                    ${userSession.email}
-                                </small>
 
-                            </div>
+                        {{-- ÁREA --}}
+                        <li>
+
+                            <a
+                                href="{{ route('area.create') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-diagram-3-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Área
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- CENTRO --}}
+                        <li>
+
+                            <a
+                                href="{{ route('trainingcenter.create') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-building-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Centro
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- EQUIPOS --}}
+                        <li>
+
+                            <a
+                                href="{{ route('computer.create') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-pc-display me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Equipos
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- CURSOS --}}
+                        <li>
+
+                            <a
+                                href="{{ route('course.create') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-journal-bookmark-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Cursos
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- INSTRUCTORES --}}
+                        <li>
+
+                            <a
+                                href="{{ route('teacher.create') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-person-workspace me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Instructores
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- APRENDICES --}}
+                        <li>
+
+                            <a
+                                href="{{ route('apprentice.create') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-person-badge-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Aprendices
+
+                            </a>
 
                         </li>
 
 
                         <li>
+                            <hr class="dropdown-divider">
+                        </li>
 
-                            <button onclick="logout()"
-                                class="dropdown-item text-danger fw-bold py-2">
 
-                                <i class="bi bi-box-arrow-right me-2"></i>
+                        <li>
 
-                                Cerrar Sesión
+                            <h6
+                                class="dropdown-header fw-bold"
+                                style="color: #198754;"
+                            >
+                                Módulos académicos
+                            </h6>
 
-                            </button>
+                        </li>
+
+
+                        {{-- PROGRAMAS --}}
+                        <li>
+
+                            <a
+                                href="{{ route('programa.create') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-mortarboard-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Programas
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- OFERTAS --}}
+                        <li>
+
+                            <a
+                                href="{{ route('oferta.create') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-megaphone-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Ofertas
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- FICHAS --}}
+                        <li>
+
+                            <a
+                                href="{{ route('ficha.create') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-people-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Fichas
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- AMBIENTES --}}
+                        <li>
+
+                            <a
+                                href="{{ route('ambiente.create') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-house-gear-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Ambientes
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- NOTICIAS --}}
+                        <li>
+
+                            <a
+                                href="{{ route('noticia.create') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-newspaper me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Noticias
+
+                            </a>
 
                         </li>
 
                     </ul>
 
-                </div>
-            `;
+                </li>
 
-        }
 
-        // SI NO HAY SESIÓN
-        else {
+                {{-- ================================================= --}}
+                {{-- VER LISTAS --}}
+                {{-- ================================================= --}}
+                <li class="nav-item dropdown">
 
-            authContainer.innerHTML = `
+                    <a
+                        href="#"
+                        class="nav-link dropdown-toggle text-white fw-semibold px-3 py-2 rounded-pill"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
 
-                <a href="{{ route('login') }}"
-                    class="btn btn-light text-success fw-bold btn-sm px-3 rounded-3 shadow-sm d-flex align-items-center gap-1">
+                        <i class="bi bi-list-ul me-1"></i>
 
-                    <i class="bi bi-person-circle"></i>
+                        Ver Listas
 
-                    Iniciar Sesión
+                    </a>
+
+
+                    <ul
+                        class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 p-2"
+                    >
+
+                        <li>
+
+                            <h6
+                                class="dropdown-header fw-bold"
+                                style="color: #198754;"
+                            >
+                                Registros
+                            </h6>
+
+                        </li>
+
+
+                        {{-- ÁREAS --}}
+                        <li>
+
+                            <a
+                                href="{{ route('area.index') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-diagram-3-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Áreas
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- CENTROS --}}
+                        <li>
+
+                            <a
+                                href="{{ route('trainingcenter.index') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-building-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Centros
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- EQUIPOS --}}
+                        <li>
+
+                            <a
+                                href="{{ route('computer.index') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-pc-display me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Equipos
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- CURSOS --}}
+                        <li>
+
+                            <a
+                                href="{{ route('course.index') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-journal-bookmark-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Cursos
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- INSTRUCTORES --}}
+                        <li>
+
+                            <a
+                                href="{{ route('teacher.index') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-person-workspace me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Instructores
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- APRENDICES --}}
+                        <li>
+
+                            <a
+                                href="{{ route('apprentice.index') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-person-badge-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Aprendices
+
+                            </a>
+
+                        </li>
+
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+
+                        {{-- PROGRAMAS --}}
+                        <li>
+
+                            <a
+                                href="{{ route('programa.index') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-mortarboard-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Programas
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- OFERTAS --}}
+                        <li>
+
+                            <a
+                                href="{{ route('oferta.index') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-megaphone-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Ofertas
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- FICHAS --}}
+                        <li>
+
+                            <a
+                                href="{{ route('ficha.index') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-people-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Fichas
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- AMBIENTES --}}
+                        <li>
+
+                            <a
+                                href="{{ route('ambiente.index') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-house-gear-fill me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Ambientes
+
+                            </a>
+
+                        </li>
+
+
+                        {{-- NOTICIAS --}}
+                        <li>
+
+                            <a
+                                href="{{ route('noticia.index') }}"
+                                class="dropdown-item rounded-3 py-2"
+                            >
+
+                                <i
+                                    class="bi bi-newspaper me-2"
+                                    style="color: #198754;"
+                                ></i>
+
+                                Noticias
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+                {{-- ================================================= --}}
+                {{-- BUSCADOR --}}
+                {{-- ================================================= --}}
+                <li class="nav-item ms-lg-2">
+
+                    <form
+                        class="d-flex"
+                        role="search"
+                    >
+
+                        <div
+                            class="input-group"
+                            style="width: 220px;"
+                        >
+
+                            <span
+                                class="input-group-text border-0"
+                                style="
+                                    background: rgba(0,0,0,.15);
+                                    color: white;
+                                "
+                            >
+
+                                <i class="bi bi-search"></i>
+
+                            </span>
+
+                            <input
+                                type="search"
+                                class="form-control border-0 shadow-none text-white"
+                                placeholder="Buscar registros"
+                                aria-label="Buscar"
+                                style="
+                                    background: rgba(0,0,0,.15);
+                                    color: white;
+                                "
+                            >
+
+                        </div>
+
+                    </form>
+
+                </li>
+
+
+                {{-- ================================================= --}}
+                {{-- AUTENTICACIÓN --}}
+                {{-- ================================================= --}}
+                <li
+                    class="nav-item ms-lg-2"
+                    id="authContainer"
+                >
+                    <!-- JavaScript -->
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    checkAuthStatus();
+});
+
+
+function checkAuthStatus() {
+
+    const userSession = JSON.parse(
+        localStorage.getItem('user_session')
+    );
+
+    const authContainer =
+        document.getElementById('authContainer');
+
+
+    // =====================================================
+    // USUARIO CON SESIÓN
+    // =====================================================
+
+    if (userSession) {
+
+        authContainer.innerHTML = `
+
+            <div class="dropdown">
+
+                <a
+                    href="#"
+                    class="d-flex align-items-center text-white text-decoration-none"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+
+                    <img
+                        src="${userSession.avatar}"
+                        alt="${userSession.name}"
+                        width="40"
+                        height="40"
+                        style="
+                            object-fit: cover;
+                            border-radius: 50%;
+                            border: 2px solid white;
+                        "
+                    >
+
+
+                    <div class="d-none d-xl-flex flex-column ms-2">
+
+                        <span
+                            class="fw-bold"
+                            style="font-size: 13px;"
+                        >
+                            ${userSession.name}
+                        </span>
+
+                        <small
+                            style="
+                                color: rgba(255,255,255,.75);
+                                font-size: 10px;
+                            "
+                        >
+                            Usuario
+
+                        </small>
+
+                    </div>
+
+
+                    <i class="bi bi-chevron-down ms-2"></i>
 
                 </a>
-            `;
-        }
+
+
+                <ul
+                    class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 mt-2 p-2"
+                >
+
+                    <li>
+
+                        <div class="px-3 py-2 border-bottom">
+
+                            <p class="fw-bold mb-0 text-dark small">
+                                ${userSession.name}
+                            </p>
+
+                            <small class="text-muted">
+                                ${userSession.email}
+                            </small>
+
+                        </div>
+
+                    </li>
+
+
+                    <li>
+
+                        <button
+                            onclick="logout()"
+                            class="dropdown-item text-danger fw-bold py-2 rounded-3"
+                        >
+
+                            <i class="bi bi-box-arrow-right me-2"></i>
+
+                            Cerrar Sesión
+
+                        </button>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        `;
+
     }
 
 
-    // CERRAR SESIÓN
-    function logout() {
+    // =====================================================
+    // SIN SESIÓN
+    // =====================================================
 
-        localStorage.removeItem('user_session');
+    else {
 
-        localStorage.removeItem('user_role');
+        authContainer.innerHTML = `
 
-        checkAuthStatus();
+            <a
+                href="{{ route('login') }}"
+                class="btn btn-light text-success fw-bold px-3 rounded-pill shadow-sm d-flex align-items-center gap-2"
+            >
 
-        window.location.href = "{{ url('/') }}";
+                <i class="bi bi-person-circle"></i>
+
+                Iniciar Sesión
+
+            </a>
+
+        `;
+
     }
+
+}
+
+function logout() {
+
+    localStorage.removeItem('user_session');
+
+    localStorage.removeItem('user_role');
+
+    checkAuthStatus();
+
+    window.location.href = "{{ url('/') }}";
+
+}
+
 </script>

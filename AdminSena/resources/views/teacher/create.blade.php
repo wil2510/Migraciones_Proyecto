@@ -1,140 +1,563 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="py-5 rounded-4" style="background-color: #f4f6f9;">
+
+<div style="background: #f6f8f7; min-height: 92vh; padding: 45px 0;">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
-                    <div class="card-header text-white text-center py-4"
-                        style="background-color: #39A900; border-bottom: none;">
-                        <h4 class="mb-0 fw-bold">
-                            Registrar Instructor
-                        </h4>
-                        <p class="mb-0 mt-1 small opacity-75">
-                            Ingrese los datos del docente y su vinculación
-                        </p>
+
+        {{-- ENCABEZADO --}}
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div class="d-flex align-items-start gap-3">
+
+                <div
+                    style="
+                        width: 6px;
+                        height: 70px;
+                        background: #39A900;
+                        border-radius: 10px;
+                    "
+                ></div>
+
+                <div>
+
+                    <div
+                        class="fw-bold text-uppercase"
+                        style="
+                            color: #39A900;
+                            font-size: 13px;
+                            letter-spacing: 1px;
+                        "
+                    >
+                        Administración Académica
                     </div>
-                    <div class="card-body p-4 p-md-5 bg-white">
-                        {{-- MENSAJES DE VALIDACIÓN --}}
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <strong>Por favor corrija los siguientes errores:</strong>
-                                <ul class="mb-0 mt-2">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
+
+                    <h1 class="fw-bold mb-1">
+                        Nuevo Instructor
+                    </h1>
+
+                    <p class="text-muted mb-0">
+                        Registra un nuevo instructor en el sistema.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {{-- BADGE --}}
+            <div
+                class="bg-white shadow-sm rounded-3 px-4 py-3 text-center"
+            >
+
+                <i
+                    class="bi bi-person-workspace"
+                    style="
+                        font-size: 28px;
+                        color: #39A900;
+                    "
+                ></i>
+
+                <div class="small fw-bold text-muted mt-1">
+                    INSTRUCTORES
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {{-- CONTENIDO --}}
+        <div class="row g-4">
+
+            {{-- PANEL IZQUIERDO --}}
+            <div class="col-lg-5">
+
+                <div
+                    class="h-100 p-4 p-lg-5 text-white"
+                    style="
+                        background: linear-gradient(
+                            145deg,
+                            #17202a 0%,
+                            #263746 100%
+                        );
+                        border-radius: 18px;
+                    "
+                >
+
+                    {{-- ICONO --}}
+                    <div
+                        class="d-flex align-items-center justify-content-center mb-4"
+                        style="
+                            width: 60px;
+                            height: 60px;
+                            background: #39A900;
+                            border-radius: 15px;
+                        "
+                    >
+
+                        <i
+                            class="bi bi-person-workspace"
+                            style="font-size: 28px;"
+                        ></i>
+
+                    </div>
+
+
+                    <h2 class="fw-bold">
+                        Crear instructor
+                    </h2>
+
+                    <p
+                        class="text-white-50"
+                        style="line-height: 1.7;"
+                    >
+                        Registra los instructores encargados de acompañar
+                        los procesos de formación del SENA.
+                    </p>
+
+
+                    {{-- PASOS --}}
+                    <div class="mt-4">
+
+                        {{-- PASO 1 --}}
+                        <div class="d-flex gap-3 mb-4">
+
+                            <div
+                                class="fw-bold"
+                                style="color: #39A900;"
+                            >
+                                01
                             </div>
-                        @endif
-                        {{-- MENSAJE DE ÉXITO --}}
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
+
+                            <div>
+
+                                <div class="fw-bold">
+                                    Información personal
+                                </div>
+
+                                <small class="text-white-50">
+                                    Nombre y correo electrónico.
+                                </small>
+
                             </div>
-                        @endif
-                        <form action="{{ route('teacher.admin') }}"
-                            method="POST">
-                            @csrf
+
+                        </div>
+
+
+                        {{-- PASO 2 --}}
+                        <div class="d-flex gap-3 mb-4">
+
+                            <div
+                                class="fw-bold"
+                                style="color: #39A900;"
+                            >
+                                02
+                            </div>
+
+                            <div>
+
+                                <div class="fw-bold">
+                                    Área
+                                </div>
+
+                                <small class="text-white-50">
+                                    Asocia el instructor a un área.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        {{-- PASO 3 --}}
+                        <div class="d-flex gap-3">
+
+                            <div
+                                class="fw-bold"
+                                style="color: #39A900;"
+                            >
+                                03
+                            </div>
+
+                            <div>
+
+                                <div class="fw-bold">
+                                    Centro
+                                </div>
+
+                                <small class="text-white-50">
+                                    Selecciona su centro de formación.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- PIE DEL PANEL --}}
+                    <div
+                        class="border-top border-secondary mt-5 pt-4"
+                    >
+
+                        <small class="text-white-50">
+                            Admin SENA · Gestión académica
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            {{-- FORMULARIO --}}
+            <div class="col-lg-7">
+
+                <div
+                    class="bg-white shadow-sm h-100"
+                    style="border-radius: 18px;"
+                >
+
+                    {{-- CABECERA --}}
+                    <div class="p-4 border-bottom">
+
+                        <div
+                            class="d-flex justify-content-between align-items-center"
+                        >
+
+                            <div>
+
+                                <h4 class="fw-bold mb-1">
+                                    Información del instructor
+                                </h4>
+
+                                <p class="text-muted mb-0 small">
+                                    Completa los datos solicitados.
+                                </p>
+
+                            </div>
+
+                            <i
+                                class="bi bi-three-dots"
+                                style="
+                                    font-size: 24px;
+                                    color: #6c757d;
+                                "
+                            ></i>
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- FORM --}}
+                    <form
+                        action="{{ route('teacher.admin') }}"
+                        method="POST"
+                    >
+
+                        @csrf
+
+                        <div class="p-4">
+
+                            {{-- ERRORES --}}
+                            @if ($errors->any())
+
+                                <div
+                                    class="alert alert-danger d-flex align-items-start gap-2"
+                                >
+
+                                    <i
+                                        class="bi bi-exclamation-triangle-fill"
+                                    ></i>
+
+                                    <div>
+
+                                        <strong>
+                                            Revisa la información:
+                                        </strong>
+
+                                        <ul class="mb-0 mt-1">
+
+                                            @foreach ($errors->all() as $error)
+
+                                                <li>
+                                                    {{ $error }}
+                                                </li>
+
+                                            @endforeach
+
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+
+                            @endif
+
+
                             {{-- NOMBRE --}}
-                            <div class="form-floating mb-4">
+                            <div class="mb-4">
+
+                                <label
+                                    for="name"
+                                    class="form-label fw-semibold"
+                                >
+
+                                    <i
+                                        class="bi bi-person-fill me-2 text-success"
+                                    ></i>
+
+                                    Nombre completo
+
+                                </label>
+
                                 <input
                                     type="text"
-                                    class="form-control"
                                     id="name"
                                     name="name"
-                                    placeholder="Nombre completo"
                                     value="{{ old('name') }}"
-                                    required
+                                    class="form-control form-control-lg @error('name') is-invalid @enderror"
+                                    placeholder="Ej: Carlos Pérez"
+                                    style="border-radius: 10px;"
                                 >
-                                <label for="name">
-                                    Nombre Completo
-                                </label>
+
+                                @error('name')
+
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+
+                                @enderror
+
                             </div>
+
+
                             {{-- EMAIL --}}
-                            <div class="form-floating mb-4">
+                            <div class="mb-4">
+
+                                <label
+                                    for="email"
+                                    class="form-label fw-semibold"
+                                >
+
+                                    <i
+                                        class="bi bi-envelope-fill me-2 text-success"
+                                    ></i>
+
+                                    Correo electrónico
+
+                                </label>
+
                                 <input
                                     type="email"
-                                    class="form-control"
                                     id="email"
                                     name="email"
-                                    placeholder="Correo electrónico"
                                     value="{{ old('email') }}"
-                                    required
+                                    class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                    placeholder="correo@ejemplo.com"
+                                    style="border-radius: 10px;"
                                 >
-                                <label for="email">
-                                    Correo Electrónico Institucional
-                                </label>
+
+                                @error('email')
+
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+
+                                @enderror
+
                             </div>
-                            {{-- ÁREA --}}
-                            <div class="form-floating mb-4">
-                                <select
-                                    name="area_id"
-                                    id="teacher_area_id"
-                                    class="form-select"
-                                    required
-                                >
-                                    <option value="" disabled
-                                        {{ old('area_id') ? '' : 'selected' }}>
-                                        Seleccione una opción...
-                                    </option>
-                                    @foreach ($areas as $area)
-                                        <option
-                                            value="{{ $area->id }}"
-                                            {{ old('area_id') == $area->id ? 'selected' : '' }}
-                                        >
-                                            {{ $area->name }}
+
+
+                            {{-- ÁREA Y CENTRO --}}
+                            <div class="row">
+
+                                {{-- ÁREA --}}
+                                <div class="col-md-6 mb-4">
+
+                                    <label
+                                        for="area_id"
+                                        class="form-label fw-semibold"
+                                    >
+
+                                        <i
+                                            class="bi bi-diagram-3-fill me-2 text-success"
+                                        ></i>
+
+                                        Área
+
+                                    </label>
+
+                                    <select
+                                        id="area_id"
+                                        name="area_id"
+                                        class="form-select form-select-lg @error('area_id') is-invalid @enderror"
+                                        style="border-radius: 10px;"
+                                    >
+
+                                        <option value="">
+                                            Selecciona un área
                                         </option>
-                                    @endforeach
-                                </select>
-                                <label for="teacher_area_id">
-                                    Área de Especialidad
-                                </label>
-                            </div>
-                            {{-- CENTRO DE FORMACIÓN --}}
-                            <div class="form-floating mb-4">
-                                <select
-                                    name="training_center_id"
-                                    id="teacher_center_id"
-                                    class="form-select"
-                                    required
-                                >
-                                    <option value="" disabled
-                                        {{ old('training_center_id') ? '' : 'selected' }}>
-                                        Seleccione una opción...
-                                    </option>
-                                    @foreach ($training_centers as $training)
-                                        <option
-                                            value="{{ $training->id }}"
-                                            {{ old('training_center_id') == $training->id ? 'selected' : '' }}
-                                        >
-                                            {{ $training->name }}
+
+                                        @foreach (($areas ?? []) as $area)
+
+                                            <option
+                                                value="{{ $area->id }}"
+                                                {{ old('area_id') == $area->id ? 'selected' : '' }}
+                                            >
+                                                {{ $area->name }}
+                                            </option>
+
+                                        @endforeach
+
+                                    </select>
+
+                                    @error('area_id')
+
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+
+                                    @enderror
+
+                                </div>
+
+
+                                {{-- CENTRO --}}
+                                <div class="col-md-6 mb-4">
+
+                                    <label
+                                        for="training_center_id"
+                                        class="form-label fw-semibold"
+                                    >
+
+                                        <i
+                                            class="bi bi-building me-2 text-success"
+                                        ></i>
+
+                                        Centro
+
+                                    </label>
+
+                                    <select
+                                        id="training_center_id"
+                                        name="training_center_id"
+                                        class="form-select form-select-lg @error('training_center_id') is-invalid @enderror"
+                                        style="border-radius: 10px;"
+                                    >
+
+                                        <option value="">
+                                            Selecciona un centro
                                         </option>
-                                    @endforeach
-                                </select>
-                                <label for="teacher_center_id">
-                                    Centro de Formación Asignado
-                                </label>
+
+                                        @foreach (($trainingCenters ?? []) as $trainingCenter)
+
+                                            <option
+                                                value="{{ $trainingCenter->id }}"
+                                                {{ old('training_center_id') == $trainingCenter->id ? 'selected' : '' }}
+                                            >
+                                                {{ $trainingCenter->name }}
+                                            </option>
+
+                                        @endforeach
+
+                                    </select>
+
+                                    @error('training_center_id')
+
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+
+                                    @enderror
+
+                                </div>
+
                             </div>
-                            {{-- BOTONES --}}
-                            <div class="d-flex justify-content-between align-items-center mt-5">
-                                <a href="{{ route('teacher.index') }}"
-                                class="btn btn-outline-secondary px-4 py-2 fw-medium rounded-3">
-                                    Cancelar
-                                </a>
-                                <button
-                                    type="submit"
-                                    class="btn text-white px-5 py-2 fw-bold rounded-3"
-                                    style="background-color: #39A900;"
-                                >
-                                    Registrar Instructor
-                                </button>
+
+
+                            {{-- INFORMACIÓN --}}
+                            <div
+                                class="p-3 mt-2"
+                                style="
+                                    background: #eef8e9;
+                                    border-radius: 10px;
+                                "
+                            >
+
+                                <div class="d-flex gap-2">
+
+                                    <i
+                                        class="bi bi-info-circle-fill text-success"
+                                    ></i>
+
+                                    <small>
+                                        Verifica los datos del instructor y sus
+                                        asociaciones antes de guardarlo.
+                                    </small>
+
+                                </div>
+
                             </div>
-                        </form>
-                    </div>
+
+                        </div>
+
+
+                        {{-- BOTONES --}}
+                        <div
+                            class="p-4 border-top d-flex justify-content-end gap-2"
+                        >
+
+                            <a
+                                href="{{ route('teacher.index') }}"
+                                class="btn btn-light px-4"
+                            >
+
+                                <i class="bi bi-x-lg me-2"></i>
+
+                                Cancelar
+
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn btn-success px-4"
+                                style="
+                                    background: #39A900;
+                                    border-color: #39A900;
+                                "
+                            >
+
+                                <i class="bi bi-check-lg me-2"></i>
+
+                                Guardar instructor
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
                 </div>
+
             </div>
+
         </div>
+
+
+        {{-- PIE --}}
+        <div class="text-center mt-4">
+
+            <small class="text-muted">
+                Sistema de Administración Académica · SENA
+            </small>
+
+        </div>
+
     </div>
 </div>
 

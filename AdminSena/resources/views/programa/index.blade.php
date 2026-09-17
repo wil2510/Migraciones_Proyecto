@@ -17,7 +17,8 @@
                 </p>
             </div>
 
-            <a href="{{ route('programa.create') }}" class="btn btn-success">
+            <a href="{{ route('programa.create') }}" class="btn btn-success
+            background-color: #198754;">
                 + Nuevo Programa
             </a>
 

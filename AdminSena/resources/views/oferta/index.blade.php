@@ -17,7 +17,8 @@
                 </p>
             </div>
 
-            <a href="{{ route('oferta.create') }}" class="btn btn-success">
+            <a href="{{ route('oferta.create') }}" class="btn btn-success
+            background-color: #198754;">
                 + Nueva Oferta
             </a>
 
