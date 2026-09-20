@@ -2,84 +2,450 @@
 
 @section('content')
 
-<!-- =========================================================
-     1. HERO PRINCIPAL
-========================================================= -->
+<div
+    style="
+        background:#f4f7f5;
+        min-height:92vh;
+        padding:35px 0 60px;
+    "
+>
 
-<div class="container-fluid px-0 mb-5">
+    <div class="container">
 
-    <div id="homeCarousel"
-         class="carousel slide carousel-fade shadow-sm"
-         data-bs-ride="carousel">
+        {{-- ========================================================= --}}
+        {{-- HERO --}}
+        {{-- ========================================================= --}}
 
-        <!-- INDICADORES -->
-        <div class="carousel-indicators">
+        <section class="mb-4">
 
-            <button type="button"
-                    data-bs-target="#homeCarousel"
-                    data-bs-slide-to="0"
-                    class="active"
-                    aria-current="true"
-                    aria-label="Slide 1">
-            </button>
+            <div
+                class="overflow-hidden"
+                style="
+                    background:#17231d;
+                    border-radius:24px;
+                    box-shadow:0 12px 30px rgba(0,0,0,.10);
+                "
+            >
 
-            <button type="button"
-                    data-bs-target="#homeCarousel"
-                    data-bs-slide-to="1"
-                    aria-label="Slide 2">
-            </button>
+                <div class="row align-items-stretch">
 
-            <button type="button"
-                    data-bs-target="#homeCarousel"
-                    data-bs-slide-to="2"
-                    aria-label="Slide 3">
-            </button>
+                    <div class="col-lg-8">
 
-        </div>
+                        <div class="p-4 p-lg-5 h-100">
 
+                            <div
+                                class="d-inline-flex align-items-center px-3 py-2 mb-4"
+                                style="
+                                    background:rgba(25,135,84,.18);
+                                    color:#73d49f;
+                                    border:1px solid rgba(115,212,159,.15);
+                                    border-radius:30px;
+                                    font-size:12px;
+                                    font-weight:700;
+                                    letter-spacing:1px;
+                                "
+                            >
+                                <i class="bi bi-grid-1x2-fill me-2"></i>
+                                PANEL ADMINISTRATIVO
+                            </div>
 
-        <!-- CARRUSEL -->
-        <div class="carousel-inner">
+                            <h1
+                                class="text-white fw-bold mb-3"
+                                style="
+                                    font-size:clamp(35px,5vw,58px);
+                                    line-height:1.05;
+                                    letter-spacing:-1.5px;
+                                "
+                            >
+                                Administra.
+                                <br>
 
-            <!-- SLIDE 1 -->
-            <div class="carousel-item active"
-                 data-bs-interval="5000">
+                                <span style="color:#39a900;">
+                                    Organiza.
+                                </span>
 
-                <div class="position-relative"
-                     style="height: 500px;">
+                                <br>
 
-                    <div class="w-100 h-100 bg-dark opacity-50 position-absolute top-0 start-0 z-1">
+                                <span style="color:white;">
+                                    Avanza.
+                                </span>
+                            </h1>
+
+                            <p
+                                class="mb-4"
+                                style="
+                                    max-width:620px;
+                                    color:rgba(255,255,255,.68);
+                                    font-size:17px;
+                                    line-height:1.7;
+                                "
+                            >
+                                Bienvenido a
+                                <strong style="color:white;">
+                                    Admin SENA
+                                </strong>,
+                                una plataforma para gestionar de manera
+                                centralizada la información académica,
+                                administrativa y formativa.
+                            </p>
+
+                            <div class="d-flex flex-wrap gap-2">
+
+                                <a
+                                    href="{{ route('oferta.index') }}"
+                                    class="btn text-white fw-bold px-4 py-3"
+                                    style="
+                                        background:#198754;
+                                        border-radius:11px;
+                                    "
+                                >
+                                    <i class="bi bi-megaphone-fill me-2"></i>
+                                    Ver ofertas SENA
+                                </a>
+
+                                <a
+                                    href="{{ route('programa.index') }}"
+                                    class="btn px-4 py-3 fw-semibold"
+                                    style="
+                                        background:rgba(255,255,255,.08);
+                                        border:1px solid rgba(255,255,255,.14);
+                                        color:white;
+                                        border-radius:11px;
+                                    "
+                                >
+                                    <i class="bi bi-arrow-right me-2"></i>
+                                    Explorar plataforma
+                                </a>
+
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <img src="https://cloudfront-us-east-1.images.arcpublishing.com/elespectador/NWP7GPUFRRAMFJ6MG2SR3E6X5Q.jpg"
-                         class="d-block w-100 h-100 object-fit-cover"
-                         alt="Sena Tecnologico">
+                    <div class="col-lg-4 d-none d-lg-block">
+
+                        <div
+                            class="h-100 d-flex align-items-center justify-content-center"
+                            style="
+                                min-height:390px;
+                                background:
+                                radial-gradient(
+                                    circle at 50% 35%,
+                                    rgba(25,135,84,.35),
+                                    transparent 45%
+                                );
+                            "
+                        >
+
+                            <div
+                                style="
+                                    width:230px;
+                                    height:230px;
+                                    border-radius:55px;
+                                    border:1px solid rgba(255,255,255,.10);
+                                    background:rgba(255,255,255,.04);
+                                    display:flex;
+                                    align-items:center;
+                                    justify-content:center;
+                                    transform:rotate(4deg);
+                                "
+                            >
+
+                                <div
+                                    style="
+                                        width:170px;
+                                        height:170px;
+                                        border-radius:42px;
+                                        background:#198754;
+                                        display:flex;
+                                        align-items:center;
+                                        justify-content:center;
+                                        transform:rotate(-4deg);
+                                        box-shadow:
+                                        0 20px 50px
+                                        rgba(25,135,84,.30);
+                                    "
+                                >
+
+                                    <i
+                                        class="bi bi-buildings-fill text-white"
+                                        style="font-size:75px;"
+                                    ></i>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        {{-- ========================================================= --}}
+        {{-- ACCESOS PRINCIPALES --}}
+        {{-- ========================================================= --}}
+
+        <section class="mb-5">
+
+            <div class="row g-3">
+
+                <div class="col-md-6 col-xl-3">
+
+                    <a
+                        href="{{ route('programa.index') }}"
+                        class="text-decoration-none"
+                    >
+
+                        <div
+                            class="bg-white h-100 p-4"
+                            style="
+                                border-radius:18px;
+                                box-shadow:0 6px 20px rgba(0,0,0,.055);
+                            "
+                        >
+
+                            <div class="d-flex justify-content-between">
+
+                                <div
+                                    class="d-flex align-items-center justify-content-center"
+                                    style="
+                                        width:48px;
+                                        height:48px;
+                                        border-radius:13px;
+                                        background:#e8f5ee;
+                                    "
+                                >
+                                    <i
+                                        class="bi bi-mortarboard-fill"
+                                        style="
+                                            color:#198754;
+                                            font-size:22px;
+                                        "
+                                    ></i>
+                                </div>
+
+                                <i
+                                    class="bi bi-arrow-up-right"
+                                    style="color:#adb5bd;"
+                                ></i>
+
+                            </div>
+
+                            <div class="mt-4">
+
+                                <div
+                                    class="fw-bold text-dark"
+                                    style="font-size:18px;"
+                                >
+                                    Programas
+                                </div>
+
+                                <small class="text-muted">
+                                    Gestión de formación
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </a>
 
                 </div>
 
 
-                <div class="carousel-caption d-none d-md-block z-2 mb-4">
+                <div class="col-md-6 col-xl-3">
 
-                    <h1 class="display-4 fw-bold text-uppercase"
-                        style="color: #39a900;
-                               text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+                    <a
+                        href="{{ route('ficha.index') }}"
+                        class="text-decoration-none"
+                    >
 
-                        Admin SENA
+                        <div
+                            class="bg-white h-100 p-4"
+                            style="
+                                border-radius:18px;
+                                box-shadow:0 6px 20px rgba(0,0,0,.055);
+                            "
+                        >
 
-                    </h1>
+                            <div class="d-flex justify-content-between">
 
-                    <p class="fs-4 fw-medium text-white"
-                       style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+                                <div
+                                    class="d-flex align-items-center justify-content-center"
+                                    style="
+                                        width:48px;
+                                        height:48px;
+                                        border-radius:13px;
+                                        background:#eef5f2;
+                                    "
+                                >
+                                    <i
+                                        class="bi bi-card-list"
+                                        style="
+                                            color:#198754;
+                                            font-size:23px;
+                                        "
+                                    ></i>
+                                </div>
 
-                        Bienvenido al Panel de Administración y
-                        Gestión de Procesos Académicos.
+                                <i
+                                    class="bi bi-arrow-up-right"
+                                    style="color:#adb5bd;"
+                                ></i>
 
-                    </p>
+                            </div>
 
-                    <a href="/area/create"
-                       class="btn btn-light fw-bold px-4 py-2 mt-2">
+                            <div class="mt-4">
 
-                        Comenzar Registro
+                                <div
+                                    class="fw-bold text-dark"
+                                    style="font-size:18px;"
+                                >
+                                    Fichas
+                                </div>
+
+                                <small class="text-muted">
+                                    Grupos de formación
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6 col-xl-3">
+
+                    <a
+                        href="{{ route('apprentice.index') }}"
+                        class="text-decoration-none"
+                    >
+
+                        <div
+                            class="bg-white h-100 p-4"
+                            style="
+                                border-radius:18px;
+                                box-shadow:0 6px 20px rgba(0,0,0,.055);
+                            "
+                        >
+
+                            <div class="d-flex justify-content-between">
+
+                                <div
+                                    class="d-flex align-items-center justify-content-center"
+                                    style="
+                                        width:48px;
+                                        height:48px;
+                                        border-radius:13px;
+                                        background:#e8f5ee;
+                                    "
+                                >
+                                    <i
+                                        class="bi bi-people-fill"
+                                        style="
+                                            color:#198754;
+                                            font-size:22px;
+                                        "
+                                    ></i>
+                                </div>
+
+                                <i
+                                    class="bi bi-arrow-up-right"
+                                    style="color:#adb5bd;"
+                                ></i>
+
+                            </div>
+
+                            <div class="mt-4">
+
+                                <div
+                                    class="fw-bold text-dark"
+                                    style="font-size:18px;"
+                                >
+                                    Aprendices
+                                </div>
+
+                                <small class="text-muted">
+                                    Comunidad académica
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6 col-xl-3">
+
+                    <a
+                        href="{{ route('teacher.index') }}"
+                        class="text-decoration-none"
+                    >
+
+                        <div
+                            class="bg-white h-100 p-4"
+                            style="
+                                border-radius:18px;
+                                box-shadow:0 6px 20px rgba(0,0,0,.055);
+                            "
+                        >
+
+                            <div class="d-flex justify-content-between">
+
+                                <div
+                                    class="d-flex align-items-center justify-content-center"
+                                    style="
+                                        width:48px;
+                                        height:48px;
+                                        border-radius:13px;
+                                        background:#e8f5ee;
+                                    "
+                                >
+                                    <i
+                                        class="bi bi-person-workspace"
+                                        style="
+                                            color:#198754;
+                                            font-size:22px;
+                                        "
+                                    ></i>
+                                </div>
+
+                                <i
+                                    class="bi bi-arrow-up-right"
+                                    style="color:#adb5bd;"
+                                ></i>
+
+                            </div>
+
+                            <div class="mt-4">
+
+                                <div
+                                    class="fw-bold text-dark"
+                                    style="font-size:18px;"
+                                >
+                                    Instructores
+                                </div>
+
+                                <small class="text-muted">
+                                    Equipo formativo
+                                </small>
+
+                            </div>
+
+                        </div>
 
                     </a>
 
@@ -87,566 +453,437 @@
 
             </div>
 
-
-            <!-- SLIDE 2 -->
-            <div class="carousel-item"
-                 data-bs-interval="5000">
-
-                <div class="position-relative"
-                     style="height: 500px;">
-
-                    <div class="w-100 h-100 bg-dark opacity-50 position-absolute top-0 start-0 z-1">
-                    </div>
-
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ14fZqlK0d5MU4DCczAlaz2GSEbXVkR933WT-Ww10Ofg&s=10"
-                         class="d-block w-100 h-100 object-fit-cover"
-                         alt="Formacion Profesional">
-
-                </div>
-
-            </div>
-
-
-            <!-- SLIDE 3 -->
-            <div class="carousel-item"
-                 data-bs-interval="5000">
-
-                <div class="position-relative"
-                     style="height: 500px;">
-
-                    <div class="w-100 h-100 bg-dark opacity-50 position-absolute top-0 start-0 z-1">
-                    </div>
-
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-y3IrIQrXYSMyTjMB_PfP8wVQyjqpJ7aqJ_gI7uKVMw&s=10"
-                         class="d-block w-100 h-100 object-fit-cover"
-                         alt="Gestion de Aprendices">
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- BOTÓN ANTERIOR -->
-        <button class="carousel-control-prev z-3"
-                type="button"
-                data-bs-target="#homeCarousel"
-                data-bs-slide="prev">
-
-            <span class="carousel-control-prev-icon"
-                  aria-hidden="true">
-            </span>
-
-            <span class="visually-hidden">
-                Anterior
-            </span>
-
-        </button>
-
-
-        <!-- BOTÓN SIGUIENTE -->
-        <button class="carousel-control-next z-3"
-                type="button"
-                data-bs-target="#homeCarousel"
-                data-bs-slide="next">
-
-            <span class="carousel-control-next-icon"
-                  aria-hidden="true">
-            </span>
-
-            <span class="visually-hidden">
-                Siguiente
-            </span>
-
-        </button>
-
-    </div>
-
-</div>
-
-
-
-<!-- =========================================================
-     2. BIENVENIDA / RESUMEN
-========================================================= -->
-
-<div class="container mb-5">
-
-    <div class="row align-items-center">
-
-        <div class="col-lg-8">
-
-            <span class="badge bg-success px-3 py-2 mb-2">
-                ADMIN SENA
-            </span>
-
-            <h2 class="fw-bold text-dark">
-                Panel de Gestión Académica
-            </h2>
-
-            <p class="text-muted fs-5 mb-0">
-
-                Administra de manera organizada la información
-                relacionada con áreas, centros, cursos, programas,
-                aprendices, instructores y demás procesos académicos.
-
-            </p>
-
-        </div>
-
-
-        <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
-
-            <a href="/programa/create"
-               class="btn btn-success px-4 py-2 fw-bold">
-
-                <i class="bi bi-plus-lg me-2"></i>
-
-                Nuevo Programa
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-<!-- =========================================================
-     3. ACCESOS PRINCIPALES
-========================================================= -->
-
-<div class="container mb-5">
-
-    <div class="row mb-4">
-
-        <div class="col-12">
-
-            <h3 class="fw-bold text-dark mb-1">
-                Accesos principales
-            </h3>
-
-            <p class="text-muted">
-                Consulta rápidamente las principales herramientas
-                administrativas.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="row g-4">
-
-        <!-- ÁREAS -->
-        <div class="col-lg-3 col-md-6">
-
-            <a href="/area/list"
-               class="text-decoration-none">
-
-                <div class="card border-0 shadow-sm h-100">
-
-                    <div class="card-body p-4">
-
-                        <div class="d-flex justify-content-between">
-
-                            <div class="bg-success-subtle text-success rounded-3 p-3">
-
-                                <i class="bi bi-grid-fill fs-3"></i>
-
-                            </div>
-
-                            <i class="bi bi-arrow-up-right text-muted"></i>
-
+        </section>
+
+
+        {{-- ========================================================= --}}
+        {{-- NUEVA SECCIÓN: OFERTAS SENA --}}
+        {{-- ========================================================= --}}
+
+        <section class="mb-5">
+
+            <div
+                class="p-4 p-lg-5 overflow-hidden"
+                style="
+                    background:#17231d;
+                    border-radius:24px;
+                    position:relative;
+                    box-shadow:0 10px 30px rgba(0,0,0,.08);
+                "
+            >
+
+                {{-- DECORACIÓN --}}
+                <div
+                    style="
+                        position:absolute;
+                        width:300px;
+                        height:300px;
+                        border:1px solid rgba(57,169,0,.12);
+                        border-radius:50%;
+                        right:-100px;
+                        top:-130px;
+                    "
+                ></div>
+
+                <div
+                    style="
+                        position:absolute;
+                        width:180px;
+                        height:180px;
+                        border:1px solid rgba(57,169,0,.10);
+                        border-radius:50%;
+                        right:10px;
+                        bottom:-100px;
+                    "
+                ></div>
+
+
+                <div
+                    class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end mb-4 position-relative"
+                >
+
+                    <div>
+
+                        <div
+                            class="text-uppercase fw-bold mb-2"
+                            style="
+                                color:#73d49f;
+                                font-size:11px;
+                                letter-spacing:2px;
+                            "
+                        >
+                            Oportunidades de formación
                         </div>
 
-                        <h5 class="fw-bold text-dark mt-4">
-                            Gestión de Áreas
-                        </h5>
-
-                        <p class="text-muted small mb-0">
-
-                            Administra las diferentes áreas y
-                            dependencias institucionales.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </div>
-
-
-        <!-- CENTROS -->
-        <div class="col-lg-3 col-md-6">
-
-            <a href="/trainingcenter/list"
-               class="text-decoration-none">
-
-                <div class="card border-0 shadow-sm h-100">
-
-                    <div class="card-body p-4">
-
-                        <div class="d-flex justify-content-between">
-
-                            <div class="bg-success-subtle text-success rounded-3 p-3">
-
-                                <i class="bi bi-building fs-3"></i>
-
-                            </div>
-
-                            <i class="bi bi-arrow-up-right text-muted"></i>
-
-                        </div>
-
-                        <h5 class="fw-bold text-dark mt-4">
-                            Centros de Formación
-                        </h5>
-
-                        <p class="text-muted small mb-0">
-
-                            Controla la información y ubicación
-                            de los centros vinculados.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </div>
-
-
-        <!-- CURSOS -->
-        <div class="col-lg-3 col-md-6">
-
-            <a href="/course/list"
-               class="text-decoration-none">
-
-                <div class="card border-0 shadow-sm h-100">
-
-                    <div class="card-body p-4">
-
-                        <div class="d-flex justify-content-between">
-
-                            <div class="bg-success-subtle text-success rounded-3 p-3">
-
-                                <i class="bi bi-book-fill fs-3"></i>
-
-                            </div>
-
-                            <i class="bi bi-arrow-up-right text-muted"></i>
-
-                        </div>
-
-                        <h5 class="fw-bold text-dark mt-4">
-                            Cursos
-                        </h5>
-
-                        <p class="text-muted small mb-0">
-
-                            Gestiona los cursos y procesos
-                            de formación.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </div>
-
-
-        <!-- APRENDICES -->
-        <div class="col-lg-3 col-md-6">
-
-            <a href="/apprentice/list"
-               class="text-decoration-none">
-
-                <div class="card border-0 shadow-sm h-100">
-
-                    <div class="card-body p-4">
-
-                        <div class="d-flex justify-content-between">
-
-                            <div class="bg-success-subtle text-success rounded-3 p-3">
-
-                                <i class="bi bi-people-fill fs-3"></i>
-
-                            </div>
-
-                            <i class="bi bi-arrow-up-right text-muted"></i>
-
-                        </div>
-
-                        <h5 class="fw-bold text-dark mt-4">
-                            Aprendices
-                        </h5>
-
-                        <p class="text-muted small mb-0">
-
-                            Administra la información de
-                            los aprendices.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-<!-- =========================================================
-     4. PROGRAMAS Y NOVEDADES
-========================================================= -->
-
-<div class="bg-light py-5 my-5">
-
-    <div class="container">
-
-        <div class="row align-items-end mb-4">
-
-            <div class="col-md-8">
-
-                <span class="badge bg-success px-3 py-2 text-uppercase fw-bold mb-2">
-
-                    Convocatorias & Novedades
-
-                </span>
-
-                <h2 class="fw-bold text-dark mb-1">
-
-                    Programas y Tecnólogos Destacados
-
-                </h2>
-
-                <p class="text-muted mb-0">
-
-                    Información destacada para la gestión
-                    académica del SENA.
-
-                </p>
-
-            </div>
-
-
-            <div class="col-md-4 text-md-end mt-3 mt-md-0">
-
-                <span class="text-muted small">
-
-                    Inscripciones abiertas 2026
-
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="row g-4">
-
-
-            <!-- =================================================
-                 ADSO
-            ================================================== -->
-
-            <div class="col-lg-4 col-md-6">
-
-                <div class="card h-100 border-0 shadow-sm overflow-hidden rounded-4">
-
-                    <div class="position-relative">
-
-                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop"
-                             class="card-img-top object-fit-cover"
-                             style="height: 200px;"
-                             alt="Tecnólogo ADSO">
-
-                        <span class="position-absolute top-0 end-0 bg-success text-white px-3 py-1 m-3 rounded-pill fw-bold small">
-
-                            NUEVO
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="card-body p-4">
-
-                        <h5 class="card-title fw-bold text-dark">
-
-                            ADSO: Análisis y Desarrollo de Software
-
-                        </h5>
-
-                        <p class="card-text text-muted small mt-2">
-
-                            Aprende lenguajes modernos (Laravel, React,
-                            Python), bases de datos y desarrollo web
-                            para conectarte con la industria tecnológica.
-
+                        <h2
+                            class="text-white fw-bold mb-2"
+                            style="
+                                font-size:32px;
+                                letter-spacing:-.5px;
+                            "
+                        >
+                            Ofertas del SENA
+                        </h2>
+
+                        <p
+                            class="mb-0"
+                            style="
+                                color:rgba(255,255,255,.60);
+                                max-width:650px;
+                            "
+                        >
+                            Consulta las oportunidades de formación
+                            disponibles y conoce las diferentes opciones
+                            que puedes administrar desde Admin SENA.
                         </p>
 
                     </div>
 
 
-                    <div class="card-footer bg-white border-0 px-4 pb-4 pt-0 d-flex justify-content-between align-items-center">
-
-                        <span class="badge bg-light text-dark border">
-
-                            Virtual / Presencial
-
-                        </span>
-
-                        <a href="/course/create"
-                           class="btn btn-dark btn-sm rounded-3 px-3">
-
-                            Asignar Ficha
-
-                        </a>
-
-                    </div>
+                    <a
+                        href="{{ route('oferta.index') }}"
+                        class="btn mt-3 mt-lg-0 px-4 py-2 fw-semibold"
+                        style="
+                            background:#198754;
+                            color:white;
+                            border-radius:10px;
+                        "
+                    >
+                        Ver todas
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
 
                 </div>
 
-            </div>
+
+                {{-- TARJETAS DE OFERTA --}}
+
+                <div class="row g-3 position-relative">
 
 
+                    {{-- OFERTA 1 --}}
+                    <div class="col-lg-4">
 
-            <!-- =================================================
-                 CIBERSEGURIDAD
-            ================================================== -->
+                        <div
+                            class="h-100 p-4"
+                            style="
+                                background:#ffffff;
+                                border-radius:18px;
+                            "
+                        >
 
-            <div class="col-lg-4 col-md-6">
+                            <div
+                                class="d-flex justify-content-between align-items-start mb-4"
+                            >
 
-                <div class="card h-100 border-0 shadow-sm overflow-hidden rounded-4">
-
-                    <div class="position-relative">
-
-                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=600&auto=format&fit=crop"
-                             class="card-img-top object-fit-cover"
-                             style="height: 200px;"
-                             alt="Ciberseguridad e IA">
-
-                        <span class="position-absolute top-0 end-0 bg-primary text-white px-3 py-1 m-3 rounded-pill fw-bold small">
-
-                            TENDENCIA
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="card-body p-4">
-
-                        <h5 class="card-title fw-bold text-dark">
-
-                            Ciberseguridad & Ciencia de Datos
-
-                        </h5>
-
-                        <p class="card-text text-muted small mt-2">
-
-                            Nuevo programa enfocado en protección
-                            de datos, servidores en la nube e integración
-                            de modelos de IA aplicados a la empresa.
-
-                        </p>
-
-                    </div>
+                                <div
+                                    class="d-flex align-items-center justify-content-center"
+                                    style="
+                                        width:54px;
+                                        height:54px;
+                                        border-radius:15px;
+                                        background:#e8f5ee;
+                                    "
+                                >
+                                    <i
+                                        class="bi bi-laptop-fill"
+                                        style="
+                                            color:#198754;
+                                            font-size:24px;
+                                        "
+                                    ></i>
+                                </div>
 
 
-                    <div class="card-footer bg-white border-0 px-4 pb-4 pt-0 d-flex justify-content-between align-items-center">
-
-                        <span class="badge bg-light text-dark border">
-
-                            Presencial
-
-                        </span>
-
-                        <a href="/course/create"
-                           class="btn btn-dark btn-sm rounded-3 px-3">
-
-                            Asignar Ficha
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 INFRAESTRUCTURA
-            ================================================== -->
-
-            <div class="col-lg-4 col-md-12">
-
-                <div class="card h-100 border-0 shadow-sm bg-dark text-white rounded-4 p-2">
-
-                    <div class="card-body p-4 d-flex flex-column justify-content-between">
-
-                        <div>
-
-                            <div class="d-flex align-items-center gap-2 mb-3">
-
-                                <i class="bi bi-cpu-fill text-warning fs-3"></i>
-
-                                <span class="text-warning fw-bold text-uppercase small">
-
-                                    Infraestructura 2026
-
+                                <span
+                                    class="badge rounded-pill px-3 py-2"
+                                    style="
+                                        background:#e8f5ee;
+                                        color:#198754;
+                                    "
+                                >
+                                    TECNÓLOGO
                                 </span>
 
                             </div>
 
 
-                            <h4 class="fw-bold text-white">
-
-                                Modernización de Ambientes de Cómputo
-
-                            </h4>
+                            <h5 class="fw-bold text-dark mb-2">
+                                Análisis y Desarrollo de Software
+                            </h5>
 
 
-                            <p class="text-white-50 small mt-2">
-
-                                Se han incorporado nuevos equipos de
-                                cómputo para potenciar las prácticas
-                                de desarrollo y redes en todos los
-                                Centros de Formación.
-
+                            <p
+                                class="text-muted small mb-4"
+                                style="line-height:1.6;"
+                            >
+                                Formación orientada al desarrollo de
+                                aplicaciones y soluciones tecnológicas.
                             </p>
+
+
+                            <div class="mb-3">
+
+                                <div
+                                    class="d-flex align-items-center mb-2"
+                                >
+
+                                    <i
+                                        class="bi bi-geo-alt-fill me-2"
+                                        style="color:#198754;"
+                                    ></i>
+
+                                    <small class="text-muted">
+                                        Centro de formación
+                                    </small>
+
+                                </div>
+
+
+                                <div
+                                    class="d-flex align-items-center"
+                                >
+
+                                    <i
+                                        class="bi bi-clock-fill me-2"
+                                        style="color:#198754;"
+                                    ></i>
+
+                                    <small class="text-muted">
+                                        Jornada disponible
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <a
+                                href="{{ route('oferta.index') }}"
+                                class="btn btn-outline-success w-100 mt-2"
+                                style="border-radius:10px;"
+                            >
+                                Consultar oferta
+                            </a>
 
                         </div>
 
+                    </div>
 
-                        <div class="mt-4 pt-3 border-top border-secondary">
 
-                            <a href="/computer/create"
-                               class="btn btn-success fw-bold w-100 rounded-3 py-2">
+                    {{-- OFERTA 2 --}}
+                    <div class="col-lg-4">
 
-                                Registrar Equipos Nuevos
+                        <div
+                            class="h-100 p-4"
+                            style="
+                                background:#ffffff;
+                                border-radius:18px;
+                            "
+                        >
 
+                            <div
+                                class="d-flex justify-content-between align-items-start mb-4"
+                            >
+
+                                <div
+                                    class="d-flex align-items-center justify-content-center"
+                                    style="
+                                        width:54px;
+                                        height:54px;
+                                        border-radius:15px;
+                                        background:#e8f5ee;
+                                    "
+                                >
+                                    <i
+                                        class="bi bi-cpu-fill"
+                                        style="
+                                            color:#198754;
+                                            font-size:24px;
+                                        "
+                                    ></i>
+                                </div>
+
+
+                                <span
+                                    class="badge rounded-pill px-3 py-2"
+                                    style="
+                                        background:#eef2f0;
+                                        color:#495057;
+                                    "
+                                >
+                                    TECNÓLOGO
+                                </span>
+
+                            </div>
+
+
+                            <h5 class="fw-bold text-dark mb-2">
+                                Gestión de Tecnología
+                            </h5>
+
+
+                            <p
+                                class="text-muted small mb-4"
+                                style="line-height:1.6;"
+                            >
+                                Alternativa de formación enfocada en
+                                procesos tecnológicos e innovación.
+                            </p>
+
+
+                            <div class="mb-3">
+
+                                <div
+                                    class="d-flex align-items-center mb-2"
+                                >
+
+                                    <i
+                                        class="bi bi-geo-alt-fill me-2"
+                                        style="color:#198754;"
+                                    ></i>
+
+                                    <small class="text-muted">
+                                        Centro de formación
+                                    </small>
+
+                                </div>
+
+
+                                <div
+                                    class="d-flex align-items-center"
+                                >
+
+                                    <i
+                                        class="bi bi-clock-fill me-2"
+                                        style="color:#198754;"
+                                    ></i>
+
+                                    <small class="text-muted">
+                                        Jornada disponible
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <a
+                                href="{{ route('oferta.index') }}"
+                                class="btn btn-outline-success w-100 mt-2"
+                                style="border-radius:10px;"
+                            >
+                                Consultar oferta
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- OFERTA 3 --}}
+                    <div class="col-lg-4">
+
+                        <div
+                            class="h-100 p-4"
+                            style="
+                                background:#ffffff;
+                                border-radius:18px;
+                            "
+                        >
+
+                            <div
+                                class="d-flex justify-content-between align-items-start mb-4"
+                            >
+
+                                <div
+                                    class="d-flex align-items-center justify-content-center"
+                                    style="
+                                        width:54px;
+                                        height:54px;
+                                        border-radius:15px;
+                                        background:#e8f5ee;
+                                    "
+                                >
+                                    <i
+                                        class="bi bi-tools"
+                                        style="
+                                            color:#198754;
+                                            font-size:24px;
+                                        "
+                                    ></i>
+                                </div>
+
+
+                                <span
+                                    class="badge rounded-pill px-3 py-2"
+                                    style="
+                                        background:#fff4d6;
+                                        color:#956f00;
+                                    "
+                                >
+                                    TÉCNICO
+                                </span>
+
+                            </div>
+
+
+                            <h5 class="fw-bold text-dark mb-2">
+                                Formación para el trabajo
+                            </h5>
+
+
+                            <p
+                                class="text-muted small mb-4"
+                                style="line-height:1.6;"
+                            >
+                                Opciones de formación técnica para
+                                fortalecer conocimientos y habilidades.
+                            </p>
+
+
+                            <div class="mb-3">
+
+                                <div
+                                    class="d-flex align-items-center mb-2"
+                                >
+
+                                    <i
+                                        class="bi bi-geo-alt-fill me-2"
+                                        style="color:#198754;"
+                                    ></i>
+
+                                    <small class="text-muted">
+                                        Centro de formación
+                                    </small>
+
+                                </div>
+
+
+                                <div
+                                    class="d-flex align-items-center"
+                                >
+
+                                    <i
+                                        class="bi bi-clock-fill me-2"
+                                        style="color:#198754;"
+                                    ></i>
+
+                                    <small class="text-muted">
+                                        Jornada disponible
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <a
+                                href="{{ route('oferta.index') }}"
+                                class="btn btn-outline-success w-100 mt-2"
+                                style="border-radius:10px;"
+                            >
+                                Consultar oferta
                             </a>
 
                         </div>
@@ -657,380 +894,1015 @@
 
             </div>
 
-        </div>
+        </section>
 
-    </div>
 
-</div>
+        {{-- ========================================================= --}}
+        {{-- MÓDULOS DE ADMINISTRACIÓN --}}
+        {{-- ========================================================= --}}
 
+        <section class="mb-5">
 
+            <div class="mb-4">
 
-<!-- =========================================================
-     5. SEGUNDO BLOQUE DE GESTIÓN
-========================================================= -->
-
-<div class="container my-5">
-
-    <div class="row align-items-center mb-4">
-
-        <div class="col-md-8">
-
-            <span class="text-success fw-bold text-uppercase small">
-
-                Administración académica
-
-            </span>
-
-            <h2 class="fw-bold text-dark mb-1">
-
-                Más herramientas de gestión
-
-            </h2>
-
-            <p class="text-muted mb-0">
-
-                Continúa administrando los diferentes procesos
-                de la plataforma.
-
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="row g-4">
-
-
-        <!-- INSTRUCTORES -->
-        <div class="col-lg-4">
-
-            <div class="card border-0 shadow-sm h-100">
-
-                <div class="card-body p-4">
-
-                    <div class="d-flex align-items-center gap-3 mb-3">
-
-                        <div class="bg-success-subtle text-success rounded-3 p-3">
-
-                            <i class="bi bi-person-workspace fs-3"></i>
-
-                        </div>
-
-                        <h5 class="fw-bold mb-0">
-
-                            Instructores
-
-                        </h5>
-
-                    </div>
-
-                    <p class="text-muted small">
-
-                        Gestiona el personal docente encargado
-                        de los procesos formativos y técnicos.
-
-                    </p>
-
-                    <a href="/teacher/list"
-                       class="btn btn-outline-success btn-sm">
-
-                        Ver Instructores
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- PROGRAMAS -->
-        <div class="col-lg-4">
-
-            <div class="card border-0 shadow-sm h-100">
-
-                <div class="card-body p-4">
-
-                    <div class="d-flex align-items-center gap-3 mb-3">
-
-                        <div class="bg-success-subtle text-success rounded-3 p-3">
-
-                            <i class="bi bi-mortarboard-fill fs-3"></i>
-
-                        </div>
-
-                        <h5 class="fw-bold mb-0">
-
-                            Programas
-
-                        </h5>
-
-                    </div>
-
-                    <p class="text-muted small">
-
-                        Consulta y administra los programas
-                        de formación disponibles.
-
-                    </p>
-
-                    <a href="/programa"
-                       class="btn btn-outline-success btn-sm">
-
-                        Ver Programas
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- OFERTAS -->
-        <div class="col-lg-4">
-
-            <div class="card border-0 shadow-sm h-100">
-
-                <div class="card-body p-4">
-
-                    <div class="d-flex align-items-center gap-3 mb-3">
-
-                        <div class="bg-success-subtle text-success rounded-3 p-3">
-
-                            <i class="bi bi-megaphone-fill fs-3"></i>
-
-                        </div>
-
-                        <h5 class="fw-bold mb-0">
-
-                            Ofertas
-
-                        </h5>
-
-                    </div>
-
-                    <p class="text-muted small">
-
-                        Administra las ofertas de formación
-                        disponibles para los aprendices.
-
-                    </p>
-
-                    <a href="/oferta"
-                       class="btn btn-outline-success btn-sm">
-
-                        Ver Ofertas
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- FICHAS -->
-        <div class="col-lg-4">
-
-            <div class="card border-0 shadow-sm h-100">
-
-                <div class="card-body p-4">
-
-                    <div class="d-flex align-items-center gap-3 mb-3">
-
-                        <div class="bg-success-subtle text-success rounded-3 p-3">
-
-                            <i class="bi bi-card-list fs-3"></i>
-
-                        </div>
-
-                        <h5 class="fw-bold mb-0">
-
-                            Fichas
-
-                        </h5>
-
-                    </div>
-
-                    <p class="text-muted small">
-
-                        Administra las fichas asociadas a
-                        los programas de formación.
-
-                    </p>
-
-                    <a href="/ficha"
-                       class="btn btn-outline-success btn-sm">
-
-                        Ver Fichas
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- AMBIENTES -->
-        <div class="col-lg-4">
-
-            <div class="card border-0 shadow-sm h-100">
-
-                <div class="card-body p-4">
-
-                    <div class="d-flex align-items-center gap-3 mb-3">
-
-                        <div class="bg-success-subtle text-success rounded-3 p-3">
-
-                            <i class="bi bi-pc-display-horizontal fs-3"></i>
-
-                        </div>
-
-                        <h5 class="fw-bold mb-0">
-
-                            Ambientes
-
-                        </h5>
-
-                    </div>
-
-                    <p class="text-muted small">
-
-                        Gestiona los ambientes disponibles
-                        para las actividades de formación.
-
-                    </p>
-
-                    <a href="/ambiente"
-                       class="btn btn-outline-success btn-sm">
-
-                        Ver Ambientes
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- NOTICIAS -->
-        <div class="col-lg-4">
-
-            <div class="card border-0 shadow-sm h-100">
-
-                <div class="card-body p-4">
-
-                    <div class="d-flex align-items-center gap-3 mb-3">
-
-                        <div class="bg-success-subtle text-success rounded-3 p-3">
-
-                            <i class="bi bi-newspaper fs-3"></i>
-
-                        </div>
-
-                        <h5 class="fw-bold mb-0">
-
-                            Noticias
-
-                        </h5>
-
-                    </div>
-
-                    <p class="text-muted small">
-
-                        Publica y administra noticias y novedades
-                        de los Centros de Formación.
-
-                    </p>
-
-                    <a href="/noticia"
-                       class="btn btn-outline-success btn-sm">
-
-                        Ver Noticias
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-<!-- =========================================================
-     6. CIERRE
-========================================================= -->
-
-<div class="container mb-5">
-
-    <div class="card border-0 shadow-sm bg-success text-white rounded-4">
-
-        <div class="card-body p-4 p-md-5">
-
-            <div class="row align-items-center">
-
-                <div class="col-md-8">
-
-                    <span class="text-white-50 text-uppercase small fw-bold">
-
-                        Admin SENA
-
-                    </span>
-
-                    <h3 class="fw-bold mt-2">
-
-                        Gestión académica en un solo lugar
-
-                    </h3>
-
-                    <p class="mb-0 text-white-50">
-
-                        Administra áreas, centros, cursos, programas,
-                        ofertas, fichas, ambientes, aprendices e
-                        instructores desde una plataforma centralizada.
-
-                    </p>
-
-                </div>
-
-
-                <div class="col-md-4 text-md-end mt-4 mt-md-0">
-
-                <div class="text-center py-5">
-
-                <img
-                    src="{{ asset('storage/images/AdminSena-logo.png') }}"
-                    alt="AdminSena"
+                <div
+                    class="text-uppercase fw-bold mb-2"
                     style="
-                        width: 360px;
-                        max-width: 100%;
-                        object-fit: contain;
+                        color:#198754;
+                        font-size:11px;
+                        letter-spacing:2px;
                     "
                 >
+                    Centro de control
+                </div>
+
+                <h2
+                    class="fw-bold mb-1"
+                    style="
+                        color:#17231d;
+                        font-size:32px;
+                    "
+                >
+                    Módulos de administración
+                </h2>
+
+                <p class="text-muted mb-0">
+                    Accede directamente a las diferentes áreas de gestión.
+                </p>
+
+            </div>
+
+
+            <div class="row g-3">
+
+
+                {{-- ÁREAS --}}
+                <div class="col-md-6 col-lg-4">
+
+                    <a
+                        href="{{ route('area.index') }}"
+                        class="text-decoration-none"
+                    >
+
+                        <div
+                            class="bg-white p-4 h-100"
+                            style="
+                                border-radius:18px;
+                                border-left:4px solid #198754;
+                                box-shadow:0 6px 20px rgba(0,0,0,.055);
+                            "
+                        >
+
+                            <div class="d-flex align-items-start">
+
+                                <div
+                                    class="d-flex align-items-center justify-content-center me-3"
+                                    style="
+                                        width:52px;
+                                        height:52px;
+                                        background:#e8f5ee;
+                                        border-radius:14px;
+                                    "
+                                >
+                                    <i
+                                        class="bi bi-grid-fill"
+                                        style="
+                                            color:#198754;
+                                            font-size:22px;
+                                        "
+                                    ></i>
+                                </div>
+
+
+                                <div>
+
+                                    <h5 class="fw-bold text-dark mb-1">
+                                        Áreas
+                                    </h5>
+
+                                    <p class="text-muted small mb-3">
+                                        Administra las áreas institucionales.
+                                    </p>
+
+                                    <span
+                                        style="
+                                            color:#198754;
+                                            font-size:13px;
+                                            font-weight:600;
+                                        "
+                                    >
+                                        Gestionar
+                                        <i class="bi bi-arrow-right ms-1"></i>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                {{-- CENTROS --}}
+                <div class="col-md-6 col-lg-4">
+
+                    <a
+                        href="{{ route('trainingcenter.index') }}"
+                        class="text-decoration-none"
+                    >
+
+                        <div
+                            class="bg-white p-4 h-100"
+                            style="
+                                border-radius:18px;
+                                border-left:4px solid #198754;
+                                box-shadow:0 6px 20px rgba(0,0,0,.055);
+                            "
+                        >
+
+                            <div class="d-flex align-items-start">
+
+                                <div
+                                    class="d-flex align-items-center justify-content-center me-3"
+                                    style="
+                                        width:52px;
+                                        height:52px;
+                                        background:#e8f5ee;
+                                        border-radius:14px;
+                                    "
+                                >
+                                    <i
+                                        class="bi bi-building-fill"
+                                        style="
+                                            color:#198754;
+                                            font-size:22px;
+                                        "
+                                    ></i>
+                                </div>
+
+
+                                <div>
+
+                                    <h5 class="fw-bold text-dark mb-1">
+                                        Centros
+                                    </h5>
+
+                                    <p class="text-muted small mb-3">
+                                        Gestiona centros de formación.
+                                    </p>
+
+                                    <span
+                                        style="
+                                            color:#198754;
+                                            font-size:13px;
+                                            font-weight:600;
+                                        "
+                                    >
+                                        Gestionar
+                                        <i class="bi bi-arrow-right ms-1"></i>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                {{-- CURSOS --}}
+                <div class="col-md-6 col-lg-4">
+
+                    <a
+                        href="{{ route('course.index') }}"
+                        class="text-decoration-none"
+                    >
+
+                        <div
+                            class="bg-white p-4 h-100"
+                            style="
+                                border-radius:18px;
+                                border-left:4px solid #198754;
+                                box-shadow:0 6px 20px rgba(0,0,0,.055);
+                            "
+                        >
+
+                            <div class="d-flex align-items-start">
+
+                                <div
+                                    class="d-flex align-items-center justify-content-center me-3"
+                                    style="
+                                        width:52px;
+                                        height:52px;
+                                        background:#e8f5ee;
+                                        border-radius:14px;
+                                    "
+                                >
+                                    <i
+                                        class="bi bi-book-fill"
+                                        style="
+                                            color:#198754;
+                                            font-size:22px;
+                                        "
+                                    ></i>
+                                </div>
+
+
+                                <div>
+
+                                    <h5 class="fw-bold text-dark mb-1">
+                                        Cursos
+                                    </h5>
+
+                                    <p class="text-muted small mb-3">
+                                        Administra cursos de formación.
+                                    </p>
+
+                                    <span
+                                        style="
+                                            color:#198754;
+                                            font-size:13px;
+                                            font-weight:600;
+                                        "
+                                    >
+                                        Gestionar
+                                        <i class="bi bi-arrow-right ms-1"></i>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                {{-- COMPUTADORES --}}
+                <div class="col-md-6 col-lg-4">
+
+                    <a
+                        href="{{ route('computer.index') }}"
+                        class="text-decoration-none"
+                    >
+
+                        <div
+                            class="bg-white p-4 h-100"
+                            style="
+                                border-radius:18px;
+                                border-left:4px solid #198754;
+                                box-shadow:0 6px 20px rgba(0,0,0,.055);
+                            "
+                        >
+
+                            <div class="d-flex align-items-start">
+
+                                <div
+                                    class="d-flex align-items-center justify-content-center me-3"
+                                    style="
+                                        width:52px;
+                                        height:52px;
+                                        background:#e8f5ee;
+                                        border-radius:14px;
+                                    "
+                                >
+                                    <i
+                                        class="bi bi-pc-display"
+                                        style="
+                                            color:#198754;
+                                            font-size:22px;
+                                        "
+                                    ></i>
+                                </div>
+
+
+                                <div>
+
+                                    <h5 class="fw-bold text-dark mb-1">
+                                        Computadores
+                                    </h5>
+
+                                    <p class="text-muted small mb-3">
+                                        Controla los equipos disponibles.
+                                    </p>
+
+                                    <span
+                                        style="
+                                            color:#198754;
+                                            font-size:13px;
+                                            font-weight:600;
+                                        "
+                                    >
+                                        Gestionar
+                                        <i class="bi bi-arrow-right ms-1"></i>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                {{-- AMBIENTES --}}
+                <div class="col-md-6 col-lg-4">
+
+                    <a
+                        href="{{ route('ambiente.index') }}"
+                        class="text-decoration-none"
+                    >
+
+                        <div
+                            class="bg-white p-4 h-100"
+                            style="
+                                border-radius:18px;
+                                border-left:4px solid #198754;
+                                box-shadow:0 6px 20px rgba(0,0,0,.055);
+                            "
+                        >
+
+                            <div class="d-flex align-items-start">
+
+                                <div
+                                    class="d-flex align-items-center justify-content-center me-3"
+                                    style="
+                                        width:52px;
+                                        height:52px;
+                                        background:#e8f5ee;
+                                        border-radius:14px;
+                                    "
+                                >
+                                    <i
+                                        class="bi bi-pc-display-horizontal"
+                                        style="
+                                            color:#198754;
+                                            font-size:22px;
+                                        "
+                                    ></i>
+                                </div>
+
+
+                                <div>
+
+                                    <h5 class="fw-bold text-dark mb-1">
+                                        Ambientes
+                                    </h5>
+
+                                    <p class="text-muted small mb-3">
+                                        Administra ambientes académicos.
+                                    </p>
+
+                                    <span
+                                        style="
+                                            color:#198754;
+                                            font-size:13px;
+                                            font-weight:600;
+                                        "
+                                    >
+                                        Gestionar
+                                        <i class="bi bi-arrow-right ms-1"></i>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                {{-- NOTICIAS --}}
+                <div class="col-md-6 col-lg-4">
+
+                    <a
+                        href="{{ route('noticia.index') }}"
+                        class="text-decoration-none"
+                    >
+
+                        <div
+                            class="bg-white p-4 h-100"
+                            style="
+                                border-radius:18px;
+                                border-left:4px solid #198754;
+                                box-shadow:0 6px 20px rgba(0,0,0,.055);
+                            "
+                        >
+
+                            <div class="d-flex align-items-start">
+
+                                <div
+                                    class="d-flex align-items-center justify-content-center me-3"
+                                    style="
+                                        width:52px;
+                                        height:52px;
+                                        background:#e8f5ee;
+                                        border-radius:14px;
+                                    "
+                                >
+                                    <i
+                                        class="bi bi-newspaper"
+                                        style="
+                                            color:#198754;
+                                            font-size:22px;
+                                        "
+                                    ></i>
+                                </div>
+
+
+                                <div>
+
+                                    <h5 class="fw-bold text-dark mb-1">
+                                        Noticias
+                                    </h5>
+
+                                    <p class="text-muted small mb-3">
+                                        Publica novedades institucionales.
+                                    </p>
+
+                                    <span
+                                        style="
+                                            color:#198754;
+                                            font-size:13px;
+                                            font-weight:600;
+                                        "
+                                    >
+                                        Gestionar
+                                        <i class="bi bi-arrow-right ms-1"></i>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </a>
 
                 </div>
 
             </div>
+
+        </section>
+
+
+        {{-- ========================================================= --}}
+        {{-- GESTIÓN CENTRALIZADA --}}
+        {{-- ========================================================= --}}
+
+        <section class="mb-5">
+
+            <div
+                class="p-4 p-lg-5"
+                style="
+                    background:#ffffff;
+                    border-radius:22px;
+                    box-shadow:0 7px 24px rgba(0,0,0,.055);
+                "
+            >
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg-7">
+
+                        <div
+                            class="text-uppercase fw-bold mb-2"
+                            style="
+                                color:#198754;
+                                font-size:11px;
+                                letter-spacing:2px;
+                            "
+                        >
+                            Gestión centralizada
+                        </div>
+
+
+                        <h3
+                            class="fw-bold mb-3"
+                            style="
+                                color:#17231d;
+                                font-size:29px;
+                            "
+                        >
+                            Todo lo que necesitas,
+                            <br>
+                            desde un solo lugar.
+                        </h3>
+
+
+                        <p
+                            class="text-muted mb-4"
+                            style="
+                                max-width:600px;
+                                line-height:1.8;
+                            "
+                        >
+                            Admin SENA reúne las herramientas necesarias
+                            para organizar, consultar y administrar
+                            la información académica y administrativa.
+                        </p>
+
+
+                        <div class="d-flex flex-wrap gap-2">
+
+                            <a
+                                href="{{ route('oferta.index') }}"
+                                class="btn text-white fw-semibold px-4 py-2"
+                                style="
+                                    background:#198754;
+                                    border-radius:10px;
+                                "
+                            >
+                                <i class="bi bi-megaphone me-2"></i>
+                                Ver ofertas
+                            </a>
+
+
+                            <a
+                                href="{{ route('noticia.index') }}"
+                                class="btn btn-light border px-4 py-2 fw-semibold"
+                                style="border-radius:10px;"
+                            >
+                                <i class="bi bi-newspaper me-2"></i>
+                                Noticias
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-lg-5 mt-4 mt-lg-0">
+
+                        <div
+                            class="p-4"
+                            style="
+                                background:#17231d;
+                                border-radius:18px;
+                            "
+                        >
+
+                            <div
+                                class="d-flex align-items-center mb-4"
+                            >
+
+                                <div
+                                    class="d-flex align-items-center justify-content-center me-3"
+                                    style="
+                                        width:48px;
+                                        height:48px;
+                                        border-radius:13px;
+                                        background:#198754;
+                                    "
+                                >
+                                    <i
+                                        class="bi bi-check2-all text-white"
+                                        style="font-size:23px;"
+                                    ></i>
+                                </div>
+
+
+                                <div>
+
+                                    <div class="text-white fw-bold">
+                                        Plataforma organizada
+                                    </div>
+
+                                    <small
+                                        style="
+                                            color:rgba(255,255,255,.55);
+                                        "
+                                    >
+                                        Admin SENA
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <div
+                                    class="d-flex justify-content-between mb-2"
+                                >
+                                    <small class="text-white-50">
+                                        Gestión académica
+                                    </small>
+
+                                    <small style="color:#73d49f;">
+                                        Activa
+                                    </small>
+                                </div>
+
+                                <div
+                                    style="
+                                        height:7px;
+                                        background:rgba(255,255,255,.08);
+                                        border-radius:20px;
+                                    "
+                                >
+
+                                    <div
+                                        style="
+                                            width:88%;
+                                            height:100%;
+                                            background:#198754;
+                                            border-radius:20px;
+                                        "
+                                    ></div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <div
+                                    class="d-flex justify-content-between mb-2"
+                                >
+                                    <small class="text-white-50">
+                                        Organización
+                                    </small>
+
+                                    <small style="color:#73d49f;">
+                                        Activa
+                                    </small>
+                                </div>
+
+                                <div
+                                    style="
+                                        height:7px;
+                                        background:rgba(255,255,255,.08);
+                                        border-radius:20px;
+                                    "
+                                >
+
+                                    <div
+                                        style="
+                                            width:94%;
+                                            height:100%;
+                                            background:#39a900;
+                                            border-radius:20px;
+                                        "
+                                    ></div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div>
+
+                                <div
+                                    class="d-flex justify-content-between mb-2"
+                                >
+                                    <small class="text-white-50">
+                                        Información
+                                    </small>
+
+                                    <small style="color:#73d49f;">
+                                        Disponible
+                                    </small>
+                                </div>
+
+                                <div
+                                    style="
+                                        height:7px;
+                                        background:rgba(255,255,255,.08);
+                                        border-radius:20px;
+                                    "
+                                >
+
+                                    <div
+                                        style="
+                                            width:97%;
+                                            height:100%;
+                                            background:#198754;
+                                            border-radius:20px;
+                                        "
+                                    ></div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        {{-- ========================================================= --}}
+        {{-- ACCIONES RÁPIDAS --}}
+        {{-- ========================================================= --}}
+
+        <section class="mb-5">
+
+            <div class="mb-4">
+
+                <div
+                    class="text-uppercase fw-bold mb-2"
+                    style="
+                        color:#198754;
+                        font-size:11px;
+                        letter-spacing:2px;
+                    "
+                >
+                    Acciones rápidas
+                </div>
+
+                <h3
+                    class="fw-bold mb-1"
+                    style="color:#17231d;"
+                >
+                    ¿Qué deseas administrar?
+                </h3>
+
+                <p class="text-muted mb-0">
+                    Accede directamente a las acciones más utilizadas.
+                </p>
+
+            </div>
+
+
+            <div class="row g-3">
+
+                <div class="col-6 col-lg-3">
+
+                    <a
+                        href="{{ route('programa.create') }}"
+                        class="text-decoration-none"
+                    >
+
+                        <div
+                            class="p-4 text-center bg-white"
+                            style="
+                                border-radius:16px;
+                                box-shadow:0 5px 18px rgba(0,0,0,.05);
+                            "
+                        >
+
+                            <i
+                                class="bi bi-plus-circle-fill"
+                                style="
+                                    color:#198754;
+                                    font-size:30px;
+                                "
+                            ></i>
+
+                            <div class="fw-bold text-dark mt-3">
+                                Nuevo programa
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-6 col-lg-3">
+
+                    <a
+                        href="{{ route('oferta.create') }}"
+                        class="text-decoration-none"
+                    >
+
+                        <div
+                            class="p-4 text-center bg-white"
+                            style="
+                                border-radius:16px;
+                                box-shadow:0 5px 18px rgba(0,0,0,.05);
+                            "
+                        >
+
+                            <i
+                                class="bi bi-megaphone-fill"
+                                style="
+                                    color:#198754;
+                                    font-size:30px;
+                                "
+                            ></i>
+
+                            <div class="fw-bold text-dark mt-3">
+                                Nueva oferta
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-6 col-lg-3">
+
+                    <a
+                        href="{{ route('ambiente.index') }}"
+                        class="text-decoration-none"
+                    >
+
+                        <div
+                            class="p-4 text-center bg-white"
+                            style="
+                                border-radius:16px;
+                                box-shadow:0 5px 18px rgba(0,0,0,.05);
+                            "
+                        >
+
+                            <i
+                                class="bi bi-pc-display-horizontal"
+                                style="
+                                    color:#198754;
+                                    font-size:30px;
+                                "
+                            ></i>
+
+                            <div class="fw-bold text-dark mt-3">
+                                Ver ambientes
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-6 col-lg-3">
+
+                    <a
+                        href="{{ route('noticia.index') }}"
+                        class="text-decoration-none"
+                    >
+
+                        <div
+                            class="p-4 text-center bg-white"
+                            style="
+                                border-radius:16px;
+                                box-shadow:0 5px 18px rgba(0,0,0,.05);
+                            "
+                        >
+
+                            <i
+                                class="bi bi-newspaper"
+                                style="
+                                    color:#198754;
+                                    font-size:30px;
+                                "
+                            ></i>
+
+                            <div class="fw-bold text-dark mt-3">
+                                Gestionar noticias
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        {{-- ========================================================= --}}
+        {{-- CIERRE --}}
+        {{-- ========================================================= --}}
+
+        <section>
+
+            <div
+                class="overflow-hidden"
+                style="
+                    background:
+                        linear-gradient(
+                            135deg,
+                            #126b45,
+                            #198754
+                        );
+                    border-radius:22px;
+                    box-shadow:
+                        0 10px 28px
+                        rgba(25,135,84,.18);
+                "
+            >
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg-8">
+
+                        <div class="p-4 p-lg-5">
+
+                            <div
+                                class="text-white text-uppercase fw-bold mb-2"
+                                style="
+                                    font-size:11px;
+                                    letter-spacing:2px;
+                                    opacity:.75;
+                                "
+                            >
+                                ADMIN SENA
+                            </div>
+
+
+                            <h3
+                                class="text-white fw-bold mb-3"
+                                style="font-size:30px;"
+                            >
+                                Gestión académica en un solo lugar.
+                            </h3>
+
+
+                            <p
+                                class="mb-0"
+                                style="
+                                    color:rgba(255,255,255,.78);
+                                    max-width:650px;
+                                    line-height:1.7;
+                                "
+                            >
+                                Una plataforma diseñada para organizar,
+                                consultar y administrar la información
+                                relacionada con los procesos académicos.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-lg-4">
+
+                        <div
+                            class="d-flex justify-content-center align-items-center p-4"
+                        >
+
+                            <img
+                                src="{{ asset('storage/images/AdminSena-logo.png') }}"
+                                alt="AdminSena"
+                                style="
+                                    width:280px;
+                                    max-width:100%;
+                                    object-fit:contain;
+                                    filter:brightness(0) invert(1);
+                                "
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        {{-- ========================================================= --}}
+        {{-- FOOTER DEL HOME --}}
+        {{-- ========================================================= --}}
+
+        <div class="text-center mt-5">
+
+            <small class="text-muted">
+
+                <i
+                    class="bi bi-shield-check me-1"
+                    style="color:#198754;"
+                ></i>
+
+                Sistema de Administración Académica · SENA
+
+            </small>
 
         </div>
 
     </div>
 
 </div>
-
 
 @endsection

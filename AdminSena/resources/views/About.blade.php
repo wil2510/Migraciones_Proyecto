@@ -9,13 +9,7 @@
         padding-bottom:60px;
     "
 >
-
-    {{-- ========================================================= --}}
-    {{-- HERO --}}
-    {{-- ========================================================= --}}
-
     <section class="container pt-4">
-
         <div
             class="position-relative overflow-hidden"
             style="
@@ -676,5 +670,4 @@
     </div>
 
 </div>
-
 @endsection
