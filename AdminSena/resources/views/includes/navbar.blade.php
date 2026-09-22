@@ -7,15 +7,11 @@
 >
     <div class="container-fluid">
 
-        {{-- ================================================= --}}
         {{-- LOGO + NOMBRE --}}
-        {{-- ================================================= --}}
         <a
             href="{{ route('home') }}"
             class="navbar-brand d-flex align-items-center gap-3 fw-bold"
         >
-
-            {{-- Logo --}}
             <div
                 class="d-flex align-items-center justify-content-center"
                 style="
@@ -26,7 +22,6 @@
                     border-radius: 12px;
                 "
             >
-
                 <img
                     src="https://diba.planeacionycalidad.org/diba/Views/representante/logo-blanco-sena-sin-fondo.png"
                     alt="Logo SENA"
@@ -36,13 +31,9 @@
                         object-fit: contain;
                     "
                 >
-
             </div>
 
-
-            {{-- Marca --}}
             <div class="d-flex flex-column">
-
                 <span
                     class="text-white fw-bold"
                     style="
@@ -61,15 +52,10 @@
                 >
                     Gestión Académica
                 </small>
-
             </div>
-
         </a>
 
-
-        {{-- ================================================= --}}
         {{-- BOTÓN MÓVIL --}}
-        {{-- ================================================= --}}
         <button
             class="navbar-toggler shadow-none"
             type="button"
@@ -79,49 +65,31 @@
             aria-expanded="false"
             aria-label="Mostrar menú"
         >
-
             <span class="navbar-toggler-icon"></span>
-
         </button>
 
-
-        {{-- ================================================= --}}
         {{-- CONTENIDO DEL NAVBAR --}}
-        {{-- ================================================= --}}
         <div
             class="collapse navbar-collapse"
             id="adminNavbar"
         >
-
             <ul
                 class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mt-3 mt-lg-0"
             >
 
-
-                {{-- ================================================= --}}
-                {{-- QUIÉNES SOMOS --}}
-                {{-- ================================================= --}}
+                {{-- QUIÉNES SOMOS (PÚBLICO) --}}
                 <li class="nav-item">
-
                     <a
                         href="{{ route('about') }}"
                         class="nav-link text-white fw-semibold px-3 py-2 rounded-pill"
                     >
-
                         <i class="bi bi-info-circle-fill me-1"></i>
-
                         ¿Quiénes Somos?
-
                     </a>
-
                 </li>
 
-
-                {{-- ================================================= --}}
-                {{-- ADMINISTRACIÓN --}}
-                {{-- ================================================= --}}
-                <li class="nav-item dropdown">
-
+                {{-- ADMINISTRACIÓN (SOLO SESIÓN INICIADA) --}}
+                <li class="nav-item dropdown" id="navAdmin" style="display: none;">
                     <a
                         href="#"
                         class="nav-link dropdown-toggle text-white fw-semibold px-3 py-2 rounded-pill"
@@ -129,276 +97,93 @@
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                     >
-
                         <i class="bi bi-grid-1x2-fill me-1"></i>
-
                         Administración
-
                     </a>
 
-
-                    <ul
-                        class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 p-2"
-                    >
-
+                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 p-2">
                         <li>
-
-                            <h6
-                                class="dropdown-header fw-bold"
-                                style="color: #198754;"
-                            >
+                            <h6 class="dropdown-header fw-bold" style="color: #198754;">
                                 Gestión principal
                             </h6>
-
                         </li>
-
-
-                        {{-- ÁREA --}}
                         <li>
-
-                            <a
-                                href="{{ route('area.create') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-diagram-3-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('area.create') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-diagram-3-fill me-2" style="color: #198754;"></i>
                                 Área
-
                             </a>
-
                         </li>
-
-
-                        {{-- CENTRO --}}
                         <li>
-
-                            <a
-                                href="{{ route('trainingcenter.create') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-building-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('trainingcenter.create') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-building-fill me-2" style="color: #198754;"></i>
                                 Centro
-
                             </a>
-
                         </li>
-
-
-                        {{-- EQUIPOS --}}
                         <li>
-
-                            <a
-                                href="{{ route('computer.create') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-pc-display me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('computer.create') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-pc-display me-2" style="color: #198754;"></i>
                                 Equipos
-
                             </a>
-
                         </li>
-
-
-                        {{-- CURSOS --}}
                         <li>
-
-                            <a
-                                href="{{ route('course.create') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-journal-bookmark-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('course.create') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-journal-bookmark-fill me-2" style="color: #198754;"></i>
                                 Cursos
-
                             </a>
-
                         </li>
-
-
-                        {{-- INSTRUCTORES --}}
                         <li>
-
-                            <a
-                                href="{{ route('teacher.create') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-person-workspace me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('teacher.create') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-person-workspace me-2" style="color: #198754;"></i>
                                 Instructores
-
                             </a>
-
                         </li>
-
-
-                        {{-- APRENDICES --}}
                         <li>
-
-                            <a
-                                href="{{ route('apprentice.create') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-person-badge-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('apprentice.create') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-person-badge-fill me-2" style="color: #198754;"></i>
                                 Aprendices
-
                             </a>
-
                         </li>
-
-
+                        <li><hr class="dropdown-divider"></li>
                         <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-
-                        <li>
-
-                            <h6
-                                class="dropdown-header fw-bold"
-                                style="color: #198754;"
-                            >
+                            <h6 class="dropdown-header fw-bold" style="color: #198754;">
                                 Módulos académicos
                             </h6>
-
                         </li>
-
-
-                        {{-- PROGRAMAS --}}
                         <li>
-
-                            <a
-                                href="{{ route('programa.create') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-mortarboard-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('programa.create') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-mortarboard-fill me-2" style="color: #198754;"></i>
                                 Programas
-
                             </a>
-
                         </li>
-
-
-                        {{-- OFERTAS --}}
                         <li>
-
-                            <a
-                                href="{{ route('oferta.create') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-megaphone-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('oferta.create') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-megaphone-fill me-2" style="color: #198754;"></i>
                                 Ofertas
-
                             </a>
-
                         </li>
-
-
-                        {{-- FICHAS --}}
                         <li>
-
-                            <a
-                                href="{{ route('ficha.create') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-people-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('ficha.create') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-people-fill me-2" style="color: #198754;"></i>
                                 Fichas
-
                             </a>
-
                         </li>
-
-
-                        {{-- AMBIENTES --}}
                         <li>
-
-                            <a
-                                href="{{ route('ambiente.create') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-house-gear-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('ambiente.create') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-house-gear-fill me-2" style="color: #198754;"></i>
                                 Ambientes
-
                             </a>
-
                         </li>
-
-
-                        {{-- NOTICIAS --}}
                         <li>
-
-                            <a
-                                href="{{ route('noticia.create') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-newspaper me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('noticia.create') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-newspaper me-2" style="color: #198754;"></i>
                                 Noticias
-
                             </a>
-
                         </li>
-
                     </ul>
-
                 </li>
 
-
-                {{-- ================================================= --}}
-                {{-- VER LISTAS --}}
-                {{-- ================================================= --}}
-                <li class="nav-item dropdown">
-
+                {{-- VER LISTAS (SOLO SESIÓN INICIADA) --}}
+                <li class="nav-item dropdown" id="navListas" style="display: none;">
                     <a
                         href="#"
                         class="nav-link dropdown-toggle text-white fw-semibold px-3 py-2 rounded-pill"
@@ -406,274 +191,90 @@
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                     >
-
                         <i class="bi bi-list-ul me-1"></i>
-
                         Ver Listas
-
                     </a>
 
-
-                    <ul
-                        class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 p-2"
-                    >
-
+                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 p-2">
                         <li>
-
-                            <h6
-                                class="dropdown-header fw-bold"
-                                style="color: #198754;"
-                            >
+                            <h6 class="dropdown-header fw-bold" style="color: #198754;">
                                 Registros
                             </h6>
-
                         </li>
-
-
-                        {{-- ÁREAS --}}
                         <li>
-
-                            <a
-                                href="{{ route('area.index') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-diagram-3-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('area.index') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-diagram-3-fill me-2" style="color: #198754;"></i>
                                 Áreas
-
                             </a>
-
                         </li>
-
-
-                        {{-- CENTROS --}}
                         <li>
-
-                            <a
-                                href="{{ route('trainingcenter.index') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-building-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('trainingcenter.index') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-building-fill me-2" style="color: #198754;"></i>
                                 Centros
-
                             </a>
-
                         </li>
-
-
-                        {{-- EQUIPOS --}}
                         <li>
-
-                            <a
-                                href="{{ route('computer.index') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-pc-display me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('computer.index') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-pc-display me-2" style="color: #198754;"></i>
                                 Equipos
-
                             </a>
-
                         </li>
-
-
-                        {{-- CURSOS --}}
                         <li>
-
-                            <a
-                                href="{{ route('course.index') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-journal-bookmark-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('course.index') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-journal-bookmark-fill me-2" style="color: #198754;"></i>
                                 Cursos
-
                             </a>
-
                         </li>
-
-
-                        {{-- INSTRUCTORES --}}
                         <li>
-
-                            <a
-                                href="{{ route('teacher.index') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-person-workspace me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('teacher.index') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-person-workspace me-2" style="color: #198754;"></i>
                                 Instructores
-
                             </a>
-
                         </li>
-
-
-                        {{-- APRENDICES --}}
                         <li>
-
-                            <a
-                                href="{{ route('apprentice.index') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-person-badge-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('apprentice.index') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-person-badge-fill me-2" style="color: #198754;"></i>
                                 Aprendices
-
                             </a>
-
                         </li>
-
-
+                        <li><hr class="dropdown-divider"></li>
                         <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-
-                        {{-- PROGRAMAS --}}
-                        <li>
-
-                            <a
-                                href="{{ route('programa.index') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-mortarboard-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('programa.index') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-mortarboard-fill me-2" style="color: #198754;"></i>
                                 Programas
-
                             </a>
-
                         </li>
-
-
-                        {{-- OFERTAS --}}
                         <li>
-
-                            <a
-                                href="{{ route('oferta.index') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-megaphone-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('oferta.index') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-megaphone-fill me-2" style="color: #198754;"></i>
                                 Ofertas
-
                             </a>
-
                         </li>
-
-
-                        {{-- FICHAS --}}
                         <li>
-
-                            <a
-                                href="{{ route('ficha.index') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-people-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('ficha.index') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-people-fill me-2" style="color: #198754;"></i>
                                 Fichas
-
                             </a>
-
                         </li>
-
-
-                        {{-- AMBIENTES --}}
                         <li>
-
-                            <a
-                                href="{{ route('ambiente.index') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-house-gear-fill me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('ambiente.index') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-house-gear-fill me-2" style="color: #198754;"></i>
                                 Ambientes
-
                             </a>
-
                         </li>
-
-
-                        {{-- NOTICIAS --}}
                         <li>
-
-                            <a
-                                href="{{ route('noticia.index') }}"
-                                class="dropdown-item rounded-3 py-2"
-                            >
-
-                                <i
-                                    class="bi bi-newspaper me-2"
-                                    style="color: #198754;"
-                                ></i>
-
+                            <a href="{{ route('noticia.index') }}" class="dropdown-item rounded-3 py-2">
+                                <i class="bi bi-newspaper me-2" style="color: #198754;"></i>
                                 Noticias
-
                             </a>
-
                         </li>
-
                     </ul>
-
                 </li>
 
-
-                {{-- ================================================= --}}
-                {{-- BUSCADOR --}}
-                {{-- ================================================= --}}
-                <li class="nav-item ms-lg-2">
-
-                    <form
-                        class="d-flex"
-                        role="search"
-                    >
-
-                        <div
-                            class="input-group"
-                            style="width: 220px;"
-                        >
-
+                {{-- BUSCADOR (SOLO SESIÓN INICIADA) --}}
+                <li class="nav-item ms-lg-2" id="navSearch" style="display: none;">
+                    <form class="d-flex" role="search">
+                        <div class="input-group" style="width: 220px;">
                             <span
                                 class="input-group-text border-0"
                                 style="
@@ -681,11 +282,8 @@
                                     color: white;
                                 "
                             >
-
                                 <i class="bi bi-search"></i>
-
                             </span>
-
                             <input
                                 type="search"
                                 class="form-control border-0 shadow-none text-white"
@@ -696,68 +294,51 @@
                                     color: white;
                                 "
                             >
-
                         </div>
-
                     </form>
-
                 </li>
 
-
-                {{-- ================================================= --}}
-                {{-- AUTENTICACIÓN --}}
-                {{-- ================================================= --}}
-                <li
-                    class="nav-item ms-lg-2"
-                    id="authContainer"
-                >
-                    <!-- JavaScript -->
+                {{-- CONTENEDOR DE AUTENTICACIÓN --}}
+                <li class="nav-item ms-lg-2" id="authContainer">
+                    <!-- JavaScript insertará la información del usuario o el botón Login -->
                 </li>
 
             </ul>
-
         </div>
-
     </div>
 </nav>
 
-
 <script>
-
 document.addEventListener('DOMContentLoaded', function () {
     checkAuthStatus();
 });
 
-
 function checkAuthStatus() {
-
-    const userSession = JSON.parse(
-        localStorage.getItem('user_session')
-    );
-
-    const authContainer =
-        document.getElementById('authContainer');
-
-
-    // =====================================================
-    // USUARIO CON SESIÓN
-    // =====================================================
+    const userSession = JSON.parse(localStorage.getItem('user_session'));
+    const authContainer = document.getElementById('authContainer');
+    
+    // Elementos condicionales
+    const navAdmin = document.getElementById('navAdmin');
+    const navListas = document.getElementById('navListas');
+    const navSearch = document.getElementById('navSearch');
 
     if (userSession) {
+        // MOSTRAR MENÚS PRIVADOS
+        navAdmin.style.display = 'block';
+        navListas.style.display = 'block';
+        navSearch.style.display = 'block';
 
+        // COMPONENTE DE USUARIO AUTENTICADO
         authContainer.innerHTML = `
-
             <div class="dropdown">
-
                 <a
                     href="#"
                     class="d-flex align-items-center text-white text-decoration-none"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                 >
-
                     <img
-                        src="${userSession.avatar}"
+                        src="${userSession.avatar || 'https://via.placeholder.com/40'}"
                         alt="${userSession.name}"
                         width="40"
                         height="40"
@@ -767,115 +348,58 @@ function checkAuthStatus() {
                             border: 2px solid white;
                         "
                     >
-
-
                     <div class="d-none d-xl-flex flex-column ms-2">
-
-                        <span
-                            class="fw-bold"
-                            style="font-size: 13px;"
-                        >
+                        <span class="fw-bold" style="font-size: 13px;">
                             ${userSession.name}
                         </span>
-
-                        <small
-                            style="
-                                color: rgba(255,255,255,.75);
-                                font-size: 10px;
-                            "
-                        >
+                        <small style="color: rgba(255,255,255,.75); font-size: 10px;">
                             Usuario
-
                         </small>
-
                     </div>
-
-
                     <i class="bi bi-chevron-down ms-2"></i>
-
                 </a>
 
-
-                <ul
-                    class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 mt-2 p-2"
-                >
-
+                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 mt-2 p-2">
                     <li>
-
                         <div class="px-3 py-2 border-bottom">
-
-                            <p class="fw-bold mb-0 text-dark small">
-                                ${userSession.name}
-                            </p>
-
-                            <small class="text-muted">
-                                ${userSession.email}
-                            </small>
-
+                            <p class="fw-bold mb-0 text-dark small">${userSession.name}</p>
+                            <small class="text-muted">${userSession.email}</small>
                         </div>
-
                     </li>
-
-
                     <li>
-
                         <button
                             onclick="logout()"
                             class="dropdown-item text-danger fw-bold py-2 rounded-3"
                         >
-
                             <i class="bi bi-box-arrow-right me-2"></i>
-
                             Cerrar Sesión
-
                         </button>
-
                     </li>
-
                 </ul>
-
             </div>
-
         `;
+    } else {
+        // OCULTAR MENÚS PRIVADOS
+        navAdmin.style.display = 'none';
+        navListas.style.display = 'none';
+        navSearch.style.display = 'none';
 
-    }
-
-
-    // =====================================================
-    // SIN SESIÓN
-    // =====================================================
-
-    else {
-
+        // BOTÓN INICIAR SESIÓN
         authContainer.innerHTML = `
-
             <a
                 href="{{ route('login') }}"
                 class="btn btn-light text-success fw-bold px-3 rounded-pill shadow-sm d-flex align-items-center gap-2"
             >
-
                 <i class="bi bi-person-circle"></i>
-
                 Iniciar Sesión
-
             </a>
-
         `;
-
     }
-
 }
 
+// Función de ejemplo para cerrar sesión
 function logout() {
-
     localStorage.removeItem('user_session');
-
-    localStorage.removeItem('user_role');
-
-    checkAuthStatus();
-
-    window.location.href = "{{ url('/') }}";
-
+    checkAuthStatus(); // Recargar el estado del menú
 }
-
 </script>
