@@ -379,7 +379,7 @@ function checkAuthStatus() {
             </div>
         `;
     } else {
-        // OCULTAR MENÚS PRIVADOS
+
         navAdmin.style.display = 'none';
         navListas.style.display = 'none';
         navSearch.style.display = 'none';
