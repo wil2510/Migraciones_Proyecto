@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Teacher extends Model
+{
+    use HasFactory;
+
+
+    // Muchos instructores pertenecen a un área
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'area_id');
+    }
+
+
+    // Muchos instructores pertenecen a un centro de formación
+    public function training_center()
+    {
+        return $this->belongsTo(
+            Training_center::class,
+            'training_center_id'
+        );
+    }
+
+
+    // Un instructor puede tener muchos cursos
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class);
+    }
+
+
+    protected $fillable = [
+        'name',
+        'email',
+        'area_id',
+        'training_center_id'
+    ];
+}
