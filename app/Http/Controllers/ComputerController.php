@@ -12,7 +12,7 @@ class ComputerController extends Controller
         return view('computer.create');
     }
 
-    public function index(Request $request)
+    public function index()
     {
         // $computers = Computer::all();
 
@@ -31,9 +31,6 @@ class ComputerController extends Controller
     {
         // $computers = Computer::create($request->all());
 
-        $request->validate([
-            'serial_number' => 'required|max:255',
-        ]);
         $computers = Computer::create($request->all());
 
         if ($request->hasFile("urlFoto")) {
@@ -88,13 +85,9 @@ class ComputerController extends Controller
 
         // return redirect()->route('computer.index');
 
-        $request->validate([
-            'serial_number' => 'required|max:255',
-        ]);
-
         $computer->update($request->all());
 
-        return $computer;
+        return response()->json($computer);
     }
 
     public function destroy(Request $request, Computer $computer)

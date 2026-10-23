@@ -12,7 +12,7 @@ class TrainingCenterController extends Controller
         return view('trainingcenter.create');
     }
 
-    public function index(Request $request)
+    public function index()
     {
         // $trainingcenters = Training_center::all();
 
@@ -53,11 +53,6 @@ class TrainingCenterController extends Controller
         return response()->json($trainingcenter);
 
         // return redirect()->route('trainingcenter.index');
-    }
-
-    public function ambientes()
-    {
-        return $this->hasMany(Ambientes::class);
     }
 
     public function show(Request $request, $id)

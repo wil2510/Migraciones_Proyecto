@@ -9,163 +9,82 @@ use App\Models\Training_center;
 
 class CourseController extends Controller
 {
-    // ==========================================
-    // LISTADO DE CURSOS
-    // ==========================================
-    public function index()
-    {
-        $courses = Course::with([
-            'area',
-            'trainingCenter'
-        ])->get();
+    public function index(){
+        $courses = Course::all();
 
-        return view('course.index', compact('courses'));
+        return response()->json($courses);
     }
 
-
-    // ==========================================
-    // FORMULARIO CREAR CURSO
-    // ==========================================
-    public function create()
+    public function admin(Request $request)
     {
-        $areas = Area::all();
+        // $courses = Course::create($request->all());
 
-        $training_centers = Training_center::all();
+        $courses = Course::create($request->all());
 
-        return view('course.create', compact(
-            'areas',
-            'training_centers'
-        ));
+        if ($request->hasFile("urlFoto")) {
+            $file = $request->file("urlFoto");
+            $nombreArchivo = "foto_".time().".".$file->guessExtension();
+            $request->file('urlFoto')->storeAs('public/images', $nombreArchivo);
+
+            $courses->urlFoto = $nombreArchivo;
+            $courses->save();
+        }
+
+        // // Si la petición viene de Postman
+        // if ($request->wantsJson()) {
+        //     return response()->json($areas, 201);
+        // }
+
+        return response()->json($courses);
+
+        // return redirect()->route('area.index');
     }
 
-
-    // ==========================================
-    // GUARDAR CURSO
-    // ==========================================
-    public function store(Request $request)
+    public function show(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
+        // $area = Area::findOrFail($id);
 
-            'code' => 'required|string|max:50|unique:courses,code',
+        // // Si la petición viene de Postman
+        // if ($request->wantsJson()) {
+        //     return response()->json($area, 200);
+        // }
 
-            'area_id' => 'required|exists:areas,id',
+        // return view('area.show', compact('area'));
 
-            'training_center_id' =>
-                'required|exists:training_centers,id',
-        ]);
-
-
-        Course::create([
-            'name' => $request->name,
-
-            'code' => $request->code,
-
-            'area_id' => $request->area_id,
-
-            'training_center_id' =>
-                $request->training_center_id,
-        ]);
-
-
-        return redirect()
-            ->route('course.index')
-            ->with(
-                'success',
-                'Curso creado exitosamente.'
-            );
+        $courses = Course::findOrFail($id);
+        // $courses = Course::with(['posts.user'])->findOrFail($id);
+        // $courses = Course::with(['posts'])->findOrFail($id);
+        return response()->json($courses);
     }
 
-
-    // ==========================================
-    // VER CURSO
-    // ==========================================
-    public function show(Course $course)
+    public function update(Request $request, Course $course)
     {
-        $course->load([
-            'area',
-            'trainingCenter'
-        ]);
+        // $course->update($request->all());
 
-        return view('course.show', compact('course'));
+        // // Si la petición viene de Postman
+        // if ($request->wantsJson()) {
+        //     return response()->json($course, 200);
+        // }
+
+        // return redirect()->route('area.index');
+
+        $course->update($request->all());
+
+        return $course;
     }
 
-
-    // ==========================================
-    // EDITAR CURSO
-    // ==========================================
-    public function edit(Course $course)
+    public function destroy(Request $request, Course $course)
     {
-        $areas = Area::all();
+        // $course->delete();
 
-        $training_centers = Training_center::all();
+        // // Si la petición viene de Postman
+        // if ($request->wantsJson()) {
+        //     return response()->json(['message' => 'Curso eliminado correctamente'], 200);
+        // }
 
-        return view(
-            'course.edit',
-            compact(
-                'course',
-                'areas',
-                'training_centers'
-            )
-        );
-    }
+        // return redirect()->route('area.index');
 
-
-    // ==========================================
-    // ACTUALIZAR CURSO
-    // ==========================================
-    public function update(
-        Request $request,
-        Course $course
-    ) {
-        $request->validate([
-            'name' =>
-                'required|string|max:255',
-
-            'code' =>
-                'required|string|max:50|unique:courses,code,' . $course->id,
-
-            'area_id' =>
-                'required|exists:areas,id',
-
-            'training_center_id' =>
-                'required|exists:training_centers,id',
-        ]);
-
-
-        $course->update([
-            'name' => $request->name,
-
-            'code' => $request->code,
-
-            'area_id' => $request->area_id,
-
-            'training_center_id' =>
-                $request->training_center_id,
-        ]);
-
-
-        return redirect()
-            ->route('course.index')
-            ->with(
-                'success',
-                'Curso actualizado exitosamente.'
-            );
-    }
-
-
-    // ==========================================
-    // ELIMINAR CURSO
-    // ==========================================
-    public function destroy(Course $course)
-    {
         $course->delete();
-
-        return redirect()
-            ->route('course.index')
-            ->with(
-                'success',
-                'Curso eliminado exitosamente.'
-            );
+        return $course;
     }
 }

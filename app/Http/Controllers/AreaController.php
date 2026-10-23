@@ -7,13 +7,7 @@ use App\Models\Area;
 
 class AreaController extends Controller
 {
-    public function create()
-    {
-        return view('area.create');
-    }
-
-    public function index(Request $request)
-    {
+    public function index(){
         // $areas = Area::all();
 
         // // Si la petición viene de Postman
@@ -72,11 +66,6 @@ class AreaController extends Controller
         return response()->json($areas);
     }
 
-    public function edit(Area $area)
-    {
-        return view('area.edit', compact('area'));
-    }
-
     public function update(Request $request, Area $area)
     {
         // $area->update($request->all());
@@ -92,9 +81,9 @@ class AreaController extends Controller
             'name' => 'required|max:255',
             ]);
 
-        $areas->update($request->all());
+        $area->update($request->all());
 
-        return $areas;
+        return $area;
     }
 
     public function destroy(Request $request, Area $area)
@@ -108,7 +97,7 @@ class AreaController extends Controller
 
         // return redirect()->route('area.index');
 
-        $areas->delete();
-        return $areas;
+        $area->delete();
+        return $area;
     }
 }
