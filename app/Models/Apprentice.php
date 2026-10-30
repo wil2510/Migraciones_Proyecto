@@ -11,7 +11,15 @@ class Apprentice extends Model
 {
     use HasFactory;
 
-    protected $table = 'apprentices';
+    // Relacion Uno a Muchos
+    public function course(){
+        return $this->belongsTo('App\Models\Course');
+    }
+
+    // Relacion Uno a Muchos
+    public function computer(){
+        return $this->belongsTo('App\Models\Computer');
+    }
 
     protected $fillable = [
         'name',
@@ -20,28 +28,4 @@ class Apprentice extends Model
         'course_id',
         'computer_id',
     ];
-
-
-    // =====================================================
-    // RELACIÓN CON CURSO
-    // =====================================================
-    public function course()
-    {
-        return $this->belongsTo(
-            Course::class,
-            'course_id'
-        );
-    }
-
-
-    // =====================================================
-    // RELACIÓN CON COMPUTADOR
-    // =====================================================
-    public function computer()
-    {
-        return $this->belongsTo(
-            Computer::class,
-            'computer_id'
-        );
-    }
 }

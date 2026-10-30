@@ -3,88 +3,54 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Area;
 use App\Models\Course;
-use App\Models\Training_center;
 
 class CourseController extends Controller
 {
     public function index(){
-        $courses = Course::all();
 
+        // $courses = Course::all();
+        // return view('course.index', compact('courses'));
+
+        $courses = Course::all();
         return response()->json($courses);
     }
+    
+    public function admin(Request $request){
 
-    public function admin(Request $request)
-    {
-        // $courses = Course::create($request->all());
+        // $course = Course::create($request->all());
 
         $courses = Course::create($request->all());
 
-        if ($request->hasFile("urlFoto")) {
-            $file = $request->file("urlFoto");
-            $nombreArchivo = "foto_".time().".".$file->guessExtension();
-            $request->file('urlFoto')->storeAs('public/images', $nombreArchivo);
-
-            $courses->urlFoto = $nombreArchivo;
-            $courses->save();
-        }
-
-        // // Si la petición viene de Postman
-        // if ($request->wantsJson()) {
-        //     return response()->json($areas, 201);
-        // }
+        // return redirect()->route('course.index');
 
         return response()->json($courses);
-
-        // return redirect()->route('area.index');
     }
 
-    public function show(Request $request, $id)
-    {
-        // $area = Area::findOrFail($id);
+    public function show ($id){
 
-        // // Si la petición viene de Postman
-        // if ($request->wantsJson()) {
-        //     return response()->json($area, 200);
-        // }
-
-        // return view('area.show', compact('area'));
+        // $course=Course::find($id);
+        // return view('course.show',compact('course'));
 
         $courses = Course::findOrFail($id);
-        // $courses = Course::with(['posts.user'])->findOrFail($id);
-        // $courses = Course::with(['posts'])->findOrFail($id);
         return response()->json($courses);
     }
 
-    public function update(Request $request, Course $course)
-    {
+    public function update(Request $request, Course $course){
+
         // $course->update($request->all());
-
-        // // Si la petición viene de Postman
-        // if ($request->wantsJson()) {
-        //     return response()->json($course, 200);
-        // }
-
-        // return redirect()->route('area.index');
+        // return redirect()->route('course.index');
 
         $course->update($request->all());
-
-        return $course;
+        return response()->json($course);
     }
 
-    public function destroy(Request $request, Course $course)
+    public function destroy(Course $course)
     {
         // $course->delete();
-
-        // // Si la petición viene de Postman
-        // if ($request->wantsJson()) {
-        //     return response()->json(['message' => 'Curso eliminado correctamente'], 200);
-        // }
-
-        // return redirect()->route('area.index');
+        // return redirect()->route('course.index');
 
         $course->delete();
-        return $course;
+        return response()->json($course);
     }
 }
