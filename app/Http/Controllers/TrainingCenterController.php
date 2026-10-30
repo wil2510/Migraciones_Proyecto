@@ -4,111 +4,90 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Training_center;
+use Cloudinary\Cloudinary;
 
 class TrainingCenterController extends Controller
 {
-    public function create()
-    {
-        return view('trainingcenter.create');
+    public function index(){
+
+        $trainingcenters = Training_center::all();
+        return response()->json($trainingcenters);
+
+        // $trainingcenters = Training_center::all();
+        // return view('trainingcenter.index', compact('trainingcenters'));
     }
 
-    public function index()
-    {
-        // $trainingcenters = Training_center::all();
+    public function admin(Request $request){
 
-        // // Si la petición viene de Postman
-        // if ($request->wantsJson()) {
-        //     return response()->json($trainingcenters, 200);
-        // }
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'imagen' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+        ]);
 
-        // return view('trainingcenter.index', compact('trainingcenters'));
-        $trainingcenters = Training_center::all();
+        $file = $request->file('imagen');
 
+        $cloudinary = new Cloudinary([
+            'cloud' => [
+                'cloud_name' => config('services.cloudinary.cloud_name'),
+                'api_key' => config('services.cloudinary.api_key'),
+                'api_secret' => config('services.cloudinary.api_secret'),
+            ],
+            'url' => ['secure' => true],
+        ]);
+
+        $resultado = $cloudinary->uploadApi()->upload(
+            $file->getRealPath(),
+            [
+                'folder' => 'centros',
+                'resource_type' => 'image',
+            ]
+        );
+
+        $trainingcenters = Training_center::create([
+            'name' => $request->name,
+            'location' => $request->location,
+            'imagen_url' => $resultado['secure_url'],
+            'imagen_public_id' => $resultado['public_id'],
+        ]);
+
+        return response()->json([
+            'message' => 'Centro creado correctamente',
+            'data' => $trainingcenters,
+        ], 201);
+
+        // $trainingcenters = Training_center::create($request->all());
+        // return redirect()->route('trainingcenter.index');
+        // return response()->json($trainingcenters);
+
+    }
+
+    public function show ($id){
+
+        // $trainingcenter=Training_center::find($id);
+
+        // return view('trainingcenter.show',compact('trainingcenter'));
+
+        $trainingcenters = Training_center::findOrFail($id);
         return response()->json($trainingcenters);
     }
 
-    public function admin(Request $request)
-    {
-        // $trainingcenter = Training_center::create($request->all());
+    public function update(Request $request, Training_center $trainingcenter){
 
-        $request->validate([
-            'name' => 'required|max:255',
-        ]);
-        $trainingcenter = Training_center::create($request->all());
-
-        if ($request->hasFile("urlFoto")) {
-            $file = $request->file("urlFoto");
-            $nombreArchivo = "foto_".time().".".$file->guessExtension();
-            $request->file('urlFoto')->storeAs('public/images', $nombreArchivo);
-
-            $trainingcenter->urlFoto = $nombreArchivo;
-            $trainingcenter->save();
-        }
-
-        // // Si la petición viene de Postman
-        // if ($request->wantsJson()) {
-        //     return response()->json($trainingcenter, 201);
-        // }
-
-        return response()->json($trainingcenter);
-
-        // return redirect()->route('trainingcenter.index');
-    }
-
-    public function show(Request $request, $id)
-    {
-        // $trainingcenter = Training_center::find($id);
-
-        // // Si la petición viene de Postman
-        // if ($request->wantsJson()) {
-        //     return response()->json($trainingcenter, 200);
-        // }
-
-        // return view('trainingcenter.show', compact('trainingcenter'));
-
-        $trainingcenter = Training_center::findOrFail($id);
-        // $trainingcenter = Training_center::with(['posts.user'])->findOrFail($id);
-        // $trainingcenter = Training_center::with(['posts'])->findOrFail($id);
-        return response()->json($trainingcenter);
-    }
-
-    public function edit(Training_center $trainingcenter)
-    {
-        return view('trainingcenter.edit', compact('trainingcenter'));
-    }
-
-    public function update(Request $request, Training_center $trainingcenter)
-    {
         // $trainingcenter->update($request->all());
 
-        // // Si la petición viene de Postman
-        // if ($request->wantsJson()) {
-        //     return response()->json($trainingcenter, 200);
-        // }
-
         // return redirect()->route('trainingcenter.index');
-
-        $request->validate([
-            'name' => 'required|max:255',
-        ]);
-
         $trainingcenter->update($request->all());
+        return response()->json($trainingcenter);
 
-        return $trainingcenter;
     }
 
-    public function destroy(Request $request, Training_center $trainingcenter)
+    public function destroy(Training_center $trainingcenter)
     {
         // $trainingcenter->delete();
-
-        // // Si la petición viene de Postman
-        // if ($request->wantsJson()) {
-        //     return response()->json(['message' => 'Centro de formación eliminado correctamente'], 200);
-        // }
-
         // return redirect()->route('trainingcenter.index');
 
         $trainingcenter->delete();
-        return $trainingcenter;
+        return response()->json($trainingcenter);
     }
 }

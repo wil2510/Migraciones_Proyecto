@@ -25,10 +25,9 @@ class Area extends Model
     }
 
     protected $fillable = [
-        'name'
+        'name',
+        'imagen_url',
+        'imagen_public_id'
     ];
     
-    protected $guarded = [
-        'urlFoto'
-    ];
 }

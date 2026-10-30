@@ -4,100 +4,93 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Area;
+use Cloudinary\Cloudinary;
 
 class AreaController extends Controller
 {
     public function index(){
+
         // $areas = Area::all();
 
-        // // Si la petición viene de Postman
-        // if ($request->wantsJson()) {
-        //     return response()->json($areas, 200);
-        // }
+        // return view('area.index',compact('areas'));
 
-        // return view('area.index', compact('areas'));
         $areas = Area::all();
-
         return response()->json($areas);
+
     }
 
-    public function admin(Request $request)
-    {
+    public function admin(Request $request){
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'imagen' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+        ]);
+
         // $areas = Area::create($request->all());
 
-        $request->validate([
-            'name' => 'required|max:255',
+        $file = $request->file('imagen');
+
+        $cloudinary = new Cloudinary([
+            'cloud' => [
+                'cloud_name' => config('services.cloudinary.cloud_name'),
+                'api_key' => config('services.cloudinary.api_key'),
+                'api_secret' => config('services.cloudinary.api_secret'),
+            ],
+            'url' => ['secure' => true],
         ]);
-        $areas = Area::create($request->all());
 
-        if ($request->hasFile("urlFoto")) {
-            $file = $request->file("urlFoto");
-            $nombreArchivo = "foto_".time().".".$file->guessExtension();
-            $request->file('urlFoto')->storeAs('public/images', $nombreArchivo);
+        $resultado = $cloudinary->uploadApi()->upload(
+            $file->getRealPath(),
+            [
+                'folder' => 'areas',
+                'resource_type' => 'image',
+            ]
+        );
 
-            $areas->urlFoto = $nombreArchivo;
-            $areas->save();
-        }
+        $areas = Area::create([
+            'name' => $request->name,
+            'imagen_url' => $resultado['secure_url'],
+            'imagen_public_id' => $resultado['public_id'],
+        ]);
 
-        // // Si la petición viene de Postman
-        // if ($request->wantsJson()) {
-        //     return response()->json($areas, 201);
-        // }
+        return response()->json([
+            'message' => 'Area creada correctamente',
+            'data' => $areas,
+        ], 201);
 
-        return response()->json($areas);
+        // $areas = Area::create($request->all());
+        // return response()->json($areas);
 
-        // return redirect()->route('area.index');
     }
 
-    public function show(Request $request, $id)
-    {
-        // $area = Area::findOrFail($id);
-
-        // // Si la petición viene de Postman
-        // if ($request->wantsJson()) {
-        //     return response()->json($area, 200);
-        // }
-
-        // return view('area.show', compact('area'));
+    public function show ($id){
 
         $areas = Area::findOrFail($id);
-        // $areas = Area::with(['posts.user'])->findOrFail($id);
-        // $areas = Area::with(['posts'])->findOrFail($id);
         return response()->json($areas);
+
+        // $area=Area::find($id);
+        // return view('area.show',compact('area'));
+        
     }
 
-    public function update(Request $request, Area $area)
-    {
-        // $area->update($request->all());
+    public function update(Request $request, Area $area){
 
-        // // Si la petición viene de Postman
-        // if ($request->wantsJson()) {
-        //     return response()->json($area, 200);
-        // }
+        // $area->update($request -> all());
 
         // return redirect()->route('area.index');
-
-        $request->validate([
-            'name' => 'required|max:255',
-            ]);
 
         $area->update($request->all());
 
-        return $area;
+        return response()->json($area);
+
     }
 
-    public function destroy(Request $request, Area $area)
+    public function destroy(Area $area)
     {
         // $area->delete();
-
-        // // Si la petición viene de Postman
-        // if ($request->wantsJson()) {
-        //     return response()->json(['message' => 'Área eliminada correctamente'], 200);
-        // }
-
         // return redirect()->route('area.index');
 
         $area->delete();
-        return $area;
+        return response()->json($area);
     }
 }
